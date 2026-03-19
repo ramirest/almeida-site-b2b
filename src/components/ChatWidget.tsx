@@ -50,7 +50,7 @@ export default function ChatWidget() {
                 <span className="text-xs font-bold">J</span>
               </div>
               <div className="bg-white border border-gray-100 p-3 rounded-2xl rounded-tl-sm shadow-sm max-w-[85%] text-sm text-gray-700 leading-relaxed">
-                Olá, parceiro. Sou o assistente virtual da Jatearte. Dúvidas sobre o status do seu pedido ou nossos serviços de jateamento?
+                Olá, parceiro. Sou o assistente virtual da Jateart. Dúvidas sobre o status do seu pedido ou nossos serviços de jateamento?
               </div>
             </div>
           </div>

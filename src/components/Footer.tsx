@@ -40,7 +40,7 @@ export default function Footer() {
         </div>
         
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-          <p>© {currentYear} Jatearte Industrial. Todos os direitos reservados.</p>
+          <p>© {currentYear} Jateart Industrial. Todos os direitos reservados.</p>
           
           {/* Local SEO Signature */}
           <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10">

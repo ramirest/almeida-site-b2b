@@ -13,7 +13,7 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Jatearte - Seu Parceiro Industrial em Jateamento de Vidros",
+  title: "Jateart - Seu Parceiro Industrial em Jateamento de Vidros",
   description: "Terceirize seu jateamento com tecnologia e prazo garantido. Escale sua vidraçaria sem aumentar sua equipe. Exclusivo para B2B.",
 };
 

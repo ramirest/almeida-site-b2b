@@ -26,7 +26,7 @@ export default function WhyUsSection() {
         <div className="flex flex-col lg:flex-row gap-16 items-center">
           
           <div className="lg:w-1/2">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">Porque Terceirizar com a <span className="text-blue-600">Jatearte?</span></h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">Porque Terceirizar com a <span className="text-blue-600">Jateart?</span></h2>
             <p className="text-lg text-gray-600 mb-10">
               Somos a extensão fabril da sua vidraçaria. Entendemos as dores do segmento corporativo e estruturamos nossa operação para resolver gargalos de produção e prazo.
             </p>
@@ -58,7 +58,7 @@ export default function WhyUsSection() {
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/90 to-primary/40 flex flex-col justify-end p-8">
                 <div className="bg-white/10 backdrop-blur-md p-6 rounded-xl border border-white/20">
                   <p className="text-white font-medium text-lg italic">
-                    "Desde que passamos todo o beneficiamento de jateamento para a Jatearte, nossa capacidade de atendimento em obras corporativas triplicou."
+                    "Desde que passamos todo o beneficiamento de jateamento para a Jateart, nossa capacidade de atendimento em obras corporativas triplicou."
                   </p>
                   <div className="mt-4 flex items-center gap-3">
                     <div className="w-10 h-10 bg-white/30 rounded-full"></div>
