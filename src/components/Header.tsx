@@ -9,7 +9,7 @@ export default function Header() {
         {/* Logo */}
         <div className="flex-shrink-0">
           <Link href="/" className="text-2xl font-bold text-primary tracking-tight">
-            JATE<span className="text-gray-500">ARTE</span>
+            JATE<span className="text-gray-500">ART</span>
           </Link>
         </div>
 

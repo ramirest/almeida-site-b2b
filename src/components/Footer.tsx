@@ -11,7 +11,7 @@ export default function Footer() {
           
           <div className="md:col-span-2">
             <Link href="/" className="text-3xl font-bold text-white tracking-tight mb-6 inline-block">
-              JATE<span className="text-gray-500">ARTE</span>
+              JATE<span className="text-gray-500">ART</span>
             </Link>
             <p className="max-w-md leading-relaxed">
               O parceiro logístico e fabril definitivo em jateamento de vidros para o mercado B2B. Aceleramos a sua capacidade produtiva com sigilo, tecnologia e prazo.
