@@ -1,31 +1,16 @@
 import React from 'react';
 import { Users, ShoppingCart, MessageSquare, TrendingUp, Calendar, Search, MoreVertical } from 'lucide-react';
+import { getAdminDashboardData } from '@/actions/admin';
 
-const kpis = [
-  { title: 'Pedidos no Mês', value: '142', trend: '+12%', icon: ShoppingCart, color: 'text-blue-600', bg: 'bg-blue-100' },
-  { title: 'Leads Pendentes', value: '18', trend: '-5%', icon: MessageSquare, color: 'text-amber-600', bg: 'bg-amber-100' },
-  { title: 'Parceiros Ativos', value: '85', trend: '+3%', icon: Users, color: 'text-emerald-600', bg: 'bg-emerald-100' },
-];
+export default async function AdminDashboardPage() {
+  const { kpis, leads, pedidos, parceiros } = await getAdminDashboardData();
 
-const leads = [
-  { id: 'L-1029', empresa: 'Vidraçaria Central', servico: 'Jateamento Total', volume: '120m²', data: 'Hoje, 10:30', status: 'Novo' },
-  { id: 'L-1028', empresa: 'Construtora Alpha', servico: 'Fornecimento (Temperado)', volume: '50 peças', data: 'Ontem, 16:45', status: 'Em Negociação' },
-  { id: 'L-1027', empresa: 'Design Interiores ME', servico: 'Projeto Especial', volume: 'Sob consulta', data: '15/04/2026', status: 'Proposta Enviada' },
-];
+  const kpisCards = [
+    { title: 'Pedidos no Mês', value: kpis.totalOrdersMonth, trend: '+12%', icon: ShoppingCart, color: 'text-blue-600', bg: 'bg-blue-100' },
+    { title: 'Leads Pendentes', value: kpis.pendingLeads, trend: 'Novo', icon: MessageSquare, color: 'text-amber-600', bg: 'bg-amber-100' },
+    { title: 'Parceiros Ativos', value: kpis.activePartners, trend: '+3%', icon: Users, color: 'text-emerald-600', bg: 'bg-emerald-100' },
+  ];
 
-const pedidos = [
-  { id: 'PED-2026-089', parceiro: 'Vidraçaria Parceira', valor: 'R$ 385,00', status: 'Em Produção', prazo: '20/04/2026' },
-  { id: 'PED-2026-088', parceiro: 'Construtora Beta', valor: 'R$ 4.250,00', status: 'Aguardando Coleta', prazo: '18/04/2026' },
-  { id: 'PED-2026-087', parceiro: 'Distribuidora Vidros SP', valor: 'R$ 1.800,00', status: 'Faturado', prazo: '17/04/2026' },
-];
-
-const parceiros = [
-  { nome: 'Vidraçaria Parceira', cnpj: '12.345.678/0001-90', nivel: 'Ouro', credit: 'R$ 5.000,00' },
-  { nome: 'Construtora Beta', cnpj: '98.765.432/0001-10', nivel: 'Platina', credit: 'R$ 15.000,00' },
-  { nome: 'Distribuidora Vidros SP', cnpj: '45.678.901/0001-23', nivel: 'Distribuidor', credit: 'R$ 50.000,00' },
-];
-
-export default function AdminDashboardPage() {
   return (
     <div className="space-y-8 max-w-7xl mx-auto">
       
@@ -49,7 +34,7 @@ export default function AdminDashboardPage() {
 
       {/* KPIs */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {kpis.map((kpi, idx) => {
+        {kpisCards.map((kpi, idx) => {
           const Icon = kpi.icon;
           return (
             <div key={idx} className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm flex items-center justify-between">
@@ -84,21 +69,23 @@ export default function AdminDashboardPage() {
             <button className="text-sm text-blue-600 font-medium hover:underline">Ver todos</button>
           </div>
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
-            {leads.map((lead, idx) => (
+            {leads.length === 0 ? (
+              <p className="text-center text-slate-500 py-8">Nenhum novo lead de orçamento pendente.</p>
+            ) : leads.map((lead, idx) => (
               <div key={idx} className="p-4 border border-slate-100 rounded-lg hover:border-blue-200 transition-colors bg-white shadow-sm flex flex-col sm:flex-row gap-4 justify-between">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-xs font-bold text-slate-500">{lead.id}</span>
-                    <span className={`text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-full ${lead.status === 'Novo' ? 'bg-amber-100 text-amber-800' : 'bg-blue-100 text-blue-800'}`}>
-                      {lead.status}
+                    <span className="text-xs font-bold text-slate-500">{lead.id.slice(-6).toUpperCase()}</span>
+                    <span className="text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">
+                      Novo Lead
                     </span>
                   </div>
                   <h4 className="font-bold text-slate-900">{lead.empresa}</h4>
-                  <p className="text-sm text-slate-600">{lead.servico} ({lead.volume})</p>
+                  <p className="text-sm text-slate-600 truncate max-w-[200px]">{lead.servico} ({lead.volume})</p>
                 </div>
                 <div className="flex sm:flex-col justify-between items-end">
                   <span className="text-xs text-slate-500">{lead.data}</span>
-                  <button className="text-sm font-medium text-blue-600 hover:underline">Atender</button>
+                  <button className="text-sm font-medium text-blue-600 hover:underline">Aprovar Parceiro</button>
                 </div>
               </div>
             ))}
@@ -124,20 +111,25 @@ export default function AdminDashboardPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-50">
-                {pedidos.map((pedido, idx) => (
+                {pedidos.length === 0 ? (
+                  <tr>
+                    <td colSpan={3} className="px-6 py-8 text-center text-slate-500">
+                      Nenhum pedido em andamento.
+                    </td>
+                  </tr>
+                ) : pedidos.map((pedido, idx) => (
                   <tr key={idx} className="hover:bg-slate-50 transition-colors">
                     <td className="px-6 py-4">
-                      <div className="font-medium text-slate-900">{pedido.id}</div>
+                      <div className="font-medium text-slate-900">{pedido.id.slice(-6).toUpperCase()}</div>
                       <div className="text-xs text-slate-500">{pedido.valor}</div>
                     </td>
                     <td className="px-6 py-4 text-slate-700">{pedido.parceiro}</td>
                     <td className="px-6 py-4">
                       <span className={`inline-flex items-center px-2 py-1 rounded text-xs font-medium ${
-                        pedido.status === 'Em Produção' ? 'bg-blue-50 text-blue-700 border border-blue-200' :
-                        pedido.status === 'Aguardando Coleta' ? 'bg-amber-50 text-amber-700 border border-amber-200' :
-                        'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                        pedido.status === 'IN_PRODUCTION' ? 'bg-blue-50 text-blue-700 border border-blue-200' :
+                        'bg-amber-50 text-amber-700 border border-amber-200'
                       }`}>
-                        {pedido.status}
+                        {pedido.status === 'IN_PRODUCTION' ? 'Em Produção' : 'Pendente'}
                       </span>
                     </td>
                   </tr>

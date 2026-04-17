@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Send, CheckCircle2, Plus, Trash2, Calculator } from 'lucide-react';
+import { Send, CheckCircle2, Plus, Trash2, Calculator, ArrowRight } from 'lucide-react';
+import { submitOrcamento } from '@/actions/orcamento';
 
 type BudgetItem = {
   id: string;
@@ -19,10 +20,18 @@ const PRICES: Record<string, number> = {
 };
 
 export default function OrcamentoForm() {
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [items, setItems] = useState<BudgetItem[]>([
     { id: '1', type: '', volume: '', prazo: '', notes: '' }
   ]);
+  const [formData, setFormData] = useState({
+    empresa: '',
+    cnpj: '',
+    nome: '',
+    email: '',
+    telefone: ''
+  });
 
   const handleAddItem = () => {
     setItems([
@@ -54,27 +63,48 @@ export default function OrcamentoForm() {
 
   const totalEstimate = calculateTotal();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Aqui seria a integração com API
-    setIsSubmitted(true);
+    if (items.length === 0) {
+      alert("Adicione pelo menos um item ao orçamento.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    const result = await submitOrcamento({
+      empresa: formData.empresa,
+      cnpj: formData.cnpj,
+      nome: formData.nome,
+      email: formData.email,
+      telefone: formData.telefone,
+      items,
+      totalEstimate
+    });
+
+    setIsSubmitting(false);
+
+    if (result.success) {
+      setIsSuccess(true);
+      setFormData({ empresa: '', cnpj: '', nome: '', email: '', telefone: '' });
+      setItems([{ id: '1', type: '', volume: '', prazo: '', notes: '' }]);
+    } else {
+      alert(result.error || "Erro ao enviar orçamento.");
+    }
   };
 
-  if (isSubmitted) {
+  if (isSuccess) {
     return (
       <div className="bg-white p-12 rounded-xl border border-gray-100 shadow-lg text-center max-w-2xl mx-auto">
         <div className="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
           <CheckCircle2 size={40} />
         </div>
-        <h2 className="text-3xl font-bold text-primary mb-4">Solicitação Enviada!</h2>
+        <h2 className="text-3xl font-bold text-primary mb-4">Orçamento Enviado com Sucesso!</h2>
         <p className="text-lg text-gray-600 mb-8">
-          Nossa equipe comercial recebeu sua solicitação e entrará em contato em até 2 horas úteis.
+          Sua solicitação foi registrada no nosso sistema. Nosso comercial entrará em contato em breve.
         </p>
         <button 
-          onClick={() => {
-            setIsSubmitted(false);
-            setItems([{ id: '1', type: '', volume: '', prazo: '', notes: '' }]);
-          }}
+          onClick={() => setIsSuccess(false)}
           className="inline-flex items-center justify-center px-8 py-3 bg-gray-100 text-gray-700 rounded-md font-bold hover:bg-gray-200 transition-colors"
         >
           Enviar Nova Solicitação
@@ -94,7 +124,6 @@ export default function OrcamentoForm() {
       
       <form onSubmit={handleSubmit} className="p-8">
         
-        {/* Seção 1: Seus Dados */}
         <div className="mb-10">
           <h3 className="text-xl font-bold text-gray-900 border-b border-gray-200 pb-2 mb-6 flex items-center gap-2">
             <span className="bg-blue-100 text-blue-800 w-8 h-8 rounded-full flex items-center justify-center text-sm">1</span>
@@ -107,6 +136,8 @@ export default function OrcamentoForm() {
               <input 
                 type="text" 
                 required 
+                value={formData.empresa}
+                onChange={(e) => setFormData({...formData, empresa: e.target.value})}
                 className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                 placeholder="Ex: Vidraçaria Exemplo Ltda"
               />
@@ -116,6 +147,8 @@ export default function OrcamentoForm() {
               <input 
                 type="text" 
                 required 
+                value={formData.cnpj}
+                onChange={(e) => setFormData({...formData, cnpj: e.target.value})}
                 className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                 placeholder="00.000.000/0000-00"
               />
@@ -125,6 +158,8 @@ export default function OrcamentoForm() {
               <input 
                 type="text" 
                 required 
+                value={formData.nome}
+                onChange={(e) => setFormData({...formData, nome: e.target.value})}
                 className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                 placeholder="Seu nome completo"
               />
@@ -134,6 +169,8 @@ export default function OrcamentoForm() {
               <input 
                 type="email" 
                 required 
+                value={formData.email}
+                onChange={(e) => setFormData({...formData, email: e.target.value})}
                 className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                 placeholder="contato@empresa.com.br"
               />
@@ -143,6 +180,8 @@ export default function OrcamentoForm() {
               <input 
                 type="tel" 
                 required 
+                value={formData.telefone}
+                onChange={(e) => setFormData({...formData, telefone: e.target.value})}
                 className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                 placeholder="(00) 00000-0000"
               />
@@ -150,7 +189,6 @@ export default function OrcamentoForm() {
           </div>
         </div>
 
-        {/* Seção 2: O que você precisa? */}
         <div className="mb-10">
           <div className="flex justify-between items-end border-b border-gray-200 pb-2 mb-6">
             <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
@@ -243,7 +281,6 @@ export default function OrcamentoForm() {
           </div>
         </div>
 
-        {/* Resumo do Orçamento (Estimativa) */}
         <div className="mb-10 bg-blue-50 border border-blue-100 rounded-xl p-6 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
@@ -264,13 +301,14 @@ export default function OrcamentoForm() {
           </div>
         </div>
 
-        <div className="flex justify-end pt-4 border-t border-gray-100">
+        <div className="pt-6 border-t border-gray-100 flex justify-end">
           <button 
             type="submit" 
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white rounded-md font-bold hover:bg-primary-hover transition-colors w-full sm:w-auto shadow-md"
+            disabled={isSubmitting}
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white rounded-md font-bold hover:bg-primary-hover transition-colors w-full sm:w-auto shadow-md disabled:opacity-70"
           >
-            Solicitar Orçamento Oficial
-            <Send size={20} />
+            {isSubmitting ? 'Enviando...' : 'Solicitar Orçamento Oficial'}
+            {!isSubmitting && <ArrowRight size={20} />}
           </button>
         </div>
         
