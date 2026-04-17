@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  email        String   @unique
+  passwordHash String
+  role         String   @default("PARTNER") // ADMIN ou PARTNER
+  
+  // Relacionamento opcional com Partner
+  partnerId    String?  @db.ObjectId
+  partner      Partner? @relation(fields: [partnerId], references: [id])
+  
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Partner {
+  id            String        @id @default(auto()) @map("_id") @db.ObjectId
+  corporateName String
+  cnpj          String        @unique
+  phone         String
+  status        String        @default("PENDING") // PENDING, APPROVED, BLOCKED
+  creditLimit   Float         @default(0)
+  tier          String        @default("PARTNER") // PARTNER, GOLD, DISTRIBUTOR
+  
+  users         User[]
+  orders        Order[]
+  
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model Order {
+  id         String      @id @default(auto()) @map("_id") @db.ObjectId
+  partnerId  String      @db.ObjectId
+  partner    Partner     @relation(fields: [partnerId], references: [id])
+  status     String      @default("PENDING") // PENDING, IN_PRODUCTION, COMPLETED, CANCELLED
+  totalValue Float       @default(0)
+  
+  items      OrderItem[]
+  
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+}
+
+model OrderItem {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  orderId     String   @db.ObjectId
+  order       Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  serviceType String
+  volume      String
+  deadline    String
+  notes       String?
+}
