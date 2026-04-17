@@ -29,18 +29,18 @@ export default function HeroSection() {
           
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <Link 
-              href="#vantagens" 
+              href="/orcamento" 
               className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 bg-white text-primary rounded-md font-bold hover:bg-gray-100 transition-colors"
             >
-              Seja um Parceiro
+              Solicitar Orçamento
               <ArrowRight size={20} />
             </Link>
             
             <Link 
-              href="#servicos" 
+              href="/#produtos" 
               className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 bg-transparent border border-gray-400 text-white rounded-md font-semibold hover:bg-white/5 hover:border-white transition-colors"
             >
-              Nossos Serviços
+              Catálogo de Produtos
               <ChevronRight size={20} />
             </Link>
           </div>

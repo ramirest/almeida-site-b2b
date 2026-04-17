@@ -15,20 +15,26 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          <Link href="#servicos" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-            Nossos Serviços
+          <Link href="/#produtos" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+            Produtos
           </Link>
-          <Link href="#vantagens" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-            Vantagens B2B
+          <Link href="/#servicos" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+            Serviços
+          </Link>
+          <Link href="/#portal-b2b" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+            Portal B2B
+          </Link>
+          <Link href="/orcamento" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+            Orçamento
           </Link>
         </nav>
 
         {/* CTA Button */}
         <div className="flex items-center gap-4">
-          <button className="hidden sm:flex items-center gap-2 bg-primary hover:bg-primary-hover text-white px-5 py-2.5 rounded-md text-sm font-medium transition-colors">
+          <Link href="/parceiros" className="hidden sm:flex items-center gap-2 bg-primary hover:bg-primary-hover text-white px-5 py-2.5 rounded-md text-sm font-medium transition-colors">
             <User size={16} />
             Área do Parceiro
-          </button>
+          </Link>
           
           {/* Mobile Menu Toggle (Simplified) */}
           <button className="md:hidden p-2 text-foreground">
