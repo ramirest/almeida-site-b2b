@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { LayoutDashboard, Users, ShoppingCart, Calendar, MessageSquare } from 'lucide-react';
+import { LayoutDashboard, Users, ShoppingCart, Calendar, MessageSquare, FileText } from 'lucide-react';
 import { auth } from '@/auth';
 import LogoutButton from '@/components/LogoutButton';
 
@@ -34,13 +34,13 @@ export default async function AdminLayout({
               <LayoutDashboard size={18} />
               Visão Geral
             </Link>
-            <Link href="#" className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
+            <Link href="/admin/leads" className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
               <MessageSquare size={18} />
-              Leads & Orçamentos
+              Leads & CRM
             </Link>
-            <Link href="#" className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
-              <ShoppingCart size={18} />
-              Todos os Pedidos
+            <Link href="/admin/orcamentos" className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
+              <FileText size={18} />
+              Orçamentos
             </Link>
             <Link href="#" className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
               <Users size={18} />
