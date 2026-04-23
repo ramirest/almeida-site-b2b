@@ -11,6 +11,11 @@ export default async function AdminLayout({
 }) {
   const session = await auth();
 
+  // Se não estiver logado ou não for admin, renderiza apenas a tela de login em tela cheia
+  if (!session || session?.user?.role !== 'ADMIN') {
+    return <>{children}</>;
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar Admin */}
