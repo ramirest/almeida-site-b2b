@@ -26,12 +26,14 @@ export default function AdminLoginPage() {
 
       if (result?.error) {
         setErrorMsg('Acesso negado. Credenciais inválidas ou sem permissão de Admin.');
+        setIsLoading(false);
       } else {
+        // Atualiza a árvore do Next.js para ler os novos cookies antes de mudar de tela
+        router.refresh();
         router.push('/admin');
       }
     } catch (error) {
       setErrorMsg('Ocorreu um erro ao tentar acessar o painel.');
-    } finally {
       setIsLoading(false);
     }
   };
