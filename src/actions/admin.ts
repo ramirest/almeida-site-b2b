@@ -1,6 +1,7 @@
 'use server';
 
 import { auth, prisma } from '@/auth';
+import { revalidatePath } from 'next/cache';
 
 export async function getAdminDashboardData() {
   const session = await auth();
@@ -76,4 +77,32 @@ export async function getAdminDashboardData() {
       credit: new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(partner.creditLimit)
     }))
   };
+}
+
+export async function approvePartner(partnerId: string) {
+  const session = await auth();
+  if (!session || !session.user || session.user.role !== 'ADMIN') {
+    throw new Error('Acesso negado');
+  }
+
+  await prisma.partner.update({
+    where: { id: partnerId },
+    data: { status: 'APPROVED' }
+  });
+
+  revalidatePath('/admin');
+}
+
+export async function updateOrderStatus(orderId: string, status: string) {
+  const session = await auth();
+  if (!session || !session.user || session.user.role !== 'ADMIN') {
+    throw new Error('Acesso negado');
+  }
+
+  await prisma.order.update({
+    where: { id: orderId },
+    data: { status }
+  });
+
+  revalidatePath('/admin');
 }

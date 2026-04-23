@@ -1,6 +1,7 @@
 import React from 'react';
 import { Users, ShoppingCart, MessageSquare, TrendingUp, Calendar, Search, MoreVertical } from 'lucide-react';
 import { getAdminDashboardData } from '@/actions/admin';
+import { ApproveLeadButton, AdvanceOrderButton } from '@/components/AdminActionButtons';
 
 export default async function AdminDashboardPage() {
   const { kpis, leads, pedidos, parceiros } = await getAdminDashboardData();
@@ -83,9 +84,9 @@ export default async function AdminDashboardPage() {
                   <h4 className="font-bold text-slate-900">{lead.empresa}</h4>
                   <p className="text-sm text-slate-600 truncate max-w-[200px]">{lead.servico} ({lead.volume})</p>
                 </div>
-                <div className="flex sm:flex-col justify-between items-end">
+                <div className="flex sm:flex-col justify-between items-end gap-2">
                   <span className="text-xs text-slate-500">{lead.data}</span>
-                  <button className="text-sm font-medium text-blue-600 hover:underline">Aprovar Parceiro</button>
+                  <ApproveLeadButton partnerId={lead.id} />
                 </div>
               </div>
             ))}
@@ -124,13 +125,14 @@ export default async function AdminDashboardPage() {
                       <div className="text-xs text-slate-500">{pedido.valor}</div>
                     </td>
                     <td className="px-6 py-4 text-slate-700">{pedido.parceiro}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-6 py-4 flex items-center justify-end">
                       <span className={`inline-flex items-center px-2 py-1 rounded text-xs font-medium ${
                         pedido.status === 'IN_PRODUCTION' ? 'bg-blue-50 text-blue-700 border border-blue-200' :
                         'bg-amber-50 text-amber-700 border border-amber-200'
                       }`}>
                         {pedido.status === 'IN_PRODUCTION' ? 'Em Produção' : 'Pendente'}
                       </span>
+                      <AdvanceOrderButton orderId={pedido.id} currentStatus={pedido.status} />
                     </td>
                   </tr>
                 ))}
