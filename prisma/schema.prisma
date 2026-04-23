@@ -59,3 +59,10 @@ model OrderItem {
   deadline    String
   notes       String?
 }
+
+model DashboardConfig {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  monthlySalesGoal Float    @default(50000)
+  updatedAt       DateTime @updatedAt
+}
+

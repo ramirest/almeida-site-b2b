@@ -10,20 +10,49 @@ export async function getAdminDashboardData() {
     throw new Error('Acesso negado');
   }
 
-  // KPIs
-  const totalOrdersMonth = await prisma.order.count({
+  // 1. Garantir que existe uma configuração de dashboard
+  let config = await prisma.dashboardConfig.findFirst();
+  if (!config) {
+    config = await prisma.dashboardConfig.create({
+      data: { monthlySalesGoal: 50000 }
+    });
+  }
+
+  const now = new Date();
+  const firstDayMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+  const firstDayWeek = new Date(now);
+  firstDayWeek.setDate(now.getDate() - now.getDay()); // Início da semana (Domingo)
+
+  // 2. Vendas do Mês (Soma totalValue onde status != CANCELLED)
+  const salesMonthAgg = await prisma.order.aggregate({
+    _sum: { totalValue: true },
     where: {
-      createdAt: {
-        gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1)
-      }
+      status: { not: 'CANCELLED' },
+      createdAt: { gte: firstDayMonth }
     }
   });
 
-  const pendingLeads = await prisma.partner.count({
+  // 3. Vendas da Semana
+  const salesWeekAgg = await prisma.order.aggregate({
+    _sum: { totalValue: true },
+    where: {
+      status: { not: 'CANCELLED' },
+      createdAt: { gte: firstDayWeek }
+    }
+  });
+
+  // 4. Pedidos Pendentes
+  const pendingOrdersCount = await prisma.order.count({
     where: { status: 'PENDING' }
   });
 
-  const activePartners = await prisma.partner.count({
+  // 5. Leads Pendentes
+  const pendingLeadsCount = await prisma.partner.count({
+    where: { status: 'PENDING' }
+  });
+
+  // 6. Parceiros Ativos (Convertidos)
+  const activePartnersCount = await prisma.partner.count({
     where: { status: 'APPROVED' }
   });
 
@@ -52,9 +81,12 @@ export async function getAdminDashboardData() {
 
   return {
     kpis: {
-      totalOrdersMonth,
-      pendingLeads,
-      activePartners
+      salesMonth: salesMonthAgg._sum.totalValue || 0,
+      salesWeek: salesWeekAgg._sum.totalValue || 0,
+      pendingOrders: pendingOrdersCount,
+      pendingLeads: pendingLeadsCount,
+      activePartners: activePartnersCount,
+      salesGoal: config.monthlySalesGoal
     },
     leads: leadsRaw.map(lead => ({
       id: lead.id,

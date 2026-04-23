@@ -1,15 +1,47 @@
 import React from 'react';
-import { Users, ShoppingCart, MessageSquare, TrendingUp, Calendar, Search, MoreVertical } from 'lucide-react';
+import { Users, ShoppingCart, MessageSquare, TrendingUp, Calendar, Search, MoreVertical, Clock } from 'lucide-react';
 import { getAdminDashboardData } from '@/actions/admin';
 import { ApproveLeadButton, AdvanceOrderButton } from '@/components/AdminActionButtons';
 
 export default async function AdminDashboardPage() {
   const { kpis, leads, pedidos, parceiros } = await getAdminDashboardData();
 
+  const formatCurrency = (value: number) => 
+    new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
+
   const kpisCards = [
-    { title: 'Pedidos no Mês', value: kpis.totalOrdersMonth, trend: '+12%', icon: ShoppingCart, color: 'text-blue-600', bg: 'bg-blue-100' },
-    { title: 'Leads Pendentes', value: kpis.pendingLeads, trend: 'Novo', icon: MessageSquare, color: 'text-amber-600', bg: 'bg-amber-100' },
-    { title: 'Parceiros Ativos', value: kpis.activePartners, trend: '+3%', icon: Users, color: 'text-emerald-600', bg: 'bg-emerald-100' },
+    { 
+      title: 'Vendas no Mês', 
+      value: formatCurrency(kpis.salesMonth), 
+      trend: `${((kpis.salesMonth / kpis.salesGoal) * 100).toFixed(0)}% da meta`, 
+      icon: TrendingUp, 
+      color: 'text-emerald-600', 
+      bg: 'bg-emerald-50' 
+    },
+    { 
+      title: 'Vendas na Semana', 
+      value: formatCurrency(kpis.salesWeek), 
+      trend: 'Faturamento', 
+      icon: ShoppingCart, 
+      color: 'text-blue-600', 
+      bg: 'bg-blue-50' 
+    },
+    { 
+      title: 'Pedidos Pendentes', 
+      value: kpis.pendingOrders, 
+      trend: 'Aguardando', 
+      icon: Clock, 
+      color: 'text-amber-600', 
+      bg: 'bg-amber-50' 
+    },
+    { 
+      title: 'Parceiros Ativos', 
+      value: kpis.activePartners, 
+      trend: 'Convertidos', 
+      icon: Users, 
+      color: 'text-indigo-600', 
+      bg: 'bg-indigo-50' 
+    },
   ];
 
   return (
@@ -34,7 +66,7 @@ export default async function AdminDashboardPage() {
       </div>
 
       {/* KPIs */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {kpisCards.map((kpi, idx) => {
           const Icon = kpi.icon;
           return (
