@@ -4,7 +4,7 @@ import { auth, prisma } from '@/auth';
 
 export async function getAdminDashboardData() {
   const session = await auth();
-  
+
   if (!session || !session.user || session.user.role !== 'ADMIN') {
     throw new Error('Acesso negado');
   }

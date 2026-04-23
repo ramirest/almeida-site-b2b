@@ -1,12 +1,16 @@
 import React from 'react';
 import Link from 'next/link';
-import { LayoutDashboard, Users, ShoppingCart, Calendar, LogOut, MessageSquare } from 'lucide-react';
+import { LayoutDashboard, Users, ShoppingCart, Calendar, MessageSquare } from 'lucide-react';
+import { auth } from '@/auth';
+import LogoutButton from '@/components/LogoutButton';
 
-export default function AdminLayout({
+export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await auth();
+
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar Admin */}
@@ -47,17 +51,16 @@ export default function AdminLayout({
         <div className="p-4 border-t border-slate-800">
           <div className="flex items-center gap-3 px-3 py-3">
             <div className="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center font-bold text-sm text-slate-300">
-              AD
+              {session?.user?.email?.charAt(0).toUpperCase() || 'AD'}
             </div>
             <div className="flex-1 overflow-hidden">
-              <p className="text-sm font-medium truncate">Administrador</p>
+              <p className="text-sm font-medium truncate" title={session?.user?.email || 'Administrador'}>
+                {session?.user?.email || 'Administrador'}
+              </p>
               <p className="text-xs text-slate-400 truncate">Comercial</p>
             </div>
           </div>
-          <Link href="/" className="flex items-center gap-3 px-3 py-2 mt-2 rounded-lg text-red-400 hover:bg-red-500/10 transition-colors w-full">
-            <LogOut size={18} />
-            Sair do Admin
-          </Link>
+          <LogoutButton />
         </div>
       </aside>
 
