@@ -3,8 +3,7 @@ import { auth } from "@/auth";
 
 export default auth((req) => {
   const { nextUrl } = req;
-  const isLoggedIn = !!req.auth;
-  // No edge runtime, a role pode vir direto no token dependendo da versão do Auth.js
+  const isLoggedIn = !!req.auth?.user; // Garante que tem um objeto user real
   const userRole = req.auth?.user?.role || (req.auth as any)?.role;
 
   const isAdminRoute = nextUrl.pathname.startsWith("/admin");
@@ -12,21 +11,16 @@ export default auth((req) => {
 
   if (isAdminRoute) {
     if (isAuthRoute) {
-      // Se for a tela de login, mas já estiver logado como admin, vai pro dashboard
       if (isLoggedIn && userRole === "ADMIN") {
         return NextResponse.redirect(new URL("/admin", nextUrl));
       }
       return NextResponse.next();
     }
 
-    // Se tentar acessar qualquer outra página de /admin e não estiver logado
-    if (!isLoggedIn) {
+    // Se não estiver logado OU não for ADMIN, manda de volta pro login
+    if (!isLoggedIn || userRole !== "ADMIN") {
+      // Usando uma URL limpa para o login
       return NextResponse.redirect(new URL("/admin/login", nextUrl));
-    }
-
-    // Se estiver logado, mas não for ADMIN
-    if (userRole !== "ADMIN") {
-      return NextResponse.redirect(new URL("/?error=AccessDenied", nextUrl));
     }
   }
 
