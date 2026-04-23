@@ -6,9 +6,10 @@ import bcrypt from 'bcryptjs';
 export async function submitOrcamento(formData: {
   empresa: string;
   cnpj: string;
+  nome: string;
   email: string;
   telefone: string;
-  items: Array<{ type: string; width: number; height: number; quantity: number }>;
+  items: Array<{ id: string; type: string; volume: string; prazo: string; notes: string }>;
   totalEstimate: number;
 }) {
   try {
@@ -51,8 +52,9 @@ export async function submitOrcamento(formData: {
         items: {
           create: formData.items.map(item => ({
             serviceType: item.type,
-            volume: `${item.width}m x ${item.height}m (${item.quantity} un)`,
-            deadline: 'A Combinar', // O admin vai analisar o prazo
+            volume: item.volume,
+            deadline: item.prazo || 'A Combinar',
+            notes: item.notes
           }))
         }
       }
