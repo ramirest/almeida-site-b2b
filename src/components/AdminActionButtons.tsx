@@ -38,10 +38,14 @@ export function ApproveCrmLeadButton({ leadId, budgetId, corporateName }: { lead
   const handleApprove = async () => {
     setIsPending(true);
     try {
+      const uniqueCnpj = `00000${Math.floor(Math.random() * 1000000000)}`.slice(-14);
+      
       await approveBudgetAndPromoteToPartner(budgetId, { 
-        cnpj: '00000000000000', 
+        cnpj: uniqueCnpj, 
         corporateName 
       });
+      
+      alert(`Sucesso! Parceiro criado.\nCNPJ para login: ${uniqueCnpj}\nSenha: mudar123`);
       router.refresh();
     } catch (error) {
       console.error(error);
