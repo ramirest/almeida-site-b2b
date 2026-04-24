@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { CheckCircle } from 'lucide-react';
 import { approvePartner, updateOrderStatus } from '@/actions/admin';
 
 export function ApproveLeadButton({ partnerId }: { partnerId: string }) {
@@ -10,7 +12,6 @@ export function ApproveLeadButton({ partnerId }: { partnerId: string }) {
     setIsPending(true);
     try {
       await approvePartner(partnerId);
-      // O revalidatePath recarregará a página automaticamente
     } catch (error) {
       console.error(error);
       setIsPending(false);
@@ -24,6 +25,38 @@ export function ApproveLeadButton({ partnerId }: { partnerId: string }) {
       className="text-sm font-medium text-blue-600 hover:underline disabled:opacity-50 disabled:no-underline"
     >
       {isPending ? 'Aprovando...' : 'Aprovar Parceiro'}
+    </button>
+  );
+}
+
+import { approveBudgetAndPromoteToPartner } from '@/actions/crm';
+
+export function ApproveCrmLeadButton({ leadId, budgetId, corporateName }: { leadId: string; budgetId: string; corporateName: string }) {
+  const [isPending, setIsPending] = useState(false);
+  const router = useRouter();
+
+  const handleApprove = async () => {
+    setIsPending(true);
+    try {
+      await approveBudgetAndPromoteToPartner(budgetId, { 
+        cnpj: '00000000000000', 
+        corporateName 
+      });
+      router.refresh();
+    } catch (error) {
+      console.error(error);
+      setIsPending(false);
+    }
+  };
+
+  return (
+    <button 
+      onClick={handleApprove}
+      disabled={isPending}
+      className="flex-1 md:flex-none px-4 py-2 text-sm font-bold text-white bg-emerald-600 rounded-lg hover:bg-emerald-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+    >
+      <CheckCircle size={16} />
+      {isPending ? 'Convertendo...' : 'Aprovar e Gerar Pedido'}
     </button>
   );
 }

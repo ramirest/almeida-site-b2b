@@ -1,7 +1,7 @@
 import React from 'react';
 import { Users, ShoppingCart, MessageSquare, TrendingUp, Calendar, Search, MoreVertical, Clock } from 'lucide-react';
 import { getAdminDashboardData } from '@/actions/admin';
-import { ApproveLeadButton, AdvanceOrderButton } from '@/components/AdminActionButtons';
+import { ApproveLeadButton, AdvanceOrderButton, ApproveCrmLeadButton } from '@/components/AdminActionButtons';
 
 export default async function AdminDashboardPage() {
   const { kpis, leads, pedidos, parceiros } = await getAdminDashboardData();
@@ -118,7 +118,11 @@ export default async function AdminDashboardPage() {
                 </div>
                 <div className="flex sm:flex-col justify-between items-end gap-2">
                   <span className="text-xs text-slate-500">{lead.data}</span>
-                  <ApproveLeadButton partnerId={lead.id} />
+                  <ApproveCrmLeadButton 
+                    leadId={lead.id} 
+                    budgetId={lead.budgetId} 
+                    corporateName={lead.empresa} 
+                  />
                 </div>
               </div>
             ))}

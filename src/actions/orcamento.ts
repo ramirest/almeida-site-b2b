@@ -22,9 +22,9 @@ export async function submitOrcamento(formData: {
 
     // 2. Se não existir, cria como PENDING (Lead B2B)
     if (!partner) {
-      // Cria uma senha aleatória para o novo Lead (ele redefinirá depois se for aprovado)
-      const randomPassword = Math.random().toString(36).slice(-8);
-      const passwordHash = await bcrypt.hash(randomPassword, 10);
+      // Senha padrão para novos Leads (devem trocar no primeiro acesso)
+      const defaultPassword = 'mudar123';
+      const passwordHash = await bcrypt.hash(defaultPassword, 10);
 
       partner = await prisma.partner.create({
         data: {

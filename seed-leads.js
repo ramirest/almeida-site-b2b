@@ -4,45 +4,44 @@ const bcrypt = require('bcryptjs');
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log('Gerando massa de dados para teste de Leads...');
+  console.log('Gerando massa de dados para o novo CRM (Leads e Orçamentos)...');
 
-  const passwordHash = await bcrypt.hash('parceiro123', 10);
   const randomSuffix = Math.floor(Math.random() * 10000);
+  const email = `oportunidade${randomSuffix}@cliente.com.br`;
 
-  const partner = await prisma.partner.create({
+  // 1. Criar o Lead na nova tabela
+  const lead = await prisma.lead.create({
     data: {
-      corporateName: `Vidraçaria Teste ${randomSuffix} Ltda`,
-      cnpj: `00000000000${randomSuffix}`.slice(-14),
-      phone: '(11) 99999-9999',
-      status: 'PENDING',
-      users: {
-        create: {
-          email: `teste${randomSuffix}@vidracaria.com.br`,
-          passwordHash,
-          role: 'PARTNER'
-        }
-      },
-      orders: {
-        create: {
-          status: 'PENDING',
-          totalValue: 1250.00,
-          items: {
-            create: [
-              {
-                serviceType: 'Jateamento em Vidro Temperado',
-                volume: '10m2',
-                deadline: '5 dias úteis',
-                notes: 'Vidro 8mm incolor'
-              }
-            ]
-          }
-        }
-      }
+      name: `Construtora Horizonte ${randomSuffix}`,
+      email: email,
+      phone: '(11) 98888-7777',
+      origin: 'SITE',
+      status: 'NEW'
     }
   });
 
-  console.log(`Sucesso! Lead criado: ${partner.corporateName}`);
-  console.log(`Email para login futuro: teste${randomSuffix}@vidracaria.com.br`);
+  // 2. Criar um Orçamento para esse Lead
+  const budget = await prisma.budget.create({
+    data: {
+      leadId: lead.id,
+      totalValue: 4500.00,
+      validity: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000), // 15 dias
+      status: 'DRAFT',
+      items: [
+        {
+          serviceType: 'Jateamento Fachada Completa',
+          volume: '50m2',
+          notes: 'Vidros laminados 10mm'
+        }
+      ]
+    }
+  });
+
+  console.log('--- SUCESSO ---');
+  console.log(`Lead Criado: ${lead.name}`);
+  console.log(`Orçamento gerado: R$ ${budget.totalValue}`);
+  console.log(`Email para teste: ${email}`);
+  console.log('Agora verifique as abas "Leads & CRM" e "Orçamentos" no Admin.');
 }
 
 main()

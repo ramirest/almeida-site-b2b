@@ -1,6 +1,7 @@
 import React from 'react';
 import { FileText, Calendar, CheckCircle, ArrowRight, Download } from 'lucide-react';
 import { getBudgets } from '@/actions/crm';
+import { ApproveCrmLeadButton } from '@/components/AdminActionButtons';
 
 export default async function BudgetsPage() {
   const budgets = await getBudgets();
@@ -58,10 +59,11 @@ export default async function BudgetsPage() {
                 Baixar PDF
               </button>
               {budget.status !== 'APPROVED' && (
-                <button className="flex-1 md:flex-none px-4 py-2 text-sm font-bold text-white bg-emerald-600 rounded-lg hover:bg-emerald-700 transition-colors flex items-center justify-center gap-2">
-                  <CheckCircle size={16} />
-                  Aprovar e Gerar Pedido
-                </button>
+                <ApproveCrmLeadButton 
+                  leadId={budget.leadId}
+                  budgetId={budget.id}
+                  corporateName={budget.lead.name}
+                />
               )}
               {budget.status === 'APPROVED' && budget.convertedToOrderId && (
                 <div className="text-emerald-600 text-xs font-medium flex items-center gap-1 justify-center py-2">

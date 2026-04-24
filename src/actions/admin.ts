@@ -56,15 +56,15 @@ export async function getAdminDashboardData() {
     where: { status: 'APPROVED' }
   });
 
-  // Leads de Orçamento (Partners PENDING com seus pedidos)
-  const leadsRaw = await prisma.partner.findMany({
-    where: { status: 'PENDING' },
-    include: { orders: { include: { items: true } } },
+  // 7. Leads de Orçamento (Nova tabela Lead)
+  const leadsRaw = await prisma.lead.findMany({
+    where: { status: 'NEW' },
+    include: { budgets: true },
     orderBy: { createdAt: 'desc' },
     take: 10
   });
 
-  // Todos os Pedidos em Andamento
+  // 8. Todos os Pedidos em Andamento
   const ordersRaw = await prisma.order.findMany({
     where: { status: { in: ['PENDING', 'IN_PRODUCTION'] } },
     include: { partner: true },
@@ -72,7 +72,7 @@ export async function getAdminDashboardData() {
     take: 10
   });
 
-  // Parceiros Homologados
+  // 9. Parceiros Homologados
   const partnersRaw = await prisma.partner.findMany({
     where: { status: 'APPROVED' },
     orderBy: { createdAt: 'desc' },
@@ -90,9 +90,10 @@ export async function getAdminDashboardData() {
     },
     leads: leadsRaw.map(lead => ({
       id: lead.id,
-      empresa: lead.corporateName,
-      servico: lead.orders[0]?.items[0]?.serviceType || 'Múltiplos Serviços',
-      volume: lead.orders[0]?.items[0]?.volume || 'Consulte o pedido',
+      budgetId: lead.budgets[0]?.id || '',
+      empresa: lead.name,
+      servico: 'Ver Orçamento',
+      volume: lead.budgets[0] ? `R$ ${lead.budgets[0].totalValue}` : 'Sem Orçamento',
       data: new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeStyle: 'short' }).format(lead.createdAt),
       status: 'Novo'
     })),
