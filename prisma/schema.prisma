@@ -45,6 +45,7 @@ model Order {
   status     String      @default("PENDING") // PENDING, IN_PRODUCTION, COMPLETED, DELIVERED, CANCELLED
   totalValue Float       @default(0)
   deliveryDate DateTime?
+  schedule   Schedule?
   
   items      OrderItem[]
   
@@ -93,4 +94,15 @@ model Budget {
   updatedAt    DateTime @updatedAt
 }
 
-
+model Schedule {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  orderId      String   @unique @db.ObjectId
+  order        Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  scheduledAt  DateTime
+  technician   String?
+  notes        String?
+  status       String   @default("SCHEDULED") // SCHEDULED, COMPLETED, CANCELLED
+  
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
