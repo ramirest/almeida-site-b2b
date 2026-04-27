@@ -39,10 +39,11 @@ model Partner {
 
 model Order {
   id         String      @id @default(auto()) @map("_id") @db.ObjectId
-  partnerId  String      @db.ObjectId
-  partner    Partner     @relation(fields: [partnerId], references: [id])
-  status     String      @default("PENDING") // PENDING, IN_PRODUCTION, COMPLETED, CANCELLED
+  partnerId  String?     @db.ObjectId
+  partner    Partner?    @relation(fields: [partnerId], references: [id])
+  status     String      @default("PENDING") // PENDING, IN_PRODUCTION, COMPLETED, DELIVERED, CANCELLED
   totalValue Float       @default(0)
+  deliveryDate DateTime?
   
   items      OrderItem[]
   

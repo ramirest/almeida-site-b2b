@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Users, Calendar, MessageSquare, FileText } from 'lucide-react';
+import { LayoutDashboard, Users, Calendar, MessageSquare, FileText, ShoppingCart } from 'lucide-react';
 
 export default function AdminSidebarNav() {
   const pathname = usePathname();
@@ -12,6 +12,7 @@ export default function AdminSidebarNav() {
     { name: 'Visão Geral', href: '/admin', icon: LayoutDashboard },
     { name: 'Leads & CRM', href: '/admin/leads', icon: MessageSquare },
     { name: 'Orçamentos', href: '/admin/orcamentos', icon: FileText },
+    { name: 'Todos os Pedidos', href: '/admin/pedidos', icon: ShoppingCart },
     { name: 'Parceiros B2B', href: '/admin/parceiros', icon: Users },
     { name: 'Agenda de Serviços', href: '/admin/agenda', icon: Calendar },
   ];
