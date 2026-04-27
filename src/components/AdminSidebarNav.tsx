@@ -31,7 +31,7 @@ export default function AdminSidebarNav() {
         return (
           <Link
             key={item.href}
-            href={item.href === '/admin/agenda' ? '#' : item.href}
+            href={item.href}
             className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${
               isActive
                 ? 'bg-blue-600/20 text-blue-400 font-medium border border-blue-600/30'
