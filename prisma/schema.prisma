@@ -26,6 +26,7 @@ model Partner {
   corporateName String
   cnpj          String        @unique
   phone         String
+  address       String?
   status        String        @default("PENDING") // PENDING, APPROVED, BLOCKED
   creditLimit   Float         @default(0)
   tier          String        @default("PARTNER") // PARTNER, GOLD, DISTRIBUTOR

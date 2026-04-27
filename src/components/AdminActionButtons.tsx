@@ -132,3 +132,39 @@ export function OrderStatusSelect({ orderId, currentStatus }: { orderId: string,
     </select>
   );
 }
+
+import { updatePartnerStatus } from '@/actions/partners';
+
+export function PartnerStatusSelect({ partnerId, currentStatus }: { partnerId: string, currentStatus: string }) {
+  const [isPending, setIsPending] = useState(false);
+  const router = useRouter();
+
+  const handleStatusChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setIsPending(true);
+    try {
+      await updatePartnerStatus(partnerId, e.target.value);
+      router.refresh();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsPending(false);
+    }
+  };
+
+  return (
+    <select 
+      value={currentStatus} 
+      onChange={handleStatusChange} 
+      disabled={isPending}
+      className={`text-xs font-bold px-3 py-1.5 rounded border focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50
+        ${currentStatus === 'APPROVED' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 
+          currentStatus === 'BLOCKED' ? 'bg-rose-50 text-rose-700 border-rose-200' : 
+          'bg-amber-50 text-amber-700 border-amber-200'
+        }`}
+    >
+      <option value="APPROVED">Ativo / Aprovado</option>
+      <option value="PENDING">Pendente</option>
+      <option value="BLOCKED">Bloqueado</option>
+    </select>
+  );
+}
