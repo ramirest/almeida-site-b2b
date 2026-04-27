@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { CheckCircle } from 'lucide-react';
-import { approvePartner, updateOrderStatus } from '@/actions/admin';
+import { approvePartner } from '@/actions/admin';
+import { updateOrderStatus } from '@/actions/orders';
 
 export function ApproveLeadButton({ partnerId }: { partnerId: string }) {
   const [isPending, setIsPending] = useState(false);
@@ -92,7 +93,7 @@ export function AdvanceOrderButton({ orderId, currentStatus }: { orderId: string
   );
 }
 
-import { updateOrderStatus } from '@/actions/orders';
+
 
 export function OrderStatusSelect({ orderId, currentStatus }: { orderId: string, currentStatus: string }) {
   const [isPending, setIsPending] = useState(false);
