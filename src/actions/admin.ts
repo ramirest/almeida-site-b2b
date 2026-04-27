@@ -99,7 +99,7 @@ export async function getAdminDashboardData() {
     })),
     pedidos: ordersRaw.map(order => ({
       id: order.id,
-      parceiro: order.partner.corporateName,
+      parceiro: order.partner?.corporateName || 'Venda Direta (Avulso)',
       valor: new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(order.totalValue),
       status: order.status
     })),
