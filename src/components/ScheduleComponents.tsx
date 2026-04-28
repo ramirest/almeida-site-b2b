@@ -48,6 +48,7 @@ export function ScheduleForm({ orderId }: { orderId: string }) {
               className="w-full pl-8 pr-3 py-1.5 text-xs border border-slate-200 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
         </div>
+      </div>
       <div>
         <label className="text-[10px] uppercase tracking-wider font-bold text-slate-500 mb-1 block">Observações (Opcional)</label>
         <input 
