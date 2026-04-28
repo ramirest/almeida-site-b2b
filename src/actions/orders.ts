@@ -20,7 +20,7 @@ export async function updateOrderStatus(orderId: string, newStatus: string) {
   const session = await auth();
   if (!session || session.user.role !== 'ADMIN') throw new Error('Acesso negado');
 
-  const validStatuses = ['PENDING', 'IN_PRODUCTION', 'COMPLETED', 'DELIVERED', 'CANCELLED'];
+  const validStatuses = ['PENDING', 'IN_PRODUCTION', 'READY_FOR_DELIVERY', 'COMPLETED', 'DELIVERED', 'CANCELLED'];
   if (!validStatuses.includes(newStatus)) throw new Error('Status inválido');
 
   const order = await prisma.order.update({

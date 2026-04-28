@@ -98,8 +98,8 @@ export function CompleteServiceButton({ scheduleId, orderId, orderStatus }: { sc
     // Regra de negócio: Perguntar se deseja finalizar o pedido também
     let markOrderDelivered = false;
     
-    if (orderStatus !== 'DELIVERED' && orderStatus !== 'CANCELLED') {
-      const confirmOrderDelivery = confirm(`Serviço Concluído!\n\nDeseja também marcar o Pedido correspondente como "ENTREGUE" no sistema para o parceiro?`);
+    if (orderStatus !== 'READY_FOR_DELIVERY' && orderStatus !== 'DELIVERED' && orderStatus !== 'CANCELLED') {
+      const confirmOrderDelivery = confirm(`Serviço Concluído!\n\nDeseja também marcar o Pedido correspondente como "PRONTO PARA ENTREGA" no sistema para o parceiro?`);
       markOrderDelivered = confirmOrderDelivery;
     } else {
       const confirmService = confirm('Confirmar conclusão deste serviço?');
