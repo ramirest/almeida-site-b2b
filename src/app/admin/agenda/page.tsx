@@ -133,11 +133,18 @@ export default async function AgendaPage() {
                         {order.partner ? order.partner.corporateName : 'Avulso'}
                       </span>
                     </div>
-                    <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${
-                      order.status === 'COMPLETED' ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700'
-                    }`}>
-                      {order.status === 'COMPLETED' ? 'Pronto' : 'Na Fábrica'}
-                    </span>
+                    <div className="flex flex-col items-end gap-1">
+                      <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${
+                        order.status === 'COMPLETED' ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700'
+                      }`}>
+                        {order.status === 'COMPLETED' ? 'Pronto' : 'Na Fábrica'}
+                      </span>
+                      {order.items[0]?.deadline && (
+                        <span className="text-[10px] font-medium text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-100">
+                          Prazo: {order.items[0].deadline}
+                        </span>
+                      )}
+                    </div>
                   </div>
                   
                   <ScheduleForm orderId={order.id} />

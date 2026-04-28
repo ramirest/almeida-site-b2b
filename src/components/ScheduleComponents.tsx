@@ -18,9 +18,13 @@ export function ScheduleForm({ orderId }: { orderId: string }) {
 
     setIsPending(true);
     try {
+      const selectedDate = new Date(scheduledAt + 'T00:00:00');
+      const now = new Date();
+      selectedDate.setHours(now.getHours(), now.getMinutes(), now.getSeconds());
+
       await createSchedule({
         orderId,
-        scheduledAt: new Date(scheduledAt),
+        scheduledAt: selectedDate,
         technician,
         notes
       });
@@ -38,11 +42,11 @@ export function ScheduleForm({ orderId }: { orderId: string }) {
     <form onSubmit={handleSchedule} className="mt-3 space-y-3 bg-slate-50 p-3 rounded-lg border border-slate-200">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div>
-          <label className="text-[10px] uppercase tracking-wider font-bold text-slate-500 mb-1 block">Data / Hora</label>
+          <label className="text-[10px] uppercase tracking-wider font-bold text-slate-500 mb-1 block">Data</label>
           <div className="relative">
             <Calendar className="absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400" size={14} />
             <input 
-              type="datetime-local" 
+              type="date" 
               required
               value={scheduledAt}
               onChange={(e) => setScheduledAt(e.target.value)}
