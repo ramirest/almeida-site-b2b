@@ -117,7 +117,7 @@ export function OrdersClientTable({ initialOrders }: { initialOrders: OrderWithR
                     </div>
                     <div className="text-xs text-slate-500 mt-1 flex items-center gap-1">
                       <Calendar size={12} />
-                      {new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short' }).format(new Date(order.createdAt))}
+                      {new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeZone: 'America/Sao_Paulo' }).format(new Date(order.createdAt))}
                     </div>
                   </td>
                   <td className="px-6 py-4">
