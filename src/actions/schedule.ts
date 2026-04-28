@@ -68,7 +68,7 @@ export async function completeScheduleAndOrder(scheduleId: string, orderId: stri
   if (markOrderDelivered) {
     await prisma.order.update({
       where: { id: orderId },
-      data: { status: 'READY_FOR_DELIVERY' }
+      data: { status: 'COMPLETED' }
     });
   }
 
