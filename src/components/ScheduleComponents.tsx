@@ -7,24 +7,20 @@ import { Calendar, User, Clock, CheckCircle } from 'lucide-react';
 
 export function ScheduleForm({ orderId }: { orderId: string }) {
   const [isPending, setIsPending] = useState(false);
-  const [scheduledAt, setScheduledAt] = useState('');
   const [technician, setTechnician] = useState('');
   const [notes, setNotes] = useState('');
   const router = useRouter();
 
   const handleSchedule = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!scheduledAt) return alert('Selecione uma data e hora.');
 
     setIsPending(true);
     try {
-      const selectedDate = new Date(scheduledAt + 'T00:00:00');
       const now = new Date();
-      selectedDate.setHours(now.getHours(), now.getMinutes(), now.getSeconds());
 
       await createSchedule({
         orderId,
-        scheduledAt: selectedDate,
+        scheduledAt: now,
         technician,
         notes
       });
@@ -40,24 +36,10 @@ export function ScheduleForm({ orderId }: { orderId: string }) {
 
   return (
     <form onSubmit={handleSchedule} className="mt-3 space-y-3 bg-slate-50 p-3 rounded-lg border border-slate-200">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        <div>
-          <label className="text-[10px] uppercase tracking-wider font-bold text-slate-500 mb-1 block">Data</label>
-          <div className="relative">
-            <Calendar className="absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400" size={14} />
-            <input 
-              type="date" 
-              required
-              value={scheduledAt}
-              onChange={(e) => setScheduledAt(e.target.value)}
-              className="w-full pl-8 pr-3 py-1.5 text-xs border border-slate-200 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
-            />
-          </div>
-        </div>
-        <div>
-          <label className="text-[10px] uppercase tracking-wider font-bold text-slate-500 mb-1 block">Técnico / Equipe</label>
-          <div className="relative">
-            <User className="absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400" size={14} />
+      <div>
+        <label className="text-[10px] uppercase tracking-wider font-bold text-slate-500 mb-1 block">Técnico / Equipe</label>
+        <div className="relative">
+          <User className="absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400" size={14} />
             <input 
               type="text" 
               placeholder="Ex: Equipe Alpha"
@@ -65,9 +47,7 @@ export function ScheduleForm({ orderId }: { orderId: string }) {
               onChange={(e) => setTechnician(e.target.value)}
               className="w-full pl-8 pr-3 py-1.5 text-xs border border-slate-200 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
-          </div>
         </div>
-      </div>
       <div>
         <label className="text-[10px] uppercase tracking-wider font-bold text-slate-500 mb-1 block">Observações (Opcional)</label>
         <input 
