@@ -11,8 +11,17 @@ export function SchedulesClientList({ schedules }: { schedules: ScheduleWithRela
   const ITEMS_PER_PAGE = 5;
 
   const sortedSchedules = useMemo(() => {
-    // Ordena do mais recente para o mais antigo (data/hora de confirmação)
-    return [...schedules].sort((a, b) => new Date(b.scheduledAt).getTime() - new Date(a.scheduledAt).getTime());
+    return [...schedules].sort((a, b) => {
+      // 1. Prioridade para serviços não finalizados (Agendados antes de Finalizados)
+      const aIsCompleted = a.status === 'COMPLETED';
+      const bIsCompleted = b.status === 'COMPLETED';
+      
+      if (!aIsCompleted && bIsCompleted) return -1;
+      if (aIsCompleted && !bIsCompleted) return 1;
+      
+      // 2. Critério de desempate: mais recentes primeiro (Page 1)
+      return new Date(b.scheduledAt).getTime() - new Date(a.scheduledAt).getTime();
+    });
   }, [schedules]);
 
   const totalPages = Math.ceil(sortedSchedules.length / ITEMS_PER_PAGE) || 1;
