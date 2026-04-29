@@ -6,8 +6,8 @@ import { signOut } from 'next-auth/react';
 
 export default function LogoutButton() {
   const handleLogout = async () => {
-    // Redireciona para o login do admin ao sair
-    await signOut({ callbackUrl: '/admin/login' });
+    await signOut({ redirect: false });
+    window.location.href = '/admin/login';
   };
 
   return (
