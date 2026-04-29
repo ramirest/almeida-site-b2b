@@ -32,7 +32,7 @@ export function OrdersClientTable({ initialOrders }: { initialOrders: OrderWithR
         'IN_PRODUCTION': 'em andamento',
         'COMPLETED': 'finalizado',
         'READY_FOR_DELIVERY': 'pronto para entrega',
-        'DELIVERED': 'concluído',
+        'DELIVERED': 'entregue',
         'CANCELLED': 'cancelado'
       };
       const statusText = statusMap[order.status] || order.status.toLowerCase();

@@ -43,7 +43,7 @@ export function SchedulesClientList({ schedules }: { schedules: ScheduleWithRela
                   <span className={`px-2.5 py-1 rounded-md text-xs font-bold ${
                     schedule.status === 'COMPLETED' ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700'
                   }`}>
-                    {schedule.status === 'COMPLETED' ? 'Concluído' : 'Agendado'}
+                    {schedule.status === 'COMPLETED' ? 'Finalizado' : 'Agendado'}
                   </span>
                   <span className="text-sm font-bold text-slate-900">
                     {formatDateTime(schedule.scheduledAt)}

@@ -148,7 +148,7 @@ export function OrderStatusSelect({ orderId, currentStatus }: { orderId: string,
       <option value="IN_PRODUCTION">Em Andamento</option>
       <option value="COMPLETED">Finalizado</option>
       <option value="READY_FOR_DELIVERY">Pronto para Entrega</option>
-      <option value="DELIVERED">Concluído</option>
+      <option value="DELIVERED">Entregue</option>
       <option value="CANCELLED">Cancelado</option>
     </select>
   );
