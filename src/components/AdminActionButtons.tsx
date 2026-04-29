@@ -6,7 +6,6 @@ import { CheckCircle } from 'lucide-react';
 import { approvePartner } from '@/actions/admin';
 import { updateOrderStatus } from '@/actions/orders';
 import { Modal } from '@/components/Modal';
-import { updateOrderStatus } from '@/actions/orders';
 
 export function ApproveLeadButton({ partnerId }: { partnerId: string }) {
   const [isPending, setIsPending] = useState(false);
