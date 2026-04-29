@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import { CheckCircle } from 'lucide-react';
 import { approvePartner } from '@/actions/admin';
 import { updateOrderStatus } from '@/actions/orders';
+import { Modal } from '@/components/Modal';
+import { updateOrderStatus } from '@/actions/orders';
 
 export function ApproveLeadButton({ partnerId }: { partnerId: string }) {
   const [isPending, setIsPending] = useState(false);
@@ -34,6 +36,7 @@ import { approveBudgetAndPromoteToPartner } from '@/actions/crm';
 
 export function ApproveCrmLeadButton({ leadId, budgetId, corporateName }: { leadId: string; budgetId: string; corporateName: string }) {
   const [isPending, setIsPending] = useState(false);
+  const [modalState, setModalState] = useState<{isOpen: boolean, title: string, message: string}>({ isOpen: false, title: '', message: '' });
   const router = useRouter();
 
   const handleApprove = async () => {
@@ -46,7 +49,7 @@ export function ApproveCrmLeadButton({ leadId, budgetId, corporateName }: { lead
         corporateName 
       });
       
-      alert(`Sucesso! Parceiro criado.\nCNPJ para login: ${uniqueCnpj}\nSenha: mudar123`);
+      setModalState({ isOpen: true, title: 'Sucesso', message: `Parceiro criado com sucesso!\n\nCNPJ para login: ${uniqueCnpj}\nSenha: mudar123` });
       router.refresh();
     } catch (error) {
       console.error(error);
@@ -55,6 +58,7 @@ export function ApproveCrmLeadButton({ leadId, budgetId, corporateName }: { lead
   };
 
   return (
+    <>
     <button 
       onClick={handleApprove}
       disabled={isPending}
@@ -63,6 +67,22 @@ export function ApproveCrmLeadButton({ leadId, budgetId, corporateName }: { lead
       <CheckCircle size={16} />
       {isPending ? 'Convertendo...' : 'Aprovar e Gerar Pedido'}
     </button>
+    <Modal 
+      isOpen={modalState.isOpen} 
+      onClose={() => setModalState(s => ({ ...s, isOpen: false }))} 
+      title={modalState.title}
+      actions={
+        <button 
+          onClick={() => setModalState(s => ({ ...s, isOpen: false }))}
+          className="px-4 py-2 bg-emerald-600 text-white rounded-lg text-sm font-bold"
+        >
+          OK
+        </button>
+      }
+    >
+      {modalState.message}
+    </Modal>
+    </>
   );
 }
 

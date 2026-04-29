@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Send, CheckCircle2, Plus, Trash2, Calculator, ArrowRight } from 'lucide-react';
 import { submitOrcamento } from '@/actions/orcamento';
+import { Modal } from '@/components/Modal';
 
 type BudgetItem = {
   id: string;
@@ -62,11 +63,12 @@ export default function OrcamentoForm() {
   };
 
   const totalEstimate = calculateTotal();
+  const [modalInfo, setModalInfo] = useState<{isOpen: boolean, title: string, message: string}>({ isOpen: false, title: '', message: '' });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (items.length === 0) {
-      alert("Adicione pelo menos um item ao orçamento.");
+      setModalInfo({ isOpen: true, title: 'Atenção', message: 'Adicione pelo menos um item ao orçamento.' });
       return;
     }
 
@@ -89,7 +91,7 @@ export default function OrcamentoForm() {
       setFormData({ empresa: '', cnpj: '', nome: '', email: '', telefone: '' });
       setItems([{ id: '1', type: '', volume: '', prazo: '', notes: '' }]);
     } else {
-      alert(result.error || "Erro ao enviar orçamento.");
+      setModalInfo({ isOpen: true, title: 'Erro', message: result.error || "Erro ao enviar orçamento." });
     }
   };
 
@@ -313,6 +315,22 @@ export default function OrcamentoForm() {
         </div>
         
       </form>
+
+      <Modal 
+        isOpen={modalInfo.isOpen} 
+        onClose={() => setModalInfo(s => ({ ...s, isOpen: false }))} 
+        title={modalInfo.title}
+        actions={
+          <button 
+            onClick={() => setModalInfo(s => ({ ...s, isOpen: false }))}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-bold"
+          >
+            OK
+          </button>
+        }
+      >
+        {modalInfo.message}
+      </Modal>
     </div>
   );
 }
