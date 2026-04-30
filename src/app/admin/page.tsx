@@ -5,7 +5,7 @@ import { getAdminDashboardData } from '@/actions/admin';
 import { ApproveLeadButton, AdvanceOrderButton, ApproveCrmLeadButton } from '@/components/AdminActionButtons';
 
 export default async function AdminDashboardPage() {
-  const { kpis, leads, pedidos, parceiros } = await getAdminDashboardData();
+  const { kpis, leads, pedidos, parceiros, agenda } = await getAdminDashboardData();
 
   const formatCurrency = (value: number) =>
     new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
@@ -207,20 +207,42 @@ export default async function AdminDashboardPage() {
         </div>
 
         {/* Agenda de Serviços */}
-        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col h-[400px]">
           <div className="px-6 py-4 border-b border-slate-200 flex justify-between items-center bg-slate-50">
             <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2">
               <Calendar size={18} className="text-indigo-500" />
               Agenda / Expedição
             </h2>
-            <button className="text-sm text-indigo-600 font-bold hover:underline">+ Agendar</button>
+            <Link href="/admin/agenda" className="text-sm text-indigo-600 font-bold hover:underline">Ver Agenda</Link>
           </div>
-          <div className="p-6 flex flex-col items-center justify-center text-center h-full min-h-[200px]">
-            <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-400 mb-3">
-              <Calendar size={24} />
-            </div>
-            <p className="text-slate-600 font-medium">Nenhuma coleta agendada para hoje.</p>
-            <p className="text-sm text-slate-500 mt-1">A expedição flui conforme as ordens de produção.</p>
+          <div className="flex-1 overflow-y-auto">
+            {(agenda as any[]).length === 0 ? (
+              <div className="p-6 flex flex-col items-center justify-center text-center h-full min-h-[200px]">
+                <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-400 mb-3">
+                  <Calendar size={24} />
+                </div>
+                <p className="text-slate-600 font-medium">Nenhum serviço em produção agora.</p>
+                <p className="text-sm text-slate-500 mt-1">A produção flui conforme as ordens de serviço.</p>
+              </div>
+            ) : (
+              <div className="p-4 space-y-3">
+                {(agenda as any[]).map((item, idx) => (
+                  <div key={idx} className="p-3 border border-slate-100 rounded-lg bg-slate-50 hover:border-indigo-200 transition-colors">
+                    <div className="flex justify-between items-start mb-1">
+                      <h4 className="font-bold text-slate-900 text-sm truncate max-w-[180px]">{item.cliente}</h4>
+                      <span className="text-[10px] font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-100">
+                        {item.id.slice(-6).toUpperCase()}
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-600 mb-2">{item.servico}</p>
+                    <div className="flex items-center justify-between mt-2 pt-2 border-t border-slate-200/50">
+                      <span className="text-[10px] uppercase font-bold text-slate-400">Prazo Desejado</span>
+                      <span className="text-xs font-bold text-slate-900">{item.prazo}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 

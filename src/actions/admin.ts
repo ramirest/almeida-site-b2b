@@ -67,7 +67,7 @@ export async function getAdminDashboardData() {
   // 8. Todos os Pedidos em Andamento
   const ordersRaw = await prisma.order.findMany({
     where: { status: { in: ['PENDING', 'IN_PRODUCTION'] } },
-    include: { partner: true },
+    include: { partner: true, items: true },
     orderBy: { createdAt: 'desc' },
     take: 10
   });
@@ -108,6 +108,12 @@ export async function getAdminDashboardData() {
       cnpj: partner.cnpj,
       nivel: partner.tier === 'GOLD' ? 'Ouro' : partner.tier === 'DISTRIBUTOR' ? 'Distribuidor' : 'Padrão',
       credit: new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(partner.creditLimit)
+    })),
+    agenda: ordersRaw.filter(o => o.status === 'IN_PRODUCTION').map(order => ({
+      id: order.id,
+      cliente: order.partner?.corporateName || 'Venda Direta',
+      servico: order.items[0]?.serviceType || 'Serviço Geral',
+      prazo: order.items[0]?.deadline || 'A Combinar'
     }))
   };
 }
