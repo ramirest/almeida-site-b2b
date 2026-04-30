@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { Users, ShoppingCart, MessageSquare, TrendingUp, Calendar, Search, MoreVertical, Clock } from 'lucide-react';
 import { getAdminDashboardData } from '@/actions/admin';
 import { ApproveLeadButton, AdvanceOrderButton, ApproveCrmLeadButton } from '@/components/AdminActionButtons';
@@ -99,7 +100,7 @@ export default async function AdminDashboardPage() {
               <MessageSquare size={18} className="text-amber-500" />
               Leads de Orçamento
             </h2>
-            <button className="text-sm text-blue-600 font-medium hover:underline">Ver todos</button>
+            <Link href="/admin/leads" className="text-sm text-blue-600 font-medium hover:underline">Ver todos</Link>
           </div>
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {leads.length === 0 ? (
@@ -136,7 +137,7 @@ export default async function AdminDashboardPage() {
               <ShoppingCart size={18} className="text-blue-500" />
               Pedidos em Andamento
             </h2>
-            <button className="text-sm text-blue-600 font-medium hover:underline">Ver todos</button>
+            <Link href="/admin/pedidos" className="text-sm text-blue-600 font-medium hover:underline">Ver todos</Link>
           </div>
           <div className="flex-1 overflow-x-auto">
             <table className="w-full text-left text-sm">
