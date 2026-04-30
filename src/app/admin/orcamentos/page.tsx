@@ -29,13 +29,12 @@ export default async function BudgetsPage() {
                   <h3 className="font-bold text-slate-900">Orçamento #{budget.id.slice(-6).toUpperCase()}</h3>
                   <p className="text-sm text-slate-500">Lead: {budget.lead.name}</p>
                 </div>
-                <span className={`ml-auto md:ml-0 px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                  budget.status === 'APPROVED' ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700'
-                }`}>
+                <span className={`ml-auto md:ml-0 px-2.5 py-0.5 rounded-full text-xs font-medium ${budget.status === 'APPROVED' ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700'
+                  }`}>
                   {budget.status === 'APPROVED' ? 'Aprovado' : 'Aguardando'}
                 </span>
               </div>
-              
+
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-2">
                 <div>
                   <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Valor Total</p>
@@ -59,7 +58,7 @@ export default async function BudgetsPage() {
                 Baixar PDF
               </button>
               {budget.status !== 'APPROVED' && (
-                <ApproveCrmLeadButton 
+                <ApproveCrmLeadButton
                   leadId={budget.leadId}
                   budgetId={budget.id}
                   corporateName={budget.lead.name}

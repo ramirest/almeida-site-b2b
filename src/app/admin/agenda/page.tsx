@@ -18,14 +18,14 @@ export default async function AgendaPage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
+
         {/* Coluna 1: Lista de Agendamentos */}
         <div className="lg:col-span-2 space-y-4">
           <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2">
             <CalendarIcon size={20} className="text-blue-600" />
             Serviços Agendados
           </h2>
-          
+
           <SchedulesClientList schedules={schedules} />
         </div>
 
@@ -35,12 +35,12 @@ export default async function AgendaPage() {
             <Clock size={20} className="text-amber-500" />
             Fila de Espera
           </h2>
-          
+
           <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-4">
             <p className="text-xs text-slate-500 mb-4 pb-3 border-b border-slate-100">
               Pedidos em produção ou finalizados que precisam de logística.
             </p>
-            
+
             <div className="space-y-4">
               {pendingOrders.length === 0 ? (
                 <div className="text-center text-sm text-slate-400 py-4">
@@ -58,9 +58,8 @@ export default async function AgendaPage() {
                       </span>
                     </div>
                     <div className="flex flex-col items-end gap-1">
-                      <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${
-                        order.status === 'COMPLETED' ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700'
-                      }`}>
+                      <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${order.status === 'COMPLETED' ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700'
+                        }`}>
                         {order.status === 'COMPLETED' ? 'Pronto' : 'Na Fábrica'}
                       </span>
                       {order.items[0]?.deadline && (
@@ -70,7 +69,7 @@ export default async function AgendaPage() {
                       )}
                     </div>
                   </div>
-                  
+
                   <ScheduleForm orderId={order.id} />
                 </div>
               ))}

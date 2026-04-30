@@ -6,47 +6,47 @@ import { ApproveLeadButton, AdvanceOrderButton, ApproveCrmLeadButton } from '@/c
 export default async function AdminDashboardPage() {
   const { kpis, leads, pedidos, parceiros } = await getAdminDashboardData();
 
-  const formatCurrency = (value: number) => 
+  const formatCurrency = (value: number) =>
     new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
 
   const kpisCards = [
-    { 
-      title: 'Vendas no Mês', 
-      value: formatCurrency(kpis.salesMonth), 
-      trend: `${((kpis.salesMonth / kpis.salesGoal) * 100).toFixed(0)}% da meta`, 
-      icon: TrendingUp, 
-      color: 'text-emerald-600', 
-      bg: 'bg-emerald-50' 
+    {
+      title: 'Vendas no Mês',
+      value: formatCurrency(kpis.salesMonth),
+      trend: `${((kpis.salesMonth / kpis.salesGoal) * 100).toFixed(0)}% da meta`,
+      icon: TrendingUp,
+      color: 'text-emerald-600',
+      bg: 'bg-emerald-50'
     },
-    { 
-      title: 'Vendas na Semana', 
-      value: formatCurrency(kpis.salesWeek), 
-      trend: 'Faturamento', 
-      icon: ShoppingCart, 
-      color: 'text-blue-600', 
-      bg: 'bg-blue-50' 
+    {
+      title: 'Vendas na Semana',
+      value: formatCurrency(kpis.salesWeek),
+      trend: 'Faturamento',
+      icon: ShoppingCart,
+      color: 'text-blue-600',
+      bg: 'bg-blue-50'
     },
-    { 
-      title: 'Pedidos Pendentes', 
-      value: kpis.pendingOrders, 
-      trend: 'Aguardando', 
-      icon: Clock, 
-      color: 'text-amber-600', 
-      bg: 'bg-amber-50' 
+    {
+      title: 'Pedidos Pendentes',
+      value: kpis.pendingOrders,
+      trend: 'Aguardando',
+      icon: Clock,
+      color: 'text-amber-600',
+      bg: 'bg-amber-50'
     },
-    { 
-      title: 'Parceiros Ativos', 
-      value: kpis.activePartners, 
-      trend: 'Convertidos', 
-      icon: Users, 
-      color: 'text-indigo-600', 
-      bg: 'bg-indigo-50' 
+    {
+      title: 'Parceiros Ativos',
+      value: kpis.activePartners,
+      trend: 'Convertidos',
+      icon: Users,
+      color: 'text-indigo-600',
+      bg: 'bg-indigo-50'
     },
   ];
 
   return (
     <div className="space-y-8 max-w-7xl mx-auto">
-      
+
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
@@ -56,9 +56,9 @@ export default async function AdminDashboardPage() {
         <div className="flex items-center gap-3">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-            <input 
-              type="text" 
-              placeholder="Buscar pedidos, CNPJ..." 
+            <input
+              type="text"
+              placeholder="Buscar pedidos, CNPJ..."
               className="pl-10 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-64"
             />
           </div>
@@ -91,7 +91,7 @@ export default async function AdminDashboardPage() {
 
       {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        
+
         {/* Leads e Solicitações */}
         <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col h-[400px]">
           <div className="px-6 py-4 border-b border-slate-200 flex justify-between items-center bg-slate-50">
@@ -118,10 +118,10 @@ export default async function AdminDashboardPage() {
                 </div>
                 <div className="flex sm:flex-col justify-between items-end gap-2">
                   <span className="text-xs text-slate-500">{lead.data}</span>
-                  <ApproveCrmLeadButton 
-                    leadId={lead.id} 
-                    budgetId={lead.budgetId} 
-                    corporateName={lead.empresa} 
+                  <ApproveCrmLeadButton
+                    leadId={lead.id}
+                    budgetId={lead.budgetId}
+                    corporateName={lead.empresa}
                   />
                 </div>
               </div>
@@ -162,10 +162,9 @@ export default async function AdminDashboardPage() {
                     </td>
                     <td className="px-6 py-4 text-slate-700">{pedido.parceiro}</td>
                     <td className="px-6 py-4 flex items-center justify-end">
-                      <span className={`inline-flex items-center px-2 py-1 rounded text-xs font-medium ${
-                        pedido.status === 'IN_PRODUCTION' ? 'bg-blue-50 text-blue-700 border border-blue-200' :
-                        'bg-amber-50 text-amber-700 border border-amber-200'
-                      }`}>
+                      <span className={`inline-flex items-center px-2 py-1 rounded text-xs font-medium ${pedido.status === 'IN_PRODUCTION' ? 'bg-blue-50 text-blue-700 border border-blue-200' :
+                          'bg-amber-50 text-amber-700 border border-amber-200'
+                        }`}>
                         {pedido.status === 'IN_PRODUCTION' ? 'Em Produção' : 'Pendente'}
                       </span>
                       <AdvanceOrderButton orderId={pedido.id} currentStatus={pedido.status} />
