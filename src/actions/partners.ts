@@ -32,3 +32,22 @@ export async function updatePartnerStatus(partnerId: string, newStatus: string) 
   
   return partner;
 }
+
+export async function updatePartner(partnerId: string, data: { corporateName: string; phone: string; address?: string; creditLimit: number; tier: string }) {
+  const session = await auth();
+  if (!session || session.user.role !== 'ADMIN') throw new Error('Acesso negado');
+
+  const partner = await prisma.partner.update({
+    where: { id: partnerId },
+    data: {
+      corporateName: data.corporateName,
+      phone: data.phone,
+      address: data.address,
+      creditLimit: data.creditLimit,
+      tier: data.tier
+    }
+  });
+
+  revalidatePath('/admin/parceiros');
+  return partner;
+}
