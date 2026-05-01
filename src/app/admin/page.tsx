@@ -2,7 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import { Users, ShoppingCart, MessageSquare, TrendingUp, Calendar, Search, MoreVertical, Clock } from 'lucide-react';
 import { getAdminDashboardData } from '@/actions/admin';
-import { ApproveLeadButton, AdvanceOrderButton, ApproveCrmLeadButton } from '@/components/AdminActionButtons';
+import { AdvanceOrderButton } from '@/components/AdminActionButtons';
+import { DashboardLeadActions } from '@/components/DashboardLeadActions';
 
 export default async function AdminDashboardPage() {
   const { kpis, leads, pedidos, parceiros, agenda } = await getAdminDashboardData();
@@ -119,11 +120,7 @@ export default async function AdminDashboardPage() {
                 </div>
                 <div className="flex sm:flex-col justify-between items-end gap-2">
                   <span className="text-xs text-slate-500">{lead.data}</span>
-                  <ApproveCrmLeadButton
-                    leadId={lead.id}
-                    budgetId={lead.budgetId}
-                    corporateName={lead.empresa}
-                  />
+                  <DashboardLeadActions lead={lead} />
                 </div>
               </div>
             ))}

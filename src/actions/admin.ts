@@ -91,7 +91,10 @@ export async function getAdminDashboardData() {
     leads: leadsRaw.map(lead => ({
       id: lead.id,
       budgetId: lead.budgets[0]?.id || '',
+      budgetTotal: lead.budgets[0]?.totalValue || 0,
+      budgetItems: lead.budgets[0]?.items || [],
       empresa: lead.name,
+      email: lead.email,
       servico: 'Ver Orçamento',
       volume: lead.budgets[0] ? `R$ ${lead.budgets[0].totalValue}` : 'Sem Orçamento',
       data: new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeStyle: 'short' }).format(lead.createdAt),
