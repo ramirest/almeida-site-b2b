@@ -3,6 +3,10 @@ import Link from 'next/link';
 import { User } from 'lucide-react';
 
 export default function Header() {
+  const isProd = process.env.NODE_ENV === 'production';
+  const portalUrl = process.env.NEXT_PUBLIC_PARTNER_PORTAL_URL || 
+                   (isProd ? 'https://jateart-portal-parceiros-production.up.railway.app' : 'http://localhost:3001');
+
   return (
     <header className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
@@ -32,7 +36,7 @@ export default function Header() {
         {/* CTA Button */}
         <div className="flex items-center gap-4">
           <a 
-            href={process.env.NEXT_PUBLIC_PARTNER_PORTAL_URL || 'http://localhost:3001'} 
+            href={portalUrl} 
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:flex items-center gap-2 bg-primary hover:bg-primary-hover text-white px-5 py-2.5 rounded-md text-sm font-medium transition-colors"
