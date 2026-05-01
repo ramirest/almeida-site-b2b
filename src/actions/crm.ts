@@ -67,6 +67,23 @@ export async function createBudget(data: { leadId: string; totalValue: number; v
   return budget;
 }
 
+export async function updateBudget(budgetId: string, data: { totalValue: number; items: any }) {
+  const session = await auth();
+  if (!session || session.user.role !== 'ADMIN') throw new Error('Acesso negado');
+
+  const budget = await prisma.budget.update({
+    where: { id: budgetId },
+    data: {
+      totalValue: data.totalValue,
+      items: data.items
+    }
+  });
+
+  revalidatePath('/admin/leads');
+  revalidatePath('/admin/orcamentos');
+  return budget;
+}
+
 // --- REGRA DE NEGÓCIO: CONVERSÃO ---
 
 export async function approveBudgetAndPromoteToPartner(budgetId: string, partnerData: { cnpj: string; corporateName: string }) {
@@ -100,16 +117,20 @@ export async function approveBudgetAndPromoteToPartner(budgetId: string, partner
   });
 
   // 2. Criar o Pedido baseado no Orçamento
+  // O formato atual de budget.items armazena clientData e services
+  const itemsJson = budget.items as any;
+  const servicesArray = Array.isArray(itemsJson) ? itemsJson : (itemsJson.services || []);
+
   const order = await prisma.order.create({
     data: {
       partnerId: partner.id,
       totalValue: budget.totalValue,
       status: 'PENDING',
       items: {
-        create: (budget.items as any[]).map(item => ({
-          serviceType: item.serviceType || 'Serviço Geral',
+        create: servicesArray.map((item: any) => ({
+          serviceType: item.serviceType || item.type || 'Serviço Geral',
           volume: item.volume || 'N/A',
-          deadline: 'A Combinar',
+          deadline: item.prazo || item.deadline || 'A Combinar',
           notes: item.notes || ''
         }))
       }

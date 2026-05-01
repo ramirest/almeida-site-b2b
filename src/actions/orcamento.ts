@@ -15,52 +15,39 @@ export async function submitOrcamento(formData: {
   try {
     const cnpjClean = formData.cnpj.replace(/\D/g, '');
 
-    // 1. Verifica se o parceiro já existe pelo CNPJ
-    let partner = await prisma.partner.findUnique({
-      where: { cnpj: cnpjClean }
+    // 1. Cria o Lead
+    const lead = await prisma.lead.create({
+      data: {
+        name: formData.empresa,
+        email: formData.email,
+        phone: formData.telefone,
+        origin: 'SITE',
+        status: 'NEW'
+      }
     });
 
-    // 2. Se não existir, cria como PENDING (Lead B2B)
-    if (!partner) {
-      // Senha padrão para novos Leads (devem trocar no primeiro acesso)
-      const defaultPassword = 'mudar123';
-      const passwordHash = await bcrypt.hash(defaultPassword, 10);
+    // Validade padrão: 15 dias
+    const validity = new Date();
+    validity.setDate(validity.getDate() + 15);
 
-      partner = await prisma.partner.create({
-        data: {
-          corporateName: formData.empresa,
-          cnpj: cnpjClean,
-          phone: formData.telefone,
-          status: 'PENDING',
-          users: {
-            create: {
-              email: formData.email,
-              passwordHash,
-              role: 'PARTNER'
-            }
-          }
-        }
-      });
-    }
-
-    // 3. Cria o Pedido (Order) vinculado a este Partner
-    const order = await prisma.order.create({
+    // 2. Cria o Orçamento vinculado ao Lead
+    const budget = await prisma.budget.create({
       data: {
-        partnerId: partner.id,
-        status: 'PENDING',
+        leadId: lead.id,
         totalValue: formData.totalEstimate,
+        validity,
+        status: 'DRAFT',
         items: {
-          create: formData.items.map(item => ({
-            serviceType: item.type,
-            volume: item.volume,
-            deadline: item.prazo || 'A Combinar',
-            notes: item.notes
-          }))
+          clientData: {
+            cnpj: cnpjClean,
+            contato: formData.nome
+          },
+          services: formData.items
         }
       }
     });
 
-    return { success: true, orderId: order.id, partnerStatus: partner.status };
+    return { success: true, orderId: budget.id, partnerStatus: 'PENDING' };
   } catch (error) {
     console.error('Erro ao submeter orçamento:', error);
     return { success: false, error: 'Ocorreu um erro ao processar o orçamento.' };
