@@ -31,10 +31,15 @@ export default function Header() {
 
         {/* CTA Button */}
         <div className="flex items-center gap-4">
-          <Link href="/parceiros" className="hidden sm:flex items-center gap-2 bg-primary hover:bg-primary-hover text-white px-5 py-2.5 rounded-md text-sm font-medium transition-colors">
+          <a 
+            href={process.env.NEXT_PUBLIC_PARTNER_PORTAL_URL || 'http://localhost:3001'} 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:flex items-center gap-2 bg-primary hover:bg-primary-hover text-white px-5 py-2.5 rounded-md text-sm font-medium transition-colors"
+          >
             <User size={16} />
             Área do Parceiro
-          </Link>
+          </a>
           
           {/* Mobile Menu Toggle (Simplified) */}
           <button className="md:hidden p-2 text-foreground">
