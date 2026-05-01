@@ -97,24 +97,40 @@ export async function approveBudgetAndPromoteToPartner(budgetId: string, partner
 
   if (!budget) throw new Error('Orçamento não encontrado');
 
-  // 1. Criar o Parceiro
-  const passwordHash = await bcrypt.hash('mudar123', 10); // Senha padrão inicial
-  
-  const partner = await prisma.partner.create({
-    data: {
-      corporateName: partnerData.corporateName,
-      cnpj: partnerData.cnpj.replace(/\D/g, ''),
-      phone: budget.lead.phone,
-      status: 'APPROVED',
-      users: {
-        create: {
-          email: budget.lead.email,
-          passwordHash,
-          role: 'PARTNER'
+  // 1. Verificar se o Parceiro já existe (pelo CNPJ)
+  const cnpjClean = partnerData.cnpj.replace(/\D/g, '');
+  let partner = await prisma.partner.findUnique({
+    where: { cnpj: cnpjClean }
+  });
+
+  if (!partner) {
+    // Verificar se o email já existe para evitar erro no User
+    const existingUser = await prisma.user.findUnique({
+      where: { email: budget.lead.email }
+    });
+
+    const emailToUse = existingUser 
+      ? `lead_${Date.now()}@jateart.com` // Fallback caso o email já exista em outra conta
+      : budget.lead.email;
+
+    const passwordHash = await bcrypt.hash('mudar123', 10);
+    
+    partner = await prisma.partner.create({
+      data: {
+        corporateName: partnerData.corporateName,
+        cnpj: cnpjClean,
+        phone: budget.lead.phone,
+        status: 'APPROVED',
+        users: {
+          create: {
+            email: emailToUse,
+            passwordHash,
+            role: 'PARTNER'
+          }
         }
       }
-    }
-  });
+    });
+  }
 
   // 2. Criar o Pedido baseado no Orçamento
   // O formato atual de budget.items armazena clientData e services
@@ -128,10 +144,10 @@ export async function approveBudgetAndPromoteToPartner(budgetId: string, partner
       status: 'PENDING',
       items: {
         create: servicesArray.map((item: any) => ({
-          serviceType: item.serviceType || item.type || 'Serviço Geral',
-          volume: item.volume || 'N/A',
-          deadline: item.prazo || item.deadline || 'A Combinar',
-          notes: item.notes || ''
+          serviceType: String(item.serviceType || item.type || 'Serviço Geral'),
+          volume: String(item.volume || 'N/A'),
+          deadline: String(item.prazo || item.deadline || 'A Combinar'),
+          notes: item.notes ? String(item.notes) : ''
         }))
       }
     }

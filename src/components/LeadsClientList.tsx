@@ -83,8 +83,8 @@ export function LeadsClientList({ initialLeads }: { initialLeads: LeadWithRelati
         setModalMode(null);
         window.location.reload(); // Atualiza a lista para refletir os novos status
       }, 3000);
-    } catch (error) {
-      setFeedback({ type: 'error', message: 'Erro ao converter lead em pedido.' });
+    } catch (error: any) {
+      setFeedback({ type: 'error', message: error.message || 'Erro ao converter lead em pedido.' });
     } finally {
       setIsSubmitting(false);
     }

@@ -50,8 +50,9 @@ export function ApproveCrmLeadButton({ leadId, budgetId, corporateName }: { lead
       
       setModalState({ isOpen: true, title: 'Sucesso', message: `Parceiro criado com sucesso!\n\nCNPJ para login: ${uniqueCnpj}\nSenha: mudar123` });
       router.refresh();
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
+      setModalState({ isOpen: true, title: 'Erro', message: error.message || 'Ocorreu um erro ao converter o lead.' });
       setIsPending(false);
     }
   };
