@@ -77,15 +77,7 @@ export function LeadsClientList({ initialLeads }: { initialLeads: LeadWithRelati
                   </td>
                   <td className="px-6 py-4 text-right">
                     <div className="flex justify-end gap-2">
-                      <button 
-                        onClick={() => openModal(lead)}
-                        className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all" 
-                        title="Visualizar Orçamento"
-                      >
-                        <Eye size={18} />
-                      </button>
-                      
-                      {isNew && budget && (
+                      {isNew && budget ? (
                         <button 
                           onClick={() => openModal(lead)}
                           className="p-2 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all" 
@@ -93,6 +85,8 @@ export function LeadsClientList({ initialLeads }: { initialLeads: LeadWithRelati
                         >
                           <CheckCircle size={18} />
                         </button>
+                      ) : (
+                        <span className="text-xs text-slate-400 italic">Sem ação disponível</span>
                       )}
                     </div>
                   </td>
