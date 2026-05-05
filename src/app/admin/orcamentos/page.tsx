@@ -62,6 +62,7 @@ export default async function BudgetsPage() {
                   leadId={budget.leadId}
                   budgetId={budget.id}
                   corporateName={budget.lead.name}
+                  budgetItems={budget.items as any}
                 />
               )}
               {budget.status === 'APPROVED' && budget.convertedToOrderId && (

@@ -33,40 +33,73 @@ export function ApproveLeadButton({ partnerId }: { partnerId: string }) {
 
 import { approveBudgetAndPromoteToPartner } from '@/actions/crm';
 
-export function ApproveCrmLeadButton({ leadId, budgetId, corporateName }: { leadId: string; budgetId: string; corporateName: string }) {
+export function ApproveCrmLeadButton({ leadId, budgetId, corporateName, budgetItems }: { leadId: string; budgetId: string; corporateName: string; budgetItems?: any }) {
   const [isPending, setIsPending] = useState(false);
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [modalState, setModalState] = useState<{isOpen: boolean, title: string, message: string}>({ isOpen: false, title: '', message: '' });
   const router = useRouter();
 
   const handleApprove = async () => {
     setIsPending(true);
     try {
-      const uniqueCnpj = `00000${Math.floor(Math.random() * 1000000000)}`.slice(-14);
+      const itemsJson = budgetItems || {};
+      const originalCnpj = itemsJson?.clientData?.cnpj || `00000${Math.floor(Math.random() * 1000000000)}`.slice(-14);
       
       await approveBudgetAndPromoteToPartner(budgetId, { 
-        cnpj: uniqueCnpj, 
+        cnpj: originalCnpj, 
         corporateName 
       });
       
-      setModalState({ isOpen: true, title: 'Sucesso', message: `Parceiro criado com sucesso!\n\nCNPJ para login: ${uniqueCnpj}\nSenha: mudar123` });
+      setModalState({ isOpen: true, title: 'Sucesso', message: `Orçamento aprovado com sucesso!\n\nSe o cliente ainda não era parceiro, o sistema gerou um acesso com o CNPJ ${originalCnpj} e senha 'mudar123'.` });
+      setIsConfirmOpen(false);
       router.refresh();
     } catch (error: any) {
       console.error(error);
       setModalState({ isOpen: true, title: 'Erro', message: error.message || 'Ocorreu um erro ao converter o lead.' });
       setIsPending(false);
+      setIsConfirmOpen(false);
     }
   };
 
   return (
     <>
     <button 
-      onClick={handleApprove}
+      onClick={() => setIsConfirmOpen(true)}
       disabled={isPending}
       className="flex-1 md:flex-none px-4 py-2 text-sm font-bold text-white bg-emerald-600 rounded-lg hover:bg-emerald-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
     >
       <CheckCircle size={16} />
-      {isPending ? 'Convertendo...' : 'Aprovar e Gerar Pedido'}
+      Aprovar e Gerar Pedido
     </button>
+    
+    <Modal 
+      isOpen={isConfirmOpen} 
+      onClose={() => !isPending && setIsConfirmOpen(false)} 
+      title="Confirmar conversão do orçamento"
+    >
+      <div className="space-y-4">
+        <p className="text-slate-600">
+          Tem certeza que deseja aprovar este orçamento e gerar um pedido oficial?
+        </p>
+        <div className="flex justify-end gap-3 pt-4 border-t border-slate-100">
+          <button 
+            onClick={() => setIsConfirmOpen(false)}
+            disabled={isPending}
+            className="px-4 py-2 text-sm font-medium text-slate-500 hover:bg-slate-50 rounded-lg"
+          >
+            Cancelar
+          </button>
+          <button 
+            onClick={handleApprove}
+            disabled={isPending}
+            className="px-6 py-2 bg-emerald-600 text-white rounded-lg text-sm font-bold hover:bg-emerald-700 transition-all disabled:opacity-50 flex items-center gap-2"
+          >
+            {isPending ? 'Gerando...' : 'Confirmar e Gerar Pedido'}
+          </button>
+        </div>
+      </div>
+    </Modal>
+
     <Modal 
       isOpen={modalState.isOpen} 
       onClose={() => setModalState(s => ({ ...s, isOpen: false }))} 
@@ -80,7 +113,7 @@ export function ApproveCrmLeadButton({ leadId, budgetId, corporateName }: { lead
         </button>
       }
     >
-      {modalState.message}
+      <p className="whitespace-pre-wrap">{modalState.message}</p>
     </Modal>
     </>
   );
