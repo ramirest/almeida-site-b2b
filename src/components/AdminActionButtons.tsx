@@ -105,12 +105,25 @@ export function ApproveCrmLeadButton({ leadId, budgetId, corporateName, budgetIt
       onClose={() => setModalState(s => ({ ...s, isOpen: false }))} 
       title={modalState.title}
       actions={
-        <button 
-          onClick={() => setModalState(s => ({ ...s, isOpen: false }))}
-          className="px-4 py-2 bg-emerald-600 text-white rounded-lg text-sm font-bold"
-        >
-          OK
-        </button>
+        <div className="flex gap-2">
+          {modalState.title === 'Sucesso' && (
+            <button 
+              onClick={() => {
+                navigator.clipboard.writeText(modalState.message);
+                alert('Dados copiados!');
+              }}
+              className="px-4 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg text-sm font-bold"
+            >
+              Copiar Dados
+            </button>
+          )}
+          <button 
+            onClick={() => setModalState(s => ({ ...s, isOpen: false }))}
+            className="px-4 py-2 bg-emerald-600 text-white rounded-lg text-sm font-bold hover:bg-emerald-700"
+          >
+            OK
+          </button>
+        </div>
       }
     >
       <p className="whitespace-pre-wrap">{modalState.message}</p>

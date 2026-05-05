@@ -60,21 +60,33 @@ export function LeadBudgetModal({ isOpen, onClose, lead, budget, onSuccess }: Le
           corporateName: lead.name || lead.empresa
         });
 
-        setFeedback({ type: 'success', message: 'Orçamento Salvo e Aprovado!\nO Lead foi convertido em Pedido Oficial.' });
+        setFeedback({ 
+          type: 'success', 
+          message: `Orçamento Salvo e Aprovado!\n\nSe o cliente ainda não era parceiro, o sistema gerou um acesso automático:\nLogin (CNPJ): ${originalCnpj}\nSenha Padrão: mudar123\n\n(Copie esses dados e envie ao cliente)` 
+        });
       } else {
         setFeedback({ type: 'success', message: 'Orçamento atualizado com sucesso!' });
       }
 
-      setTimeout(() => {
-        onClose();
-        if (onSuccess) onSuccess();
-        else window.location.reload();
-      }, 2000);
+      // IMPORTANTE: Removemos o fechamento automático para dar tempo de leitura
     } catch (error: any) {
       console.error(error);
       setFeedback({ type: 'error', message: error.message || 'Ocorreu um erro ao processar o orçamento.' });
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleCloseAfterSuccess = () => {
+    onClose();
+    if (onSuccess) onSuccess();
+    else window.location.reload();
+  };
+
+  const copyCredentials = () => {
+    if (feedback?.message) {
+      navigator.clipboard.writeText(feedback.message);
+      alert('Dados copiados para a área de transferência!');
     }
   };
 
@@ -172,22 +184,41 @@ export function LeadBudgetModal({ isOpen, onClose, lead, budget, onSuccess }: Le
         )}
 
         <div className="flex flex-col sm:flex-row justify-end gap-3 pt-4 border-t border-slate-100">
-            <button 
-            type="button" 
-            onClick={() => handleAction('save')}
-            disabled={isSubmitting || feedback?.type === 'success'}
-            className="px-4 py-2 text-sm font-bold text-amber-600 bg-amber-50 hover:bg-amber-100 rounded-lg transition-all disabled:opacity-50"
-          >
-            Apenas Salvar
-          </button>
-          <button 
-            onClick={() => handleAction('save_and_approve')}
-            disabled={isSubmitting || feedback?.type === 'success'}
-            className="px-6 py-2 bg-emerald-600 text-white rounded-lg text-sm font-bold hover:bg-emerald-700 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
-          >
-            <CheckCircle size={16} />
-            {isSubmitting ? 'Processando...' : 'Salvar e Aprovar Pedido'}
-          </button>
+          {feedback?.type === 'success' ? (
+            <>
+              <button 
+                onClick={copyCredentials}
+                className="px-4 py-2 text-sm font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-all"
+              >
+                Copiar Dados
+              </button>
+              <button 
+                onClick={handleCloseAfterSuccess}
+                className="px-6 py-2 bg-emerald-600 text-white rounded-lg text-sm font-bold hover:bg-emerald-700 transition-all"
+              >
+                OK, Entendido
+              </button>
+            </>
+          ) : (
+            <>
+              <button 
+                type="button" 
+                onClick={() => handleAction('save')}
+                disabled={isSubmitting}
+                className="px-4 py-2 text-sm font-bold text-amber-600 bg-amber-50 hover:bg-amber-100 rounded-lg transition-all disabled:opacity-50"
+              >
+                Apenas Salvar
+              </button>
+              <button 
+                onClick={() => handleAction('save_and_approve')}
+                disabled={isSubmitting}
+                className="px-6 py-2 bg-emerald-600 text-white rounded-lg text-sm font-bold hover:bg-emerald-700 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+              >
+                <CheckCircle size={16} />
+                {isSubmitting ? 'Processando...' : 'Salvar e Aprovar Pedido'}
+              </button>
+            </>
+          )}
         </div>
       </div>
     </Modal>
