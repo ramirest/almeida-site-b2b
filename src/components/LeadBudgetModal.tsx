@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { CheckCircle, AlertCircle } from 'lucide-react';
+import { CheckCircle, AlertCircle, RefreshCw } from 'lucide-react';
 import { Modal } from '@/components/Modal';
 import { approveBudgetAndPromoteToPartner, updateBudget } from '@/actions/crm';
+import { calculateServicePrice, COLOR_OPTIONS } from '@/config/pricing';
 
 interface LeadBudgetModalProps {
   isOpen: boolean;
@@ -29,6 +30,25 @@ export function LeadBudgetModal({ isOpen, onClose, lead, budget, onSuccess }: Le
       setFeedback(null);
     }
   }, [isOpen, budget]);
+
+  const handleRecalculate = () => {
+    let newTotal = 0;
+    editServices.forEach(svc => {
+      if (svc.serviceId) {
+        newTotal += calculateServicePrice({
+          serviceId: svc.serviceId,
+          colorId: svc.colorId,
+          width: parseFloat(svc.width) || 0,
+          height: parseFloat(svc.height) || 0,
+          quantity: parseInt(svc.quantity) || 1,
+          includeAdditionalCosts: true
+        });
+      }
+    });
+    if (newTotal > 0) {
+      setEditTotalValue(newTotal);
+    }
+  };
 
   if (!isOpen || !lead || !budget) return null;
 
@@ -101,7 +121,17 @@ export function LeadBudgetModal({ isOpen, onClose, lead, budget, onSuccess }: Le
     >
       <div className="space-y-4">
         <div>
-          <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Valor Total Negociado (R$)</label>
+          <div className="flex items-center justify-between mb-1">
+            <label className="block text-xs font-bold text-slate-500 uppercase">Valor Total Negociado (R$)</label>
+            <button 
+              type="button" 
+              onClick={handleRecalculate}
+              className="text-xs font-bold text-blue-600 hover:text-blue-700 flex items-center gap-1 bg-blue-50 px-2 py-1 rounded"
+              title="Recalcular com base na tabela de preços atual"
+            >
+              <RefreshCw size={12} /> Recalcular Automático
+            </button>
+          </div>
           <input 
             type="number" 
             step="0.01"
@@ -117,33 +147,89 @@ export function LeadBudgetModal({ isOpen, onClose, lead, budget, onSuccess }: Le
           <div className="space-y-3 max-h-64 overflow-y-auto pr-1">
             {editServices.map((svc, idx) => (
               <div key={idx} className="p-3 border border-slate-200 rounded-lg bg-slate-50 space-y-2">
-                <input 
-                  type="text" 
-                  value={svc.type || svc.serviceType || ''} 
-                  onChange={(e) => {
-                    const newSvcs = [...editServices];
-                    newSvcs[idx] = { ...newSvcs[idx], type: e.target.value };
-                    setEditServices(newSvcs);
-                  }}
-                  className="w-full px-2 py-1 text-sm border rounded"
-                  placeholder="Tipo de Serviço"
-                />
-                <div className="flex gap-2 items-center">
-                  <div className="w-1/2 flex items-center bg-white border rounded overflow-hidden">
-                    <span className="bg-slate-100 text-slate-500 text-xs px-2 py-1 border-r font-medium">Área (m²)</span>
-                    <input 
-                      type="text" 
-                      value={svc.volume || ''} 
+                <div className="flex gap-2">
+                  <input 
+                    type="text" 
+                    value={svc.serviceName || svc.type || svc.serviceType || ''} 
+                    onChange={(e) => {
+                      const newSvcs = [...editServices];
+                      newSvcs[idx] = { ...newSvcs[idx], serviceName: e.target.value };
+                      setEditServices(newSvcs);
+                    }}
+                    className="flex-1 px-2 py-1 text-sm font-bold border rounded outline-none"
+                    placeholder="Serviço"
+                  />
+                  {svc.reference && (
+                    <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded font-bold whitespace-nowrap flex items-center">
+                      Ref: {svc.reference}
+                    </span>
+                  )}
+                  {svc.colorId && svc.colorId !== 'nenhuma' && (
+                    <select 
+                      value={svc.colorId}
                       onChange={(e) => {
                         const newSvcs = [...editServices];
-                        newSvcs[idx] = { ...newSvcs[idx], volume: e.target.value };
+                        newSvcs[idx] = { ...newSvcs[idx], colorId: e.target.value };
                         setEditServices(newSvcs);
                       }}
-                      className="w-full px-2 py-1 text-xs outline-none"
-                      placeholder="Ex: 4 m²"
-                    />
-                  </div>
-                  <div className="w-1/2 flex items-center bg-white border rounded overflow-hidden">
+                      className="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded font-bold outline-none cursor-pointer border-none"
+                    >
+                      {COLOR_OPTIONS.map(c => (
+                        <option key={c.id} value={c.id}>{c.name}</option>
+                      ))}
+                    </select>
+                  )}
+                </div>
+                
+                <div className="flex gap-2 items-center flex-wrap">
+                  {svc.width !== undefined && (
+                    <div className="flex items-center bg-white border rounded overflow-hidden flex-1 min-w-[80px]">
+                      <span className="bg-slate-100 text-slate-500 text-xs px-2 py-1 border-r font-medium">Larg (m)</span>
+                      <input 
+                        type="text" 
+                        value={svc.width || ''} 
+                        onChange={(e) => {
+                          const newSvcs = [...editServices];
+                          newSvcs[idx] = { ...newSvcs[idx], width: e.target.value };
+                          setEditServices(newSvcs);
+                        }}
+                        className="w-full px-2 py-1 text-xs outline-none"
+                        placeholder="Ex: 2.5"
+                      />
+                    </div>
+                  )}
+                  {svc.height !== undefined && (
+                    <div className="flex items-center bg-white border rounded overflow-hidden flex-1 min-w-[80px]">
+                      <span className="bg-slate-100 text-slate-500 text-xs px-2 py-1 border-r font-medium">Alt (m)</span>
+                      <input 
+                        type="text" 
+                        value={svc.height || ''} 
+                        onChange={(e) => {
+                          const newSvcs = [...editServices];
+                          newSvcs[idx] = { ...newSvcs[idx], height: e.target.value };
+                          setEditServices(newSvcs);
+                        }}
+                        className="w-full px-2 py-1 text-xs outline-none"
+                        placeholder="Ex: 1.2"
+                      />
+                    </div>
+                  )}
+                  {svc.quantity !== undefined && (
+                    <div className="flex items-center bg-white border rounded overflow-hidden flex-1 min-w-[80px]">
+                      <span className="bg-slate-100 text-slate-500 text-xs px-2 py-1 border-r font-medium">Qtd</span>
+                      <input 
+                        type="text" 
+                        value={svc.quantity || ''} 
+                        onChange={(e) => {
+                          const newSvcs = [...editServices];
+                          newSvcs[idx] = { ...newSvcs[idx], quantity: e.target.value };
+                          setEditServices(newSvcs);
+                        }}
+                        className="w-full px-2 py-1 text-xs outline-none"
+                      />
+                    </div>
+                  )}
+                  <div className="flex items-center bg-white border rounded overflow-hidden flex-1 min-w-[120px]">
                     <span className="bg-slate-100 text-slate-500 text-xs px-2 py-1 border-r font-medium">Prazo</span>
                     <input 
                       type="text" 
@@ -154,7 +240,7 @@ export function LeadBudgetModal({ isOpen, onClose, lead, budget, onSuccess }: Le
                         setEditServices(newSvcs);
                       }}
                       className="w-full px-2 py-1 text-xs outline-none"
-                      placeholder="Ex: 10/10/2023"
+                      placeholder="Ex: Urgente"
                     />
                   </div>
                 </div>

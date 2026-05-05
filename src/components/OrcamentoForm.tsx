@@ -4,27 +4,25 @@ import React, { useState } from 'react';
 import { Send, CheckCircle2, Plus, Trash2, Calculator, ArrowRight } from 'lucide-react';
 import { submitOrcamento } from '@/actions/orcamento';
 import { Modal } from '@/components/Modal';
+import { PRICING_TABLE, COLOR_OPTIONS, getCategories, calculateServicePrice } from '@/config/pricing';
 
 type BudgetItem = {
   id: string;
-  type: string;
-  volume: string;
+  serviceId: string;
+  colorId: string;
+  width: string;
+  height: string;
+  quantity: string;
+  reference: string;
   prazo: string;
   notes: string;
-};
-
-const PRICES: Record<string, number> = {
-  jateamento: 85,
-  pelicula: 60,
-  fornecimento: 150,
-  projeto: 0
 };
 
 export default function OrcamentoForm() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [items, setItems] = useState<BudgetItem[]>([
-    { id: '1', type: '', volume: '', prazo: '', notes: '' }
+    { id: '1', serviceId: '', colorId: 'nenhuma', width: '', height: '', quantity: '1', reference: '', prazo: '', notes: '' }
   ]);
   const [formData, setFormData] = useState({
     empresa: '',
@@ -37,7 +35,7 @@ export default function OrcamentoForm() {
   const handleAddItem = () => {
     setItems([
       ...items, 
-      { id: Math.random().toString(36).substr(2, 9), type: '', volume: '', prazo: '', notes: '' }
+      { id: Math.random().toString(36).substr(2, 9), serviceId: '', colorId: 'nenhuma', width: '', height: '', quantity: '1', reference: '', prazo: '', notes: '' }
     ]);
   };
 
@@ -48,15 +46,34 @@ export default function OrcamentoForm() {
   };
 
   const updateItem = (id: string, field: keyof BudgetItem, value: string) => {
-    setItems(items.map(item => item.id === id ? { ...item, [field]: value } : item));
+    setItems(items.map(item => {
+      if (item.id === id) {
+        const updated = { ...item, [field]: value };
+        // Resetar campos se mudar o serviço
+        if (field === 'serviceId') {
+          updated.reference = '';
+          updated.width = '';
+          updated.height = '';
+          updated.quantity = '1';
+        }
+        return updated;
+      }
+      return item;
+    }));
   };
 
   const calculateTotal = () => {
     let total = 0;
     items.forEach(item => {
-      const volumeNum = parseFloat(item.volume.replace(',', '.'));
-      if (!isNaN(volumeNum) && item.type && PRICES[item.type]) {
-        total += volumeNum * PRICES[item.type];
+      if (item.serviceId) {
+        total += calculateServicePrice({
+          serviceId: item.serviceId,
+          width: parseFloat(item.width.replace(',', '.')) || 0,
+          height: parseFloat(item.height.replace(',', '.')) || 0,
+          quantity: parseInt(item.quantity) || 1,
+          colorId: item.colorId,
+          includeAdditionalCosts: true
+        });
       }
     });
     return total;
@@ -80,7 +97,19 @@ export default function OrcamentoForm() {
       nome: formData.nome,
       email: formData.email,
       telefone: formData.telefone,
-      items,
+      items: items.map(i => ({
+        serviceId: i.serviceId,
+        serviceName: PRICING_TABLE.find(p => p.id === i.serviceId)?.name || i.serviceId,
+        colorId: i.colorId,
+        colorName: COLOR_OPTIONS.find(c => c.id === i.colorId)?.name || 'Nenhuma',
+        width: i.width,
+        height: i.height,
+        quantity: i.quantity,
+        reference: i.reference,
+        volume: i.width && i.height ? `${i.width} x ${i.height} m` : i.quantity ? `${i.quantity} un` : '',
+        prazo: i.prazo,
+        notes: i.notes
+      })),
       totalEstimate
     });
 
@@ -89,7 +118,7 @@ export default function OrcamentoForm() {
     if (result.success) {
       setIsSuccess(true);
       setFormData({ empresa: '', cnpj: '', nome: '', email: '', telefone: '' });
-      setItems([{ id: '1', type: '', volume: '', prazo: '', notes: '' }]);
+      setItems([{ id: '1', serviceId: '', colorId: 'nenhuma', width: '', height: '', quantity: '1', reference: '', prazo: '', notes: '' }]);
     } else {
       setModalInfo({ isOpen: true, title: 'Erro', message: result.error || "Erro ao enviar orçamento." });
     }
@@ -208,50 +237,130 @@ export default function OrcamentoForm() {
           </div>
           
           <div className="space-y-8">
-            {items.map((item, index) => (
-              <div key={item.id} className="relative bg-gray-50 p-6 rounded-xl border border-gray-100">
-                
-                {items.length > 1 && (
-                  <button 
-                    type="button"
-                    onClick={() => handleRemoveItem(item.id)}
-                    className="absolute top-4 right-4 text-gray-400 hover:text-red-500 transition-colors"
-                    title="Remover item"
-                  >
-                    <Trash2 size={20} />
-                  </button>
-                )}
-                
-                <h4 className="font-bold text-gray-700 mb-4">Item {index + 1}</h4>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <div className="lg:col-span-1">
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Tipo de Serviço / Produto *</label>
-                    <select 
-                      required
-                      value={item.type}
-                      onChange={(e) => updateItem(item.id, 'type', e.target.value)}
-                      className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
-                    >
-                      <option value="">Selecione uma opção</option>
-                      <option value="jateamento">Jateamento de Vidros (R$ 85/m²)</option>
-                      <option value="pelicula">Aplicação de Película (R$ 60/m²)</option>
-                      <option value="fornecimento">Fornecimento de Vidros (R$ 150/m²)</option>
-                      <option value="projeto">Projeto Especial (Sob Consulta)</option>
-                    </select>
-                  </div>
+            {items.map((item, index) => {
+              const selectedService = PRICING_TABLE.find(p => p.id === item.serviceId);
+              
+              return (
+                <div key={item.id} className="relative bg-gray-50 p-6 rounded-xl border border-gray-100">
                   
-                  <div className="lg:col-span-1">
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Volume (m²) *</label>
-                    <input 
-                      type="text" 
-                      required
-                      value={item.volume}
-                      onChange={(e) => updateItem(item.id, 'volume', e.target.value)}
-                      className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
-                      placeholder="Ex: 50"
-                    />
-                  </div>
+                  {items.length > 1 && (
+                    <button 
+                      type="button"
+                      onClick={() => handleRemoveItem(item.id)}
+                      className="absolute top-4 right-4 text-gray-400 hover:text-red-500 transition-colors"
+                      title="Remover item"
+                    >
+                      <Trash2 size={20} />
+                    </button>
+                  )}
+                  
+                  <h4 className="font-bold text-gray-700 mb-4">Item {index + 1}</h4>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="lg:col-span-1">
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Serviço *</label>
+                      <select 
+                        required
+                        value={item.serviceId}
+                        onChange={(e) => updateItem(item.id, 'serviceId', e.target.value)}
+                        className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
+                      >
+                        <option value="">Selecione o serviço...</option>
+                        {getCategories().map(cat => (
+                          <optgroup key={cat} label={cat}>
+                            {PRICING_TABLE.filter(p => p.category === cat).map(p => (
+                              <option key={p.id} value={p.id}>
+                                {p.name} ({new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(p.price)}/{p.unit === 'm2' ? 'm²' : p.unit === 'ml' ? 'ml' : 'un'})
+                              </option>
+                            ))}
+                          </optgroup>
+                        ))}
+                      </select>
+                    </div>
+
+                    {selectedService && (
+                      <div className="lg:col-span-1">
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">Cor (Opcional)</label>
+                        <select 
+                          value={item.colorId || 'nenhuma'}
+                          onChange={(e) => updateItem(item.id, 'colorId', e.target.value)}
+                          className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
+                        >
+                          {COLOR_OPTIONS.map(c => (
+                            <option key={c.id} value={c.id}>
+                              {c.name} {c.pricePerM2 > 0 ? `(+ R$ ${c.pricePerM2}/m²)` : ''}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    )}
+
+                    {selectedService?.refRange && (
+                      <div className="lg:col-span-1">
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">Referência *</label>
+                        <select 
+                          required
+                          value={item.reference}
+                          onChange={(e) => updateItem(item.id, 'reference', e.target.value)}
+                          className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
+                        >
+                          <option value="">Escolha a variação...</option>
+                          {Array.from({ length: selectedService.refRange.max - selectedService.refRange.min + 1 }, (_, i) => i + selectedService.refRange!.min).map(n => (
+                            <option key={n} value={n.toString().padStart(2, '0')}>Ref. {n.toString().padStart(2, '0')}</option>
+                          ))}
+                        </select>
+                      </div>
+                    )}
+
+                    {selectedService?.unit === 'm2' && (
+                      <>
+                        <div className="lg:col-span-1">
+                          <label className="block text-sm font-semibold text-gray-700 mb-2">Largura (m) *</label>
+                          <input 
+                            type="number" step="0.01" min="0" required
+                            value={item.width}
+                            onChange={(e) => updateItem(item.id, 'width', e.target.value)}
+                            className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
+                            placeholder="Ex: 2.5"
+                          />
+                        </div>
+                        <div className="lg:col-span-1">
+                          <label className="block text-sm font-semibold text-gray-700 mb-2">Altura (m) *</label>
+                          <input 
+                            type="number" step="0.01" min="0" required
+                            value={item.height}
+                            onChange={(e) => updateItem(item.id, 'height', e.target.value)}
+                            className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
+                            placeholder="Ex: 1.2"
+                          />
+                        </div>
+                      </>
+                    )}
+
+                    {selectedService?.unit === 'ml' && (
+                      <div className="lg:col-span-1">
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">Comprimento Linear (m) *</label>
+                        <input 
+                          type="number" step="0.01" min="0" required
+                          value={item.width}
+                          onChange={(e) => updateItem(item.id, 'width', e.target.value)}
+                          className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
+                          placeholder="Ex: 5.0"
+                        />
+                      </div>
+                    )}
+
+                    {selectedService?.unit === 'un' && (
+                      <div className="lg:col-span-1">
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">Quantidade *</label>
+                        <input 
+                          type="number" min="1" required
+                          value={item.quantity}
+                          onChange={(e) => updateItem(item.id, 'quantity', e.target.value)}
+                          className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
+                        />
+                      </div>
+                    )}
 
                   <div className="lg:col-span-1">
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Prazo Desejado</label>
