@@ -9,7 +9,7 @@ export async function submitOrcamento(formData: {
   nome: string;
   email: string;
   telefone: string;
-  items: Array<{ id: string; type: string; volume: string; prazo: string; notes: string }>;
+  items: any[];
   totalEstimate: number;
 }) {
   try {
