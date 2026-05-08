@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Send, CheckCircle2, Plus, Trash2, Calculator, ArrowRight } from 'lucide-react';
+import { Send, CheckCircle2, Plus, Trash2, Calculator, ArrowRight, Image as ImageIcon } from 'lucide-react';
 import { submitOrcamento } from '@/actions/orcamento';
 import { Modal } from '@/components/Modal';
+import { ReferenceGalleryModal } from '@/components/ReferenceGalleryModal';
 import { PRICING_TABLE, COLOR_OPTIONS, getCategories, calculateServicePrice } from '@/config/pricing';
 
 type BudgetItem = {
@@ -24,6 +25,7 @@ export default function OrcamentoForm() {
   const [items, setItems] = useState<BudgetItem[]>([
     { id: '1', serviceId: '', colorId: 'nenhuma', width: '', height: '', quantity: '1', reference: '', prazo: '', notes: '' }
   ]);
+  const [activeGalleryItem, setActiveGalleryItem] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     empresa: '',
     cnpj: '',
@@ -298,17 +300,16 @@ export default function OrcamentoForm() {
                     {selectedService?.refRange && (
                       <div className="lg:col-span-1">
                         <label className="block text-sm font-semibold text-gray-700 mb-2">Referência *</label>
-                        <select 
-                          required
-                          value={item.reference}
-                          onChange={(e) => updateItem(item.id, 'reference', e.target.value)}
-                          className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
+                        <button
+                          type="button"
+                          onClick={() => setActiveGalleryItem(item.id)}
+                          className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white flex items-center justify-between text-left group hover:border-primary/50"
                         >
-                          <option value="">Escolha a variação...</option>
-                          {Array.from({ length: selectedService.refRange.max - selectedService.refRange.min + 1 }, (_, i) => i + selectedService.refRange!.min).map(n => (
-                            <option key={n} value={n.toString().padStart(2, '0')}>Ref. {n.toString().padStart(2, '0')}</option>
-                          ))}
-                        </select>
+                          <span className={item.reference ? 'font-bold text-primary' : 'text-gray-500'}>
+                            {item.reference ? `REF ${item.reference}` : 'Escolher Modelo Visual...'}
+                          </span>
+                          <ImageIcon size={18} className="text-gray-400 group-hover:text-primary transition-colors" />
+                        </button>
                       </div>
                     )}
 
@@ -441,6 +442,18 @@ export default function OrcamentoForm() {
       >
         {modalInfo.message}
       </Modal>
+
+      {/* Modal de Galeria de Referências */}
+      {activeGalleryItem && (
+        <ReferenceGalleryModal
+          isOpen={!!activeGalleryItem}
+          onClose={() => setActiveGalleryItem(null)}
+          onSelect={(ref) => updateItem(activeGalleryItem, 'reference', ref)}
+          serviceName={PRICING_TABLE.find(p => p.id === items.find(i => i.id === activeGalleryItem)?.serviceId)?.name || ''}
+          refRange={PRICING_TABLE.find(p => p.id === items.find(i => i.id === activeGalleryItem)?.serviceId)?.refRange || { min: 0, max: 0, label: '' }}
+          currentSelection={items.find(i => i.id === activeGalleryItem)?.reference}
+        />
+      )}
     </div>
   );
 }
