@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from 'react';
 import { Download, Loader2 } from 'lucide-react';
-import { createPortal } from 'react-dom';
+import { Modal } from '@/components/Modal';
 
 interface DownloadPdfButtonProps {
   budget: any;
@@ -11,6 +11,7 @@ interface DownloadPdfButtonProps {
 
 export function DownloadPdfButton({ budget, className }: DownloadPdfButtonProps) {
   const [isGenerating, setIsGenerating] = useState(false);
+  const [modalState, setModalState] = useState({ isOpen: false, title: '', message: '' });
   const pdfContainerRef = useRef<HTMLDivElement>(null);
 
   const handleDownload = async () => {
@@ -38,7 +39,11 @@ export function DownloadPdfButton({ budget, className }: DownloadPdfButtonProps)
 
     } catch (error) {
       console.error('Erro ao gerar PDF:', error);
-      alert('Houve um erro ao gerar o PDF do orçamento.');
+      setModalState({
+        isOpen: true,
+        title: 'Erro na geração',
+        message: 'Houve um erro ao gerar o PDF do orçamento. Verifique se as informações estão corretas e tente novamente.'
+      });
     } finally {
       setIsGenerating(false);
     }
@@ -62,8 +67,8 @@ export function DownloadPdfButton({ budget, className }: DownloadPdfButtonProps)
         {isGenerating ? 'Gerando...' : 'Baixar PDF'}
       </button>
 
-      {/* Container Oculto para o PDF */}
-      <div style={{ display: 'none' }}>
+      {/* Container Oculto para o PDF. Usando posicionamento absoluto para não atrapalhar o html2pdf.js */}
+      <div style={{ position: 'absolute', left: '-9999px', top: '0px' }}>
         <div ref={pdfContainerRef} className="p-8 max-w-[800px] w-[800px] bg-white text-slate-900 font-sans" style={{ minHeight: '1122px' }}>
           
           {/* Cabeçalho */}
@@ -183,6 +188,22 @@ export function DownloadPdfButton({ budget, className }: DownloadPdfButtonProps)
           </div>
         </div>
       </div>
+
+      <Modal 
+        isOpen={modalState.isOpen} 
+        onClose={() => setModalState(s => ({ ...s, isOpen: false }))} 
+        title={modalState.title}
+        actions={
+          <button 
+            onClick={() => setModalState(s => ({ ...s, isOpen: false }))}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-bold"
+          >
+            OK
+          </button>
+        }
+      >
+        <p className="text-gray-600">{modalState.message}</p>
+      </Modal>
     </>
   );
 }
