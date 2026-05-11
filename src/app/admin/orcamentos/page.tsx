@@ -2,6 +2,7 @@ import React from 'react';
 import { FileText, Calendar, CheckCircle, ArrowRight, Download } from 'lucide-react';
 import { getBudgets } from '@/actions/crm';
 import { ApproveCrmLeadButton } from '@/components/AdminActionButtons';
+import { DownloadPdfButton } from '@/components/DownloadPdfButton';
 
 export default async function BudgetsPage() {
   const budgets = await getBudgets();
@@ -53,10 +54,7 @@ export default async function BudgetsPage() {
             </div>
 
             <div className="flex flex-row md:flex-col justify-end gap-2 border-t md:border-t-0 md:border-l border-slate-100 pt-4 md:pt-0 md:pl-6">
-              <button className="flex-1 md:flex-none px-4 py-2 text-sm font-medium text-slate-600 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors flex items-center justify-center gap-2">
-                <Download size={16} />
-                Baixar PDF
-              </button>
+              <DownloadPdfButton budget={budget} />
               {budget.status !== 'APPROVED' && (
                 <ApproveCrmLeadButton
                   leadId={budget.leadId}
