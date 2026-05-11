@@ -18,31 +18,49 @@ export function DownloadPdfButton({ budget, className }: DownloadPdfButtonProps)
     try {
       setIsGenerating(true);
       
-      const html2pdfModule = await import('html2pdf.js');
-      const html2pdf = html2pdfModule.default;
+      // Carrega o script dinamicamente para evitar problemas de SSR e build do Next.js
+      if (!(window as any).html2pdf) {
+        await new Promise((resolve, reject) => {
+          const script = document.createElement('script');
+          script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+          script.onload = resolve;
+          script.onerror = reject;
+          document.head.appendChild(script);
+        });
+      }
 
       if (!pdfContainerRef.current) return;
 
+      const html2pdf = (window as any).html2pdf;
       const budgetNumber = budget.id.slice(-6).toUpperCase();
-
       const element = pdfContainerRef.current;
+      
+      // Tornar o elemento temporariamente visível mas escondido do usuário
+      element.style.display = 'block';
+      element.style.position = 'fixed';
+      element.style.left = '0';
+      element.style.top = '0';
+      element.style.zIndex = '-9999';
       
       const opt = {
         margin: 10,
         filename: `orcamento-${budgetNumber}.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true },
+        html2canvas: { scale: 2, useCORS: true, windowWidth: 1200 },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
       };
 
-      await html2pdf().set(opt as any).from(element).save();
+      await html2pdf().set(opt).from(element).save();
+
+      // Restaurar o estilo
+      element.style.display = 'none';
 
     } catch (error) {
       console.error('Erro ao gerar PDF:', error);
       setModalState({
         isOpen: true,
         title: 'Erro na geração',
-        message: 'Houve um erro ao gerar o PDF do orçamento. Verifique se as informações estão corretas e tente novamente.'
+        message: 'Houve um erro ao gerar o PDF do orçamento. Verifique sua conexão e tente novamente.'
       });
     } finally {
       setIsGenerating(false);
@@ -67,9 +85,9 @@ export function DownloadPdfButton({ budget, className }: DownloadPdfButtonProps)
         {isGenerating ? 'Gerando...' : 'Baixar PDF'}
       </button>
 
-      {/* Container Oculto para o PDF. Usando posicionamento absoluto para não atrapalhar o html2pdf.js */}
-      <div style={{ position: 'absolute', left: '-9999px', top: '0px' }}>
-        <div ref={pdfContainerRef} className="p-8 max-w-[800px] w-[800px] bg-white text-slate-900 font-sans" style={{ minHeight: '1122px' }}>
+      {/* Container Oculto para o PDF. É ativado via JS durante a geração */}
+      <div ref={pdfContainerRef} style={{ display: 'none' }}>
+        <div className="p-8 max-w-[800px] w-[800px] bg-white text-slate-900 font-sans" style={{ minHeight: '1122px' }}>
           
           {/* Cabeçalho */}
           <div className="flex items-center justify-between border-b-4 border-blue-900 pb-6 mb-8">
@@ -191,12 +209,13 @@ export function DownloadPdfButton({ budget, className }: DownloadPdfButtonProps)
 
       <Modal 
         isOpen={modalState.isOpen} 
-        onClose={() => setModalState(s => ({ ...s, isOpen: false }))} 
+        onClose={() => setModalState({ isOpen: false, title: '', message: '' })} 
         title={modalState.title}
         actions={
           <button 
-            onClick={() => setModalState(s => ({ ...s, isOpen: false }))}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-bold"
+            type="button"
+            onClick={() => setModalState({ isOpen: false, title: '', message: '' })}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-bold hover:bg-blue-700 transition-colors"
           >
             OK
           </button>
