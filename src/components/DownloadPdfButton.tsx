@@ -18,23 +18,27 @@ export function DownloadPdfButton({ budget, className }: DownloadPdfButtonProps)
     try {
       setIsGenerating(true);
       
-      // Carrega o script dinamicamente para evitar problemas de SSR e build do Next.js
-      if (!(window as any).html2pdf) {
+      if (!pdfContainerRef.current) return;
+
+      const element = pdfContainerRef.current;
+      const budgetNumber = budget.id.slice(-6).toUpperCase();
+      
+      // Importações dinâmicas
+      const html2canvasModule = await import('html2canvas-pro');
+      const html2canvas = html2canvasModule.default;
+      
+      // Carrega o jsPDF dinamicamente via CDN para evitar o erro do Turbopack no SSR (fflate Node Worker)
+      if (!(window as any).jspdf) {
         await new Promise((resolve, reject) => {
           const script = document.createElement('script');
-          script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+          script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
           script.onload = resolve;
           script.onerror = reject;
           document.head.appendChild(script);
         });
       }
+      const jsPDF = (window as any).jspdf.jsPDF;
 
-      if (!pdfContainerRef.current) return;
-
-      const html2pdf = (window as any).html2pdf;
-      const budgetNumber = budget.id.slice(-6).toUpperCase();
-      const element = pdfContainerRef.current;
-      
       // Tornar o elemento temporariamente visível mas escondido do usuário
       element.style.display = 'block';
       element.style.position = 'fixed';
@@ -42,15 +46,25 @@ export function DownloadPdfButton({ budget, className }: DownloadPdfButtonProps)
       element.style.top = '0';
       element.style.zIndex = '-9999';
       
-      const opt = {
-        margin: 10,
-        filename: `orcamento-${budgetNumber}.pdf`,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true, windowWidth: 1200 },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-      };
+      const canvas = await html2canvas(element, { 
+        scale: 2, 
+        useCORS: true,
+        windowWidth: 1200 
+      });
 
-      await html2pdf().set(opt).from(element).save();
+      const imgData = canvas.toDataURL('image/jpeg', 0.98);
+      
+      const pdf = new jsPDF({
+        unit: 'mm',
+        format: 'a4',
+        orientation: 'portrait'
+      });
+
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+      
+      pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+      pdf.save(`orcamento-${budgetNumber}.pdf`);
 
       // Restaurar o estilo
       element.style.display = 'none';
