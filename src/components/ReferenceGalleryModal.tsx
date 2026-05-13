@@ -87,7 +87,7 @@ export function ReferenceGalleryModal({
                     <div className="w-full aspect-square bg-gray-100 relative flex items-center justify-center overflow-hidden">
                       {/* Tentamos carregar a imagem real, se falhar mostramos um ícone/placeholder */}
                       <img 
-                        src={`/catalog/ref-${ref}.jpg`} 
+                        src={`/catalogo/ref-${ref}.jpg`} 
                         alt={`Referência ${ref}`}
                         className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                         onError={(e) => {
