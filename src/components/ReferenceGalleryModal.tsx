@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal } from './Modal';
-import { Search, X, CheckCircle2 } from 'lucide-react';
+import { Search, X, CheckCircle2, Loader2 } from 'lucide-react';
+import { getCatalogFiles } from '@/actions/catalog';
 
 interface ReferenceGalleryModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSelect: (ref: string) => void;
   serviceName: string;
-  refRange: { min: number; max: number; label: string };
+  galleryFolder: string;
   currentSelection?: string;
 }
 
@@ -16,21 +17,44 @@ export function ReferenceGalleryModal({
   onClose,
   onSelect,
   serviceName,
-  refRange,
+  galleryFolder,
   currentSelection
 }: ReferenceGalleryModalProps) {
   const [searchTerm, setSearchTerm] = useState('');
+  const [references, setReferences] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Gerar lista de referências baseada no range
-  const references = Array.from(
-    { length: refRange.max - refRange.min + 1 },
-    (_, i) => (i + refRange.min).toString().padStart(2, '0')
-  );
+  useEffect(() => {
+    if (isOpen && galleryFolder) {
+      setIsLoading(true);
+      getCatalogFiles(galleryFolder)
+        .then(files => {
+          setReferences(files);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
+  }, [isOpen, galleryFolder]);
 
   const filteredRefs = references.filter(ref => 
-    ref.includes(searchTerm)
+    ref.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Formatar o nome do arquivo para exibição (ex: churrasco-01 -> Churrasco 01)
+  const formatDisplayName = (filename: string) => {
+    // Se for formato de referência padrão (ex: ref-24-a ou 24A), simplifica
+    const refMatch = filename.match(/^ref-(\d+)-?([a-z])?$/i);
+    if (refMatch) {
+      return `REF ${refMatch[1]}${refMatch[2] ? refMatch[2].toUpperCase() : ''}`;
+    }
+    
+    // Para outros arquivos, remove hífens e capitaliza
+    return filename
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  };
   return (
     <Modal 
       isOpen={isOpen} 
@@ -44,7 +68,7 @@ export function ReferenceGalleryModal({
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
             <input 
               type="text"
-              placeholder="Buscar número da referência (Ex: 05, 103)..."
+              placeholder="Buscar item pelo nome ou número..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
@@ -59,25 +83,31 @@ export function ReferenceGalleryModal({
             )}
           </div>
           <p className="text-xs text-gray-500 mt-2">
-            Mostrando referências de {refRange.min.toString().padStart(2, '0')} a {refRange.max.toString().padStart(2, '0')}
+            Mostrando {filteredRefs.length} itens da categoria
           </p>
         </div>
 
         {/* Grid de Imagens */}
         <div className="flex-1 overflow-y-auto p-4 bg-gray-50">
-          {filteredRefs.length === 0 ? (
+          {isLoading ? (
+            <div className="flex flex-col items-center justify-center h-full text-slate-400">
+              <Loader2 className="animate-spin mb-2 text-primary" size={32} />
+              <p>Carregando galeria...</p>
+            </div>
+          ) : filteredRefs.length === 0 ? (
             <div className="text-center text-gray-500 py-12">
-              Nenhuma referência encontrada para "{searchTerm}"
+              Nenhuma imagem encontrada para "{searchTerm}"
             </div>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
               {filteredRefs.map(ref => {
-                const isSelected = currentSelection === ref;
+                const displayName = formatDisplayName(ref);
+                const isSelected = currentSelection === displayName || currentSelection === ref;
                 return (
                   <button
                     key={ref}
                     onClick={() => {
-                      onSelect(ref);
+                      onSelect(displayName);
                       onClose();
                     }}
                     className={`relative flex flex-col items-center bg-white rounded-xl border-2 transition-all overflow-hidden group
@@ -87,8 +117,8 @@ export function ReferenceGalleryModal({
                     <div className="w-full aspect-square bg-gray-100 relative flex items-center justify-center overflow-hidden">
                       {/* Tentamos carregar a imagem real, se falhar mostramos um ícone/placeholder */}
                       <img 
-                        src={`/catalogo/ref-${ref}.jpg`} 
-                        alt={`Referência ${ref}`}
+                        src={`/catalogo/${galleryFolder}/${ref}.jpg`} 
+                        alt={displayName}
                         className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                         onError={(e) => {
                           e.currentTarget.style.display = 'none';
@@ -105,10 +135,10 @@ export function ReferenceGalleryModal({
                     </div>
                     
                     {/* Legenda */}
-                    <div className={`w-full py-3 px-2 text-center border-t transition-colors
+                    <div className={`w-full py-3 px-2 text-center border-t transition-colors text-xs
                       ${isSelected ? 'bg-primary/5 border-primary/20' : 'border-gray-100 bg-white group-hover:bg-gray-50'}`}>
                       <span className={`font-bold ${isSelected ? 'text-primary' : 'text-gray-700'}`}>
-                        REF {ref}
+                        {displayName}
                       </span>
                     </div>
                   </button>

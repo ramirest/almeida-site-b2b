@@ -297,18 +297,18 @@ export default function OrcamentoForm() {
                       </div>
                     )}
 
-                    {selectedService?.refRange && (
+                    {selectedService?.galleryFolder && (
                       <div className="lg:col-span-1">
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">Referência *</label>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">Referência / Modelo *</label>
                         <button
                           type="button"
                           onClick={() => setActiveGalleryItem(item.id)}
                           className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white flex items-center justify-between text-left group hover:border-primary/50"
                         >
-                          <span className={item.reference ? 'font-bold text-primary' : 'text-gray-500'}>
-                            {item.reference ? `REF ${item.reference}` : 'Escolher Modelo Visual...'}
+                          <span className={item.reference ? 'font-bold text-primary truncate pr-2' : 'text-gray-500'}>
+                            {item.reference ? item.reference : 'Escolher Modelo Visual...'}
                           </span>
-                          <ImageIcon size={18} className="text-gray-400 group-hover:text-primary transition-colors" />
+                          <ImageIcon size={18} className="text-gray-400 shrink-0 group-hover:text-primary transition-colors" />
                         </button>
                       </div>
                     )}
@@ -450,7 +450,7 @@ export default function OrcamentoForm() {
           onClose={() => setActiveGalleryItem(null)}
           onSelect={(ref) => updateItem(activeGalleryItem, 'reference', ref)}
           serviceName={PRICING_TABLE.find(p => p.id === items.find(i => i.id === activeGalleryItem)?.serviceId)?.name || ''}
-          refRange={PRICING_TABLE.find(p => p.id === items.find(i => i.id === activeGalleryItem)?.serviceId)?.refRange || { min: 0, max: 0, label: '' }}
+          galleryFolder={PRICING_TABLE.find(p => p.id === items.find(i => i.id === activeGalleryItem)?.serviceId)?.galleryFolder || ''}
           currentSelection={items.find(i => i.id === activeGalleryItem)?.reference}
         />
       )}
