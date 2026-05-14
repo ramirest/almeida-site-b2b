@@ -5,7 +5,7 @@ import { Send, CheckCircle2, Plus, Trash2, Calculator, ArrowRight, Image as Imag
 import { submitOrcamento } from '@/actions/orcamento';
 import { Modal } from '@/components/Modal';
 import { ReferenceGalleryModal } from '@/components/ReferenceGalleryModal';
-import { PRICING_TABLE, COLOR_OPTIONS, getCategories, calculateServicePrice } from '@/config/pricing';
+import { PRICING_TABLE, COLOR_OPTIONS, getCategories, calculateServicePrice, getBillableMeasure } from '@/config/pricing';
 
 type BudgetItem = {
   id: string;
@@ -316,7 +316,7 @@ export default function OrcamentoForm() {
                     {selectedService?.unit === 'm2' && (
                       <>
                         <div className="lg:col-span-1">
-                          <label className="block text-sm font-semibold text-gray-700 mb-2">Largura (m) *</label>
+                          <label className="block text-sm font-semibold text-gray-700 mb-2">Largura Real (m) *</label>
                           <input 
                             type="number" step="0.01" min="0" required
                             value={item.width}
@@ -324,9 +324,14 @@ export default function OrcamentoForm() {
                             className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
                             placeholder="Ex: 2.5"
                           />
+                          {parseFloat(item.width) > 0 && (
+                            <div className="text-xs text-emerald-600 font-medium mt-1">
+                              Cobrado: {getBillableMeasure(parseFloat(item.width)).toFixed(2)}m
+                            </div>
+                          )}
                         </div>
                         <div className="lg:col-span-1">
-                          <label className="block text-sm font-semibold text-gray-700 mb-2">Altura (m) *</label>
+                          <label className="block text-sm font-semibold text-gray-700 mb-2">Altura Real (m) *</label>
                           <input 
                             type="number" step="0.01" min="0" required
                             value={item.height}
@@ -334,13 +339,18 @@ export default function OrcamentoForm() {
                             className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
                             placeholder="Ex: 1.2"
                           />
+                          {parseFloat(item.height) > 0 && (
+                            <div className="text-xs text-emerald-600 font-medium mt-1">
+                              Cobrado: {getBillableMeasure(parseFloat(item.height)).toFixed(2)}m
+                            </div>
+                          )}
                         </div>
                       </>
                     )}
 
                     {selectedService?.unit === 'ml' && (
                       <div className="lg:col-span-1">
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">Comprimento Linear (m) *</label>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">Comprimento Linear Real (m) *</label>
                         <input 
                           type="number" step="0.01" min="0" required
                           value={item.width}
@@ -348,6 +358,11 @@ export default function OrcamentoForm() {
                           className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
                           placeholder="Ex: 5.0"
                         />
+                        {parseFloat(item.width) > 0 && (
+                          <div className="text-xs text-emerald-600 font-medium mt-1">
+                            Cobrado: {getBillableMeasure(parseFloat(item.width)).toFixed(2)}m
+                          </div>
+                        )}
                       </div>
                     )}
 

@@ -3,6 +3,7 @@
 import React, { useState, useRef } from 'react';
 import { Download, Loader2 } from 'lucide-react';
 import { Modal } from '@/components/Modal';
+import { getBillableMeasure } from '@/config/pricing';
 
 interface DownloadPdfButtonProps {
   budget: any;
@@ -163,16 +164,29 @@ export function DownloadPdfButton({ budget, className }: DownloadPdfButtonProps)
                   if (item.colorName && item.colorName !== 'Nenhuma') details.push(`Cor: ${item.colorName}`);
                   
                   let volumeInfo = '';
-                  if (item.width && item.height) volumeInfo = `${item.width}m x ${item.height}m`;
-                  else if (item.width) volumeInfo = `${item.width}m linear`;
-                  else if (item.quantity) volumeInfo = `${item.quantity} un`;
+                  let billableInfo = '';
+                  if (item.width && item.height) {
+                    volumeInfo = `${item.width}m x ${item.height}m`;
+                    const bW = getBillableMeasure(parseFloat(item.width));
+                    const bH = getBillableMeasure(parseFloat(item.height));
+                    if (bW > 0 && bH > 0) billableInfo = `(Cobrado: ${bW.toFixed(2)}m x ${bH.toFixed(2)}m)`;
+                  } else if (item.width) {
+                    volumeInfo = `${item.width}m linear`;
+                    const bW = getBillableMeasure(parseFloat(item.width));
+                    if (bW > 0) billableInfo = `(Cobrado: ${bW.toFixed(2)}m)`;
+                  } else if (item.quantity) {
+                    volumeInfo = `${item.quantity} un`;
+                  }
 
                   return (
                     <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
                       <td className="p-3 font-medium">{index + 1}</td>
                       <td className="p-3 font-bold text-slate-800">{item.serviceName || item.serviceId || 'Serviço'}</td>
                       <td className="p-3 text-slate-600">{details.join(' | ') || '-'}</td>
-                      <td className="p-3 text-slate-600">{volumeInfo || '-'}</td>
+                      <td className="p-3 text-slate-600">
+                        <div className="font-medium">{volumeInfo || '-'}</div>
+                        {billableInfo && <div className="text-xs text-blue-600 mt-1">{billableInfo}</div>}
+                      </td>
                       <td className="p-3 text-slate-600">{item.prazo ? new Date(item.prazo).toLocaleDateString('pt-BR') : '-'}</td>
                     </tr>
                   );

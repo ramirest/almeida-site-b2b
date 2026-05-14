@@ -77,6 +77,16 @@ export interface CalculationParams {
   colorId?: string; // ID da cor selecionada
 }
 
+// Função para arredondar sempre para o próximo múltiplo de 5 cm (0.05m)
+// Ex: 1.61 -> 1.65 | 1.66 -> 1.70 | 1.71 -> 1.75
+export const getBillableMeasure = (measure: number): number => {
+  if (!measure || measure <= 0) return 0;
+  // Multiplica por 20 (que é 1 / 0.05), arredonda para cima (ceil), e divide por 20
+  // Isso força o arredondamento perfeito para a casa de 5 em 5 cm.
+  // Exemplo: 1.61 * 20 = 32.2 -> Math.ceil(32.2) = 33 -> 33 / 20 = 1.65
+  return Math.ceil(measure * 20) / 20;
+};
+
 export const calculateServicePrice = (params: CalculationParams): number => {
   const service = getPriceById(params.serviceId);
   if (!service) return 0; // Serviço não encontrado
@@ -91,15 +101,18 @@ export const calculateServicePrice = (params: CalculationParams): number => {
   }
 
   if (service.unit === 'm2') {
-    // m²: largura × altura × (preço base + preço cor)
+    // m²: usa a medida arredondada para cobrança (múltiplo de 5)
     const w = params.width || 0;
     const h = params.height || 0;
-    const area = w * h;
+    const billableW = getBillableMeasure(w);
+    const billableH = getBillableMeasure(h);
+    const area = billableW * billableH;
     baseCalc = area * (service.price + colorPrice);
   } else if (service.unit === 'ml') {
-    // ml: usa apenas a largura × (preço base + preço cor)
+    // ml: usa a largura arredondada para cobrança (múltiplo de 5)
     const w = params.width || 0;
-    baseCalc = w * (service.price + colorPrice);
+    const billableW = getBillableMeasure(w);
+    baseCalc = billableW * (service.price + colorPrice);
   } else if (service.unit === 'un') {
     // unidade: preço cor é assumido por unidade (simplificado) ou não aplicado dependendo da regra
     baseCalc = (service.price + colorPrice) * qty; 

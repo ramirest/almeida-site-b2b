@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { CheckCircle, AlertCircle, RefreshCw } from 'lucide-react';
 import { Modal } from '@/components/Modal';
 import { approveBudgetAndPromoteToPartner, updateBudget } from '@/actions/crm';
-import { calculateServicePrice, COLOR_OPTIONS } from '@/config/pricing';
+import { calculateServicePrice, COLOR_OPTIONS, getBillableMeasure } from '@/config/pricing';
 
 interface LeadBudgetModalProps {
   isOpen: boolean;
@@ -181,37 +181,51 @@ export function LeadBudgetModal({ isOpen, onClose, lead, budget, onSuccess }: Le
                   )}
                 </div>
                 
-                <div className="flex gap-2 items-center flex-wrap">
+                <div className="flex gap-2 items-center flex-wrap mt-2">
                   {svc.width !== undefined && (
-                    <div className="flex items-center bg-white border rounded overflow-hidden flex-1 min-w-[80px]">
-                      <span className="bg-slate-100 text-slate-500 text-xs px-2 py-1 border-r font-medium">Larg (m)</span>
-                      <input 
-                        type="text" 
-                        value={svc.width || ''} 
-                        onChange={(e) => {
-                          const newSvcs = [...editServices];
-                          newSvcs[idx] = { ...newSvcs[idx], width: e.target.value };
-                          setEditServices(newSvcs);
-                        }}
-                        className="w-full px-2 py-1 text-xs outline-none"
-                        placeholder="Ex: 2.5"
-                      />
+                    <div className="flex flex-col gap-1 flex-1 min-w-[80px]">
+                      <div className="flex items-center bg-white border rounded overflow-hidden">
+                        <span className="bg-slate-100 text-slate-500 text-xs px-2 py-1 border-r font-medium whitespace-nowrap">Larg Real (m)</span>
+                        <input 
+                          type="text" 
+                          value={svc.width || ''} 
+                          onChange={(e) => {
+                            const newSvcs = [...editServices];
+                            newSvcs[idx] = { ...newSvcs[idx], width: e.target.value };
+                            setEditServices(newSvcs);
+                          }}
+                          className="w-full px-2 py-1 text-xs outline-none"
+                          placeholder="Ex: 2.5"
+                        />
+                      </div>
+                      {parseFloat(svc.width) > 0 && (
+                        <div className="text-[10px] text-emerald-600 font-medium px-1">
+                          Cobrança: {getBillableMeasure(parseFloat(svc.width)).toFixed(2)}m
+                        </div>
+                      )}
                     </div>
                   )}
                   {svc.height !== undefined && (
-                    <div className="flex items-center bg-white border rounded overflow-hidden flex-1 min-w-[80px]">
-                      <span className="bg-slate-100 text-slate-500 text-xs px-2 py-1 border-r font-medium">Alt (m)</span>
-                      <input 
-                        type="text" 
-                        value={svc.height || ''} 
-                        onChange={(e) => {
-                          const newSvcs = [...editServices];
-                          newSvcs[idx] = { ...newSvcs[idx], height: e.target.value };
-                          setEditServices(newSvcs);
-                        }}
-                        className="w-full px-2 py-1 text-xs outline-none"
-                        placeholder="Ex: 1.2"
-                      />
+                    <div className="flex flex-col gap-1 flex-1 min-w-[80px]">
+                      <div className="flex items-center bg-white border rounded overflow-hidden">
+                        <span className="bg-slate-100 text-slate-500 text-xs px-2 py-1 border-r font-medium whitespace-nowrap">Alt Real (m)</span>
+                        <input 
+                          type="text" 
+                          value={svc.height || ''} 
+                          onChange={(e) => {
+                            const newSvcs = [...editServices];
+                            newSvcs[idx] = { ...newSvcs[idx], height: e.target.value };
+                            setEditServices(newSvcs);
+                          }}
+                          className="w-full px-2 py-1 text-xs outline-none"
+                          placeholder="Ex: 1.2"
+                        />
+                      </div>
+                      {parseFloat(svc.height) > 0 && (
+                        <div className="text-[10px] text-emerald-600 font-medium px-1">
+                          Cobrança: {getBillableMeasure(parseFloat(svc.height)).toFixed(2)}m
+                        </div>
+                      )}
                     </div>
                   )}
                   {svc.quantity !== undefined && (
