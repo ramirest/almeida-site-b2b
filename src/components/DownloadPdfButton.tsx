@@ -153,7 +153,9 @@ export function DownloadPdfButton({ budget, className }: DownloadPdfButtonProps)
                   <th className="p-3 font-semibold rounded-tl-lg">Item</th>
                   <th className="p-3 font-semibold">Serviço</th>
                   <th className="p-3 font-semibold">Detalhes</th>
-                  <th className="p-3 font-semibold">Volume</th>
+                  <th className="p-3 font-semibold text-right">Volume</th>
+                  <th className="p-3 font-semibold text-center">Unid.</th>
+                  <th className="p-3 font-semibold text-center">Qtd.</th>
                   <th className="p-3 font-semibold rounded-tr-lg">Prazo</th>
                 </tr>
               </thead>
@@ -164,18 +166,31 @@ export function DownloadPdfButton({ budget, className }: DownloadPdfButtonProps)
                   if (item.colorName && item.colorName !== 'Nenhuma') details.push(`Cor: ${item.colorName}`);
                   
                   let volumeInfo = '';
+                  let unitInfo = 'm²'; // default sugerido pelo usuário
+                  let qtyInfo = item.quantity || '1'; // default para formulários antigos
                   let billableInfo = '';
+                  
                   if (item.width && item.height) {
-                    volumeInfo = `${item.width}m x ${item.height}m`;
-                    const bW = getBillableMeasure(parseFloat(item.width));
-                    const bH = getBillableMeasure(parseFloat(item.height));
-                    if (bW > 0 && bH > 0) billableInfo = `(Cobrado: ${bW.toFixed(2)}m x ${bH.toFixed(2)}m)`;
+                    const w = parseFloat(item.width);
+                    const h = parseFloat(item.height);
+                    const area = w * h;
+                    volumeInfo = area > 0 ? area.toFixed(2).replace('.', ',') : `${item.width} x ${item.height}`;
+                    unitInfo = 'm²';
+                    
+                    const bW = getBillableMeasure(w);
+                    const bH = getBillableMeasure(h);
+                    if (bW > 0 && bH > 0) billableInfo = `Real: ${w.toFixed(2)} x ${h.toFixed(2)}m | Cobrado: ${bW.toFixed(2)} x ${bH.toFixed(2)}m`;
                   } else if (item.width) {
-                    volumeInfo = `${item.width}m linear`;
-                    const bW = getBillableMeasure(parseFloat(item.width));
-                    if (bW > 0) billableInfo = `(Cobrado: ${bW.toFixed(2)}m)`;
+                    const w = parseFloat(item.width);
+                    volumeInfo = w > 0 ? w.toFixed(2).replace('.', ',') : item.width;
+                    unitInfo = 'ml';
+                    
+                    const bW = getBillableMeasure(w);
+                    if (bW > 0) billableInfo = `Real: ${w.toFixed(2)}m | Cobrado: ${bW.toFixed(2)}m`;
                   } else if (item.quantity) {
-                    volumeInfo = `${item.quantity} un`;
+                    volumeInfo = '-';
+                    unitInfo = 'un';
+                    qtyInfo = item.quantity;
                   }
 
                   return (
@@ -184,9 +199,11 @@ export function DownloadPdfButton({ budget, className }: DownloadPdfButtonProps)
                       <td className="p-3 font-bold text-slate-800">{item.serviceName || item.serviceId || 'Serviço'}</td>
                       <td className="p-3 text-slate-600">{details.join(' | ') || '-'}</td>
                       <td className="p-3 text-slate-600">
-                        <div className="font-medium">{volumeInfo || '-'}</div>
-                        {billableInfo && <div className="text-xs text-blue-600 mt-1">{billableInfo}</div>}
+                        <div className="font-medium text-right">{volumeInfo}</div>
+                        {billableInfo && <div className="text-[10px] text-blue-600 mt-1 whitespace-nowrap text-right">{billableInfo}</div>}
                       </td>
+                      <td className="p-3 font-medium text-slate-700 text-center">{unitInfo}</td>
+                      <td className="p-3 font-medium text-slate-700 text-center">{qtyInfo}</td>
                       <td className="p-3 text-slate-600">{item.prazo ? new Date(item.prazo).toLocaleDateString('pt-BR') : '-'}</td>
                     </tr>
                   );
