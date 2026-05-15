@@ -5,10 +5,11 @@ import { Send, CheckCircle2, Plus, Trash2, Calculator, ArrowRight, Image as Imag
 import { submitOrcamento } from '@/actions/orcamento';
 import { Modal } from '@/components/Modal';
 import { ReferenceGalleryModal } from '@/components/ReferenceGalleryModal';
-import { PRICING_TABLE, getCategories, calculateServicePrice } from '@/config/pricing';
+import { PRICING_TABLE, calculateServicePrice } from '@/config/pricing';
 
 type BudgetItem = {
   id: string;
+  mainCategory: string; // 'jateamento' | 'pinturas' | ''
   serviceId: string;
   width: string;
   height: string;
@@ -22,7 +23,7 @@ export default function OrcamentoForm() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [items, setItems] = useState<BudgetItem[]>([
-    { id: '1', serviceId: '', width: '', height: '', quantity: '1', reference: '', prazo: '', notes: '' }
+    { id: '1', mainCategory: '', serviceId: '', width: '', height: '', quantity: '1', reference: '', prazo: '', notes: '' }
   ]);
   const [activeGalleryItem, setActiveGalleryItem] = useState<string | null>(null);
   const [formData, setFormData] = useState({
@@ -36,7 +37,7 @@ export default function OrcamentoForm() {
   const handleAddItem = () => {
     setItems([
       ...items, 
-      { id: Math.random().toString(36).substr(2, 9), serviceId: '', width: '', height: '', quantity: '1', reference: '', prazo: '', notes: '' }
+      { id: Math.random().toString(36).substr(2, 9), mainCategory: '', serviceId: '', width: '', height: '', quantity: '1', reference: '', prazo: '', notes: '' }
     ]);
   };
 
@@ -50,7 +51,14 @@ export default function OrcamentoForm() {
     setItems(items.map(item => {
       if (item.id === id) {
         const updated = { ...item, [field]: value };
-        // Resetar campos se mudar o serviço
+        // Resetar campos dependentes
+        if (field === 'mainCategory') {
+          updated.serviceId = '';
+          updated.reference = '';
+          updated.width = '';
+          updated.height = '';
+          updated.quantity = '1';
+        }
         if (field === 'serviceId') {
           updated.reference = '';
           updated.width = '';
@@ -136,7 +144,7 @@ export default function OrcamentoForm() {
     if (result.success) {
       setIsSuccess(true);
       setFormData({ empresa: '', cnpj: '', nome: '', email: '', telefone: '' });
-      setItems([{ id: '1', serviceId: '', width: '', height: '', quantity: '1', reference: '', prazo: '', notes: '' }]);
+      setItems([{ id: '1', mainCategory: '', serviceId: '', width: '', height: '', quantity: '1', reference: '', prazo: '', notes: '' }]);
     } else {
       setModalInfo({ isOpen: true, title: 'Erro', message: result.error || "Erro ao enviar orçamento." });
     }
@@ -276,24 +284,72 @@ export default function OrcamentoForm() {
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="lg:col-span-1">
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">Serviço *</label>
-                      <select 
-                        required
-                        value={item.serviceId}
-                        onChange={(e) => updateItem(item.id, 'serviceId', e.target.value)}
-                        className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
-                      >
-                        <option value="">Selecione o serviço...</option>
-                        {getCategories().map(cat => (
-                          <optgroup key={cat} label={cat}>
-                            {PRICING_TABLE.filter(p => p.category === cat).map(p => (
-                              <option key={p.id} value={p.id}>
-                                {p.name} ({new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(p.price)}/{p.unit === 'm2' ? 'm²' : p.unit === 'ml' ? 'ml' : 'un'})
-                              </option>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Tipo de Serviço *</label>
+
+                      {/* Etapa 1: Seleção da categoria principal */}
+                      {!item.mainCategory && (
+                        <div className="grid grid-cols-2 gap-3">
+                          <button
+                            type="button"
+                            onClick={() => updateItem(item.id, 'mainCategory', 'jateamento')}
+                            className="flex flex-col items-center justify-center gap-1.5 px-4 py-4 rounded-xl border-2 border-gray-200 bg-white hover:border-primary hover:bg-primary/5 transition-all group"
+                          >
+                            <span className="text-2xl">💎</span>
+                            <span className="font-bold text-sm text-gray-800 group-hover:text-primary">Jateamento</span>
+                          </button>
+                          <button
+                            type="button"
+                            disabled
+                            title="Em breve"
+                            className="flex flex-col items-center justify-center gap-1.5 px-4 py-4 rounded-xl border-2 border-dashed border-gray-200 bg-gray-50 opacity-50 cursor-not-allowed"
+                          >
+                            <span className="text-2xl">🎨</span>
+                            <span className="font-bold text-sm text-gray-400">Pinturas</span>
+                            <span className="text-[10px] text-gray-400 font-medium bg-gray-100 px-2 py-0.5 rounded-full">em breve</span>
+                          </button>
+                        </div>
+                      )}
+
+                      {/* Etapa 2: Dropdown de serviços filtrado pela categoria */}
+                      {item.mainCategory && (
+                        <div>
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-xs font-bold bg-primary/10 text-primary px-2.5 py-1 rounded-full capitalize">
+                              {item.mainCategory === 'jateamento' ? '💎 Jateamento' : '🎨 Pinturas'}
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => updateItem(item.id, 'mainCategory', '')}
+                              className="text-xs text-gray-400 hover:text-gray-600 underline"
+                            >
+                              Alterar
+                            </button>
+                          </div>
+                          <select
+                            required
+                            value={item.serviceId}
+                            onChange={(e) => updateItem(item.id, 'serviceId', e.target.value)}
+                            className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
+                          >
+                            <option value="">Selecione o serviço...</option>
+                            {Array.from(new Set(
+                              PRICING_TABLE
+                                .filter(p => p.mainCategory === item.mainCategory)
+                                .map(p => p.category)
+                            )).map(cat => (
+                              <optgroup key={cat} label={cat}>
+                                {PRICING_TABLE
+                                  .filter(p => p.category === cat && p.mainCategory === item.mainCategory)
+                                  .map(p => (
+                                    <option key={p.id} value={p.id}>
+                                      {p.name} ({new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(p.price)}/{p.unit === 'm2' ? 'm²' : p.unit === 'ml' ? 'ml' : 'un'})
+                                    </option>
+                                  ))}
+                              </optgroup>
                             ))}
-                          </optgroup>
-                        ))}
-                      </select>
+                          </select>
+                        </div>
+                      )}
                     </div>
 
 

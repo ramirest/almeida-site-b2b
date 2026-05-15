@@ -9,40 +9,41 @@ export interface ServicePrice {
   isStartingPrice?: boolean; // Para itens "a partir de"
   additionalCosts?: { description: string; price: number }[]; // Para "arte final", etc
   description?: string; // Descrição simples para a UI
-  galleryFolder?: string; // Pasta dentro de /public/catalogo/ para buscar as imagens dinamicamente
-  refRange?: { min: number; max: number; label: string }; // Mantido para compatibilidade
-  refSingle?: string; // Referência única
-  refNumberRange?: { min: number; max: number }; // Filtro de range numérico dentro da galleryFolder
+  galleryFolder?: string;
+  refRange?: { min: number; max: number; label: string };
+  refSingle?: string;
+  refNumberRange?: { min: number; max: number };
+  mainCategory?: 'jateamento' | 'pinturas'; // Categoria principal de seleção
 }
 
 export const PRICING_TABLE: ServicePrice[] = [
   // --- Jateamento ---
-  { id: 'jato-total', name: 'Jato total', category: 'Jateamento Básico', price: 65, unit: 'm2', description: 'Jateamento 100% cobrindo a peça.' },
-  { id: 'jato-espelho', name: 'Jato em espelho', category: 'Jateamento Básico', price: 115, unit: 'm2', description: 'Técnica de jateamento aplicada em espelhos.' },
+  { id: 'jato-total', name: 'Jato total', category: 'Jateamento Básico', price: 65, unit: 'm2', mainCategory: 'jateamento', description: 'Jateamento 100% cobrindo a peça.' },
+  { id: 'jato-espelho', name: 'Jato em espelho', category: 'Jateamento Básico', price: 115, unit: 'm2', mainCategory: 'jateamento', description: 'Técnica de jateamento aplicada em espelhos.' },
   
   // --- Filetes ---
-  { id: 'filete-simples', name: 'Filete simples', category: 'Filetes', price: 96, unit: 'm2', galleryFolder: 'referencias', refNumberRange: { min: 1, max: 30 }, description: 'Linha jateada simples e reta.' },
-  { id: 'filete-grego-1', name: 'Filete Grego simples/duplo', category: 'Filetes', price: 106, unit: 'm2', galleryFolder: 'referencias', refNumberRange: { min: 31, max: 102 }, description: 'Design clássico estilo grego nas bordas.' },
-  { id: 'filete-grego-2', name: 'Filete Grego', category: 'Filetes', price: 116, unit: 'm2', galleryFolder: 'referencias', refNumberRange: { min: 31, max: 102 }, description: 'Variações complexas do padrão grego.' },
-  { id: 'filete-grego-desenho', name: 'Filete Grego com desenho', category: 'Filetes', price: 116, unit: 'm2', galleryFolder: 'referencias', refNumberRange: { min: 103, max: 231 }, description: 'Padrão grego acompanhado de grafismos ou desenhos.' },
+  { id: 'filete-simples', name: 'Filete simples', category: 'Filetes', price: 96, unit: 'm2', mainCategory: 'jateamento', galleryFolder: 'referencias', refNumberRange: { min: 1, max: 30 }, description: 'Linha jateada simples e reta.' },
+  { id: 'filete-grego-1', name: 'Filete Grego simples/duplo', category: 'Filetes', price: 106, unit: 'm2', mainCategory: 'jateamento', galleryFolder: 'referencias', refNumberRange: { min: 31, max: 102 }, description: 'Design clássico estilo grego nas bordas.' },
+  { id: 'filete-grego-2', name: 'Filete Grego', category: 'Filetes', price: 116, unit: 'm2', mainCategory: 'jateamento', galleryFolder: 'referencias', refNumberRange: { min: 31, max: 102 }, description: 'Variações complexas do padrão grego.' },
+  { id: 'filete-grego-desenho', name: 'Filete Grego com desenho', category: 'Filetes', price: 116, unit: 'm2', mainCategory: 'jateamento', galleryFolder: 'referencias', refNumberRange: { min: 103, max: 231 }, description: 'Padrão grego acompanhado de grafismos ou desenhos.' },
   
   // --- Logotipos ---
-  { id: 'logo-textos', name: 'Logotipos ou textos', category: 'Serviços Especiais', price: 175, unit: 'm2', description: 'Gravação da sua logomarca ou tipografia.' },
+  { id: 'logo-textos', name: 'Logotipos ou textos', category: 'Serviços Especiais', price: 175, unit: 'm2', mainCategory: 'jateamento', description: 'Gravação da sua logomarca ou tipografia.' },
   
   // --- Artísticos ---
-  { id: 'artistico-normal', name: 'Artístico normal', category: 'Artísticos', price: 170, unit: 'm2', galleryFolder: 'artisticos', description: 'Desenhos artísticos e formas livres jateadas.' },
-  { id: 'artistico-floral', name: 'Artístico floral', category: 'Artísticos', price: 198, unit: 'm2', galleryFolder: 'floral', description: 'Elementos naturais, flores e folhas.' },
-  { id: 'artistico-paisagem', name: 'Artístico paisagem/animais', category: 'Artísticos', price: 250, unit: 'm2', galleryFolder: 'artisticos', description: 'Ilustrações de cenários ou figuras animais.' },
-  { id: 'artistico-santa-ceia', name: 'Santa Ceia', category: 'Artísticos', price: 480, unit: 'm2', galleryFolder: 'artisticos', description: 'Gravação detalhada e complexa de cenas clássicas.' },
+  { id: 'artistico-normal', name: 'Artístico normal', category: 'Artísticos', price: 170, unit: 'm2', mainCategory: 'jateamento', galleryFolder: 'artisticos', description: 'Desenhos artísticos e formas livres jateadas.' },
+  { id: 'artistico-floral', name: 'Artístico floral', category: 'Artísticos', price: 198, unit: 'm2', mainCategory: 'jateamento', galleryFolder: 'floral', description: 'Elementos naturais, flores e folhas.' },
+  { id: 'artistico-paisagem', name: 'Artístico paisagem/animais', category: 'Artísticos', price: 250, unit: 'm2', mainCategory: 'jateamento', galleryFolder: 'artisticos', description: 'Ilustrações de cenários ou figuras animais.' },
+  { id: 'artistico-santa-ceia', name: 'Santa Ceia', category: 'Artísticos', price: 480, unit: 'm2', mainCategory: 'jateamento', galleryFolder: 'artisticos', description: 'Gravação detalhada e complexa de cenas clássicas.' },
   
   // --- Outros Serviços ---
-  { id: 'baixo-relevo', name: 'Baixo relevo', category: 'Serviços Especiais', price: 780, unit: 'm2', description: 'Jateamento profundo com remoção significativa de material.' },
-  { id: 'foto-jateada', name: 'Foto jateada', category: 'Serviços Especiais', price: 480, unit: 'm2', additionalCosts: [{ description: 'Arte final', price: 60 }], description: 'Transferência de foto em alta definição para o vidro.' },
+  { id: 'baixo-relevo', name: 'Baixo relevo', category: 'Serviços Especiais', price: 780, unit: 'm2', mainCategory: 'jateamento', description: 'Jateamento profundo com remoção significativa de material.' },
+  { id: 'foto-jateada', name: 'Foto jateada', category: 'Serviços Especiais', price: 480, unit: 'm2', mainCategory: 'jateamento', additionalCosts: [{ description: 'Arte final', price: 60 }], description: 'Transferência de foto em alta definição para o vidro.' },
   
   // --- Itens Unitários ---
-  { id: 'tacas-copos', name: 'Taças / copos / garrafas', category: 'Itens Unitários', price: 21, unit: 'un', isStartingPrice: true, description: 'Personalização de peças cilíndricas ou curvas.' },
-  { id: 'tabuas', name: 'Tábuas personalizadas', category: 'Itens Unitários', price: 75, unit: 'un', isStartingPrice: true, galleryFolder: 'tabuas', description: 'Tábua de corte ou serviço decorada.' },
-  { id: 'gravacao-tabua', name: 'Gravação em tábua do cliente', category: 'Itens Unitários', price: 50, unit: 'un', galleryFolder: 'tabuas', description: 'Forneça a tábua e nós aplicamos a arte.' },
+  { id: 'tacas-copos', name: 'Taças / copos / garrafas', category: 'Itens Unitários', price: 21, unit: 'un', mainCategory: 'jateamento', isStartingPrice: true, description: 'Personalização de peças cilíndricas ou curvas.' },
+  { id: 'tabuas', name: 'Tábuas personalizadas', category: 'Itens Unitários', price: 75, unit: 'un', mainCategory: 'jateamento', isStartingPrice: true, galleryFolder: 'tabuas', description: 'Tábua de corte ou serviço decorada.' },
+  { id: 'gravacao-tabua', name: 'Gravação em tábua do cliente', category: 'Itens Unitários', price: 50, unit: 'un', mainCategory: 'jateamento', galleryFolder: 'tabuas', description: 'Forneça a tábua e nós aplicamos a arte.' },
 ];
 
 export const getPriceById = (id: string): ServicePrice | undefined => PRICING_TABLE.find(p => p.id === id);
