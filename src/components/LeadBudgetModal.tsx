@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { CheckCircle, AlertCircle, RefreshCw } from 'lucide-react';
 import { Modal } from '@/components/Modal';
 import { approveBudgetAndPromoteToPartner, updateBudget } from '@/actions/crm';
-import { calculateServicePrice, COLOR_OPTIONS, getBillableMeasure, getPriceById } from '@/config/pricing';
+import { calculateServicePrice, getBillableMeasure, getPriceById } from '@/config/pricing';
 
 interface LeadBudgetModalProps {
   isOpen: boolean;
@@ -43,7 +43,6 @@ export function LeadBudgetModal({ isOpen, onClose, lead, budget, onSuccess }: Le
         
         const price = calculateServicePrice({
           serviceId: svc.serviceId,
-          colorId: svc.colorId,
           width: w,
           height: h,
           quantity: parseInt(svc.quantity) || 1,
@@ -185,21 +184,6 @@ export function LeadBudgetModal({ isOpen, onClose, lead, budget, onSuccess }: Le
                     <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded font-bold whitespace-nowrap flex items-center">
                       Ref: {svc.reference}
                     </span>
-                  )}
-                  {svc.colorId && svc.colorId !== 'nenhuma' && (
-                    <select 
-                      value={svc.colorId}
-                      onChange={(e) => {
-                        const newSvcs = [...editServices];
-                        newSvcs[idx] = { ...newSvcs[idx], colorId: e.target.value };
-                        setEditServices(newSvcs);
-                      }}
-                      className="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded font-bold outline-none cursor-pointer border-none"
-                    >
-                      {COLOR_OPTIONS.map(c => (
-                        <option key={c.id} value={c.id}>{c.name}</option>
-                      ))}
-                    </select>
                   )}
                 </div>
                 

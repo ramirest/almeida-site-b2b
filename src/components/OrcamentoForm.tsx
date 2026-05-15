@@ -5,12 +5,11 @@ import { Send, CheckCircle2, Plus, Trash2, Calculator, ArrowRight, Image as Imag
 import { submitOrcamento } from '@/actions/orcamento';
 import { Modal } from '@/components/Modal';
 import { ReferenceGalleryModal } from '@/components/ReferenceGalleryModal';
-import { PRICING_TABLE, COLOR_OPTIONS, getCategories, calculateServicePrice, getBillableMeasure } from '@/config/pricing';
+import { PRICING_TABLE, getCategories, calculateServicePrice, getBillableMeasure } from '@/config/pricing';
 
 type BudgetItem = {
   id: string;
   serviceId: string;
-  colorId: string;
   width: string;
   height: string;
   quantity: string;
@@ -23,7 +22,7 @@ export default function OrcamentoForm() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [items, setItems] = useState<BudgetItem[]>([
-    { id: '1', serviceId: '', colorId: 'nenhuma', width: '', height: '', quantity: '1', reference: '', prazo: '', notes: '' }
+    { id: '1', serviceId: '', width: '', height: '', quantity: '1', reference: '', prazo: '', notes: '' }
   ]);
   const [activeGalleryItem, setActiveGalleryItem] = useState<string | null>(null);
   const [formData, setFormData] = useState({
@@ -37,7 +36,7 @@ export default function OrcamentoForm() {
   const handleAddItem = () => {
     setItems([
       ...items, 
-      { id: Math.random().toString(36).substr(2, 9), serviceId: '', colorId: 'nenhuma', width: '', height: '', quantity: '1', reference: '', prazo: '', notes: '' }
+      { id: Math.random().toString(36).substr(2, 9), serviceId: '', width: '', height: '', quantity: '1', reference: '', prazo: '', notes: '' }
     ]);
   };
 
@@ -73,7 +72,6 @@ export default function OrcamentoForm() {
           width: (parseFloat(item.width.replace(',', '.')) || 0) / 1000,
           height: (parseFloat(item.height.replace(',', '.')) || 0) / 1000,
           quantity: parseInt(item.quantity) || 1,
-          colorId: item.colorId,
           includeAdditionalCosts: true
         });
       }
@@ -121,8 +119,6 @@ export default function OrcamentoForm() {
         return {
           serviceId: i.serviceId,
           serviceName: service?.name || i.serviceId,
-          colorId: i.colorId,
-          colorName: COLOR_OPTIONS.find(c => c.id === i.colorId)?.name || 'Nenhuma',
           width: i.width,
           height: i.height,
           quantity: i.quantity,
@@ -140,7 +136,7 @@ export default function OrcamentoForm() {
     if (result.success) {
       setIsSuccess(true);
       setFormData({ empresa: '', cnpj: '', nome: '', email: '', telefone: '' });
-      setItems([{ id: '1', serviceId: '', colorId: 'nenhuma', width: '', height: '', quantity: '1', reference: '', prazo: '', notes: '' }]);
+      setItems([{ id: '1', serviceId: '', width: '', height: '', quantity: '1', reference: '', prazo: '', notes: '' }]);
     } else {
       setModalInfo({ isOpen: true, title: 'Erro', message: result.error || "Erro ao enviar orçamento." });
     }
@@ -300,22 +296,6 @@ export default function OrcamentoForm() {
                       </select>
                     </div>
 
-                    {selectedService && (
-                      <div className="lg:col-span-1">
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">Cor (Opcional)</label>
-                        <select 
-                          value={item.colorId || 'nenhuma'}
-                          onChange={(e) => updateItem(item.id, 'colorId', e.target.value)}
-                          className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
-                        >
-                          {COLOR_OPTIONS.map(c => (
-                            <option key={c.id} value={c.id}>
-                              {c.name} {c.pricePerM2 > 0 ? `(+ R$ ${c.pricePerM2}/m²)` : ''}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    )}
 
                     {selectedService?.galleryFolder && (
                       <div className="lg:col-span-1">

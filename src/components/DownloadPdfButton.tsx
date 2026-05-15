@@ -163,7 +163,6 @@ export function DownloadPdfButton({ budget, className }: DownloadPdfButtonProps)
                 {services.map((item: any, index: number) => {
                   let details = [];
                   if (item.reference) details.push(`Ref: ${item.reference}`);
-                  if (item.colorName && item.colorName !== 'Nenhuma') details.push(`Cor: ${item.colorName}`);
                   
                   let volumeInfo = '';
                   let unitInfo = 'm²'; // default sugerido pelo usuário
