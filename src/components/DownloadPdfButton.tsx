@@ -179,13 +179,13 @@ export function DownloadPdfButton({ budget, className }: DownloadPdfButtonProps)
                     const h = isMm ? hRaw / 1000 : hRaw;
                     
                     const area = w * h;
-                    volumeInfo = area > 0 ? area.toFixed(2).replace('.', ',') : `${item.width} x ${item.height}`;
+                    volumeInfo = area > 0 ? area.toFixed(2).replace('.', ',') : `${w.toFixed(2)} x ${h.toFixed(2)}`;
                     unitInfo = 'm²';
                     
                     const bW = getBillableMeasure(w);
                     const bH = getBillableMeasure(h);
                     if (bW > 0 && bH > 0) {
-                      const realDimStr = isMm ? `${wRaw}x${hRaw}mm` : `${w.toFixed(2)}x${h.toFixed(2)}m`;
+                      const realDimStr = isMm ? `${wRaw}x${hRaw}mm (${w.toFixed(2)}x${h.toFixed(2)}m)` : `${w.toFixed(2)}x${h.toFixed(2)}m`;
                       billableInfo = `Real: ${realDimStr} | Cobrado: ${bW.toFixed(2)}x${bH.toFixed(2)}m`;
                     }
                   } else if (item.width) {
@@ -193,12 +193,12 @@ export function DownloadPdfButton({ budget, className }: DownloadPdfButtonProps)
                     const isMm = wRaw > 20;
                     const w = isMm ? wRaw / 1000 : wRaw;
                     
-                    volumeInfo = w > 0 ? w.toFixed(2).replace('.', ',') : item.width;
+                    volumeInfo = w > 0 ? w.toFixed(2).replace('.', ',') : w.toFixed(2);
                     unitInfo = 'ml';
                     
                     const bW = getBillableMeasure(w);
                     if (bW > 0) {
-                      const realDimStr = isMm ? `${wRaw}mm` : `${w.toFixed(2)}m`;
+                      const realDimStr = isMm ? `${wRaw}mm (${w.toFixed(2)}m)` : `${w.toFixed(2)}m`;
                       billableInfo = `Real: ${realDimStr} | Cobrado: ${bW.toFixed(2)}m`;
                     }
                   } else if (item.quantity) {

@@ -337,11 +337,10 @@ export default function OrcamentoForm() {
                             value={item.width}
                             onChange={(e) => updateItem(item.id, 'width', e.target.value)}
                             className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
-                            placeholder="Ex: 1800"
                           />
-                          {parseFloat(item.width) > 0 && (
+                          {parseFloat(item.width.replace(',', '.')) > 0 && (
                             <div className="text-xs text-emerald-600 font-medium mt-1">
-                              Conversão: {(parseFloat(item.width) / 1000).toFixed(3)}m | Cobrado: {getBillableMeasure(parseFloat(item.width) / 1000).toFixed(2)}m
+                              Conversão: {(parseFloat(item.width.replace(',', '.')) / 1000).toFixed(3)}m | Cobrado: {getBillableMeasure(parseFloat(item.width.replace(',', '.')) / 1000).toFixed(2)}m
                             </div>
                           )}
                         </div>
@@ -354,9 +353,9 @@ export default function OrcamentoForm() {
                             className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
                             placeholder="Ex: 2100"
                           />
-                          {parseFloat(item.height) > 0 && (
+                          {parseFloat(item.height.replace(',', '.')) > 0 && (
                             <div className="text-xs text-emerald-600 font-medium mt-1">
-                              Conversão: {(parseFloat(item.height) / 1000).toFixed(3)}m | Cobrado: {getBillableMeasure(parseFloat(item.height) / 1000).toFixed(2)}m
+                              Conversão: {(parseFloat(item.height.replace(',', '.')) / 1000).toFixed(3)}m | Cobrado: {getBillableMeasure(parseFloat(item.height.replace(',', '.')) / 1000).toFixed(2)}m
                             </div>
                           )}
                         </div>
@@ -371,11 +370,11 @@ export default function OrcamentoForm() {
                           value={item.width}
                           onChange={(e) => updateItem(item.id, 'width', e.target.value)}
                           className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
-                          placeholder="Ex: 5000"
+                          placeholder="Ex: 3000"
                         />
-                        {parseFloat(item.width) > 0 && (
+                        {parseFloat(item.width.replace(',', '.')) > 0 && (
                           <div className="text-xs text-emerald-600 font-medium mt-1">
-                            Conversão: {(parseFloat(item.width) / 1000).toFixed(3)}m | Cobrado: {getBillableMeasure(parseFloat(item.width) / 1000).toFixed(2)}m
+                            Conversão: {(parseFloat(item.width.replace(',', '.')) / 1000).toFixed(3)}m | Cobrado: {getBillableMeasure(parseFloat(item.width.replace(',', '.')) / 1000).toFixed(2)}m
                           </div>
                         )}
                       </div>

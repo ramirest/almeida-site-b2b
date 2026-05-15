@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { CheckCircle, AlertCircle, RefreshCw } from 'lucide-react';
 import { Modal } from '@/components/Modal';
 import { approveBudgetAndPromoteToPartner, updateBudget } from '@/actions/crm';
-import { calculateServicePrice, COLOR_OPTIONS, getBillableMeasure } from '@/config/pricing';
+import { calculateServicePrice, COLOR_OPTIONS, getBillableMeasure, getPriceById } from '@/config/pricing';
 
 interface LeadBudgetModalProps {
   isOpen: boolean;
@@ -33,20 +33,42 @@ export function LeadBudgetModal({ isOpen, onClose, lead, budget, onSuccess }: Le
 
   const handleRecalculate = () => {
     let newTotal = 0;
-    editServices.forEach(svc => {
+    const newSvcs = editServices.map(svc => {
       if (svc.serviceId) {
-        newTotal += calculateServicePrice({
+        const wRaw = parseFloat(svc.width) || 0;
+        const hRaw = parseFloat(svc.height) || 0;
+        const isMm = wRaw > 20 || hRaw > 20;
+        const w = isMm ? wRaw / 1000 : wRaw;
+        const h = isMm ? hRaw / 1000 : hRaw;
+        
+        const price = calculateServicePrice({
           serviceId: svc.serviceId,
           colorId: svc.colorId,
-          width: parseFloat(svc.width) || 0,
-          height: parseFloat(svc.height) || 0,
+          width: w,
+          height: h,
           quantity: parseInt(svc.quantity) || 1,
           includeAdditionalCosts: true
         });
+        
+        newTotal += price;
+
+        // Atualizar volume string
+        const service = getPriceById(svc.serviceId);
+        let volumeStr = svc.volume || '';
+        if (service?.unit === 'm2' && w > 0 && h > 0) {
+          volumeStr = `${(w * h).toFixed(2).replace('.', ',')} m² (${wRaw}x${hRaw}mm)`;
+        } else if (service?.unit === 'ml' && w > 0) {
+          volumeStr = `${w.toFixed(2).replace('.', ',')} m (${wRaw}mm)`;
+        }
+
+        return { ...svc, volume: volumeStr };
       }
+      return svc;
     });
+
     if (newTotal > 0) {
       setEditTotalValue(newTotal);
+      setEditServices(newSvcs);
     }
   };
 
