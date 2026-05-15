@@ -12,6 +12,7 @@ export interface ServicePrice {
   galleryFolder?: string; // Pasta dentro de /public/catalogo/ para buscar as imagens dinamicamente
   refRange?: { min: number; max: number; label: string }; // Mantido para compatibilidade
   refSingle?: string; // Referência única
+  refNumberRange?: { min: number; max: number }; // Filtro de range numérico dentro da galleryFolder
 }
 
 export const PRICING_TABLE: ServicePrice[] = [
@@ -20,10 +21,10 @@ export const PRICING_TABLE: ServicePrice[] = [
   { id: 'jato-espelho', name: 'Jato em espelho', category: 'Jateamento Básico', price: 115, unit: 'm2', description: 'Técnica de jateamento aplicada em espelhos.' },
   
   // --- Filetes ---
-  { id: 'filete-simples', name: 'Filete simples', category: 'Filetes', price: 96, unit: 'm2', galleryFolder: 'referencias', description: 'Linha jateada simples e reta.' },
-  { id: 'filete-grego-1', name: 'Filete Grego simples/duplo', category: 'Filetes', price: 106, unit: 'm2', galleryFolder: 'referencias', description: 'Design clássico estilo grego nas bordas.' },
-  { id: 'filete-grego-2', name: 'Filete Grego', category: 'Filetes', price: 116, unit: 'm2', galleryFolder: 'referencias', description: 'Variações complexas do padrão grego.' },
-  { id: 'filete-grego-desenho', name: 'Filete Grego com desenho', category: 'Filetes', price: 116, unit: 'm2', galleryFolder: 'referencias', description: 'Padrão grego acompanhado de grafismos ou desenhos.' },
+  { id: 'filete-simples', name: 'Filete simples', category: 'Filetes', price: 96, unit: 'm2', galleryFolder: 'referencias', refNumberRange: { min: 1, max: 30 }, description: 'Linha jateada simples e reta.' },
+  { id: 'filete-grego-1', name: 'Filete Grego simples/duplo', category: 'Filetes', price: 106, unit: 'm2', galleryFolder: 'referencias', refNumberRange: { min: 31, max: 102 }, description: 'Design clássico estilo grego nas bordas.' },
+  { id: 'filete-grego-2', name: 'Filete Grego', category: 'Filetes', price: 116, unit: 'm2', galleryFolder: 'referencias', refNumberRange: { min: 31, max: 102 }, description: 'Variações complexas do padrão grego.' },
+  { id: 'filete-grego-desenho', name: 'Filete Grego com desenho', category: 'Filetes', price: 116, unit: 'm2', galleryFolder: 'referencias', refNumberRange: { min: 103, max: 231 }, description: 'Padrão grego acompanhado de grafismos ou desenhos.' },
   
   // --- Logotipos ---
   { id: 'logo-textos', name: 'Logotipos ou textos', category: 'Serviços Especiais', price: 175, unit: 'm2', description: 'Gravação da sua logomarca ou tipografia.' },

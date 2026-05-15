@@ -482,6 +482,7 @@ export default function OrcamentoForm() {
           onSelect={(ref) => updateItem(activeGalleryItem, 'reference', ref)}
           serviceName={PRICING_TABLE.find(p => p.id === items.find(i => i.id === activeGalleryItem)?.serviceId)?.name || ''}
           galleryFolder={PRICING_TABLE.find(p => p.id === items.find(i => i.id === activeGalleryItem)?.serviceId)?.galleryFolder || ''}
+          refNumberRange={PRICING_TABLE.find(p => p.id === items.find(i => i.id === activeGalleryItem)?.serviceId)?.refNumberRange}
           currentSelection={items.find(i => i.id === activeGalleryItem)?.reference}
         />
       )}

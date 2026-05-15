@@ -10,7 +10,15 @@ interface ReferenceGalleryModalProps {
   serviceName: string;
   galleryFolder: string;
   currentSelection?: string;
+  refNumberRange?: { min: number; max: number };
 }
+
+// Extrai o número base de um nome de arquivo de referência
+// "ref-24-a" -> 24 | "ref-103" -> 103 | "churrasco-01" -> null
+const extractRefNumber = (filename: string): number | null => {
+  const match = filename.match(/^ref-(\d+)/i);
+  return match ? parseInt(match[1], 10) : null;
+};
 
 export function ReferenceGalleryModal({
   isOpen,
@@ -18,7 +26,8 @@ export function ReferenceGalleryModal({
   onSelect,
   serviceName,
   galleryFolder,
-  currentSelection
+  currentSelection,
+  refNumberRange
 }: ReferenceGalleryModalProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [references, setReferences] = useState<string[]>([]);
@@ -29,13 +38,22 @@ export function ReferenceGalleryModal({
       setIsLoading(true);
       getCatalogFiles(galleryFolder)
         .then(files => {
-          setReferences(files);
+          // Filtrar por range numérico se definido
+          if (refNumberRange) {
+            const filtered = files.filter(file => {
+              const num = extractRefNumber(file);
+              return num !== null && num >= refNumberRange.min && num <= refNumberRange.max;
+            });
+            setReferences(filtered);
+          } else {
+            setReferences(files);
+          }
         })
         .finally(() => {
           setIsLoading(false);
         });
     }
-  }, [isOpen, galleryFolder]);
+  }, [isOpen, galleryFolder, refNumberRange]);
 
   const filteredRefs = references.filter(ref => 
     ref.toLowerCase().includes(searchTerm.toLowerCase())
