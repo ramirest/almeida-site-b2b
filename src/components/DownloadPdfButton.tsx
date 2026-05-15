@@ -171,22 +171,36 @@ export function DownloadPdfButton({ budget, className }: DownloadPdfButtonProps)
                   let billableInfo = '';
                   
                   if (item.width && item.height) {
-                    const w = parseFloat(item.width);
-                    const h = parseFloat(item.height);
+                    const wRaw = parseFloat(item.width);
+                    const hRaw = parseFloat(item.height);
+                    // Detecção automática: se > 20, assumimos milímetros
+                    const isMm = wRaw > 20 || hRaw > 20;
+                    const w = isMm ? wRaw / 1000 : wRaw;
+                    const h = isMm ? hRaw / 1000 : hRaw;
+                    
                     const area = w * h;
                     volumeInfo = area > 0 ? area.toFixed(2).replace('.', ',') : `${item.width} x ${item.height}`;
                     unitInfo = 'm²';
                     
                     const bW = getBillableMeasure(w);
                     const bH = getBillableMeasure(h);
-                    if (bW > 0 && bH > 0) billableInfo = `Real: ${w.toFixed(2)} x ${h.toFixed(2)}m | Cobrado: ${bW.toFixed(2)} x ${bH.toFixed(2)}m`;
+                    if (bW > 0 && bH > 0) {
+                      const realDimStr = isMm ? `${wRaw}x${hRaw}mm` : `${w.toFixed(2)}x${h.toFixed(2)}m`;
+                      billableInfo = `Real: ${realDimStr} | Cobrado: ${bW.toFixed(2)}x${bH.toFixed(2)}m`;
+                    }
                   } else if (item.width) {
-                    const w = parseFloat(item.width);
+                    const wRaw = parseFloat(item.width);
+                    const isMm = wRaw > 20;
+                    const w = isMm ? wRaw / 1000 : wRaw;
+                    
                     volumeInfo = w > 0 ? w.toFixed(2).replace('.', ',') : item.width;
                     unitInfo = 'ml';
                     
                     const bW = getBillableMeasure(w);
-                    if (bW > 0) billableInfo = `Real: ${w.toFixed(2)}m | Cobrado: ${bW.toFixed(2)}m`;
+                    if (bW > 0) {
+                      const realDimStr = isMm ? `${wRaw}mm` : `${w.toFixed(2)}m`;
+                      billableInfo = `Real: ${realDimStr} | Cobrado: ${bW.toFixed(2)}m`;
+                    }
                   } else if (item.quantity) {
                     volumeInfo = '-';
                     unitInfo = 'un';

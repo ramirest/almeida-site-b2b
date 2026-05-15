@@ -107,12 +107,12 @@ export const calculateServicePrice = (params: CalculationParams): number => {
     const billableW = getBillableMeasure(w);
     const billableH = getBillableMeasure(h);
     const area = billableW * billableH;
-    baseCalc = area * (service.price + colorPrice);
+    baseCalc = area * (service.price + colorPrice) * qty;
   } else if (service.unit === 'ml') {
     // ml: usa a largura arredondada para cobrança (múltiplo de 5)
     const w = params.width || 0;
     const billableW = getBillableMeasure(w);
-    baseCalc = billableW * (service.price + colorPrice);
+    baseCalc = billableW * (service.price + colorPrice) * qty;
   } else if (service.unit === 'un') {
     // unidade: preço cor é assumido por unidade (simplificado) ou não aplicado dependendo da regra
     baseCalc = (service.price + colorPrice) * qty; 

@@ -59,6 +59,7 @@ model OrderItem {
   order       Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
   serviceType String
   volume      String
+  quantity    Int      @default(1)
   deadline    String
   notes       String?
 }

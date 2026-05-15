@@ -70,8 +70,8 @@ export default function OrcamentoForm() {
       if (item.serviceId) {
         total += calculateServicePrice({
           serviceId: item.serviceId,
-          width: parseFloat(item.width.replace(',', '.')) || 0,
-          height: parseFloat(item.height.replace(',', '.')) || 0,
+          width: (parseFloat(item.width.replace(',', '.')) || 0) / 1000,
+          height: (parseFloat(item.height.replace(',', '.')) || 0) / 1000,
           quantity: parseInt(item.quantity) || 1,
           colorId: item.colorId,
           includeAdditionalCosts: true
@@ -99,19 +99,34 @@ export default function OrcamentoForm() {
       nome: formData.nome,
       email: formData.email,
       telefone: formData.telefone,
-      items: items.map(i => ({
-        serviceId: i.serviceId,
-        serviceName: PRICING_TABLE.find(p => p.id === i.serviceId)?.name || i.serviceId,
-        colorId: i.colorId,
-        colorName: COLOR_OPTIONS.find(c => c.id === i.colorId)?.name || 'Nenhuma',
-        width: i.width,
-        height: i.height,
-        quantity: i.quantity,
-        reference: i.reference,
-        volume: i.width && i.height ? `${i.width} x ${i.height} m` : i.quantity ? `${i.quantity} un` : '',
-        prazo: i.prazo,
-        notes: i.notes
-      })),
+      items: items.map(i => {
+        const service = PRICING_TABLE.find(p => p.id === i.serviceId);
+        let volumeStr = '';
+        
+        if (service?.unit === 'm2' && i.width && i.height) {
+          const area = (parseFloat(i.width) * parseFloat(i.height)) / 1000000;
+          volumeStr = `${area.toFixed(2).replace('.', ',')} m² (${i.width}x${i.height}mm)`;
+        } else if (service?.unit === 'ml' && i.width) {
+          const linear = parseFloat(i.width) / 1000;
+          volumeStr = `${linear.toFixed(2).replace('.', ',')} m (${i.width}mm)`;
+        } else {
+          volumeStr = `${i.quantity} un`;
+        }
+
+        return {
+          serviceId: i.serviceId,
+          serviceName: service?.name || i.serviceId,
+          colorId: i.colorId,
+          colorName: COLOR_OPTIONS.find(c => c.id === i.colorId)?.name || 'Nenhuma',
+          width: i.width,
+          height: i.height,
+          quantity: i.quantity,
+          reference: i.reference,
+          volume: volumeStr,
+          prazo: i.prazo,
+          notes: i.notes
+        };
+      }),
       totalEstimate
     });
 
@@ -316,32 +331,32 @@ export default function OrcamentoForm() {
                     {selectedService?.unit === 'm2' && (
                       <>
                         <div className="lg:col-span-1">
-                          <label className="block text-sm font-semibold text-gray-700 mb-2">Largura Real (m) *</label>
+                          <label className="block text-sm font-semibold text-gray-700 mb-2">Largura Real (mm) *</label>
                           <input 
-                            type="number" step="0.01" min="0" required
+                            type="number" step="1" min="0" required
                             value={item.width}
                             onChange={(e) => updateItem(item.id, 'width', e.target.value)}
                             className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
-                            placeholder="Ex: 2.5"
+                            placeholder="Ex: 1800"
                           />
                           {parseFloat(item.width) > 0 && (
                             <div className="text-xs text-emerald-600 font-medium mt-1">
-                              Cobrado: {getBillableMeasure(parseFloat(item.width)).toFixed(2)}m
+                              Conversão: {(parseFloat(item.width) / 1000).toFixed(3)}m | Cobrado: {getBillableMeasure(parseFloat(item.width) / 1000).toFixed(2)}m
                             </div>
                           )}
                         </div>
                         <div className="lg:col-span-1">
-                          <label className="block text-sm font-semibold text-gray-700 mb-2">Altura Real (m) *</label>
+                          <label className="block text-sm font-semibold text-gray-700 mb-2">Altura Real (mm) *</label>
                           <input 
-                            type="number" step="0.01" min="0" required
+                            type="number" step="1" min="0" required
                             value={item.height}
                             onChange={(e) => updateItem(item.id, 'height', e.target.value)}
                             className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
-                            placeholder="Ex: 1.2"
+                            placeholder="Ex: 2100"
                           />
                           {parseFloat(item.height) > 0 && (
                             <div className="text-xs text-emerald-600 font-medium mt-1">
-                              Cobrado: {getBillableMeasure(parseFloat(item.height)).toFixed(2)}m
+                              Conversão: {(parseFloat(item.height) / 1000).toFixed(3)}m | Cobrado: {getBillableMeasure(parseFloat(item.height) / 1000).toFixed(2)}m
                             </div>
                           )}
                         </div>
@@ -350,33 +365,53 @@ export default function OrcamentoForm() {
 
                     {selectedService?.unit === 'ml' && (
                       <div className="lg:col-span-1">
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">Comprimento Linear Real (m) *</label>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">Comprimento Linear Real (mm) *</label>
                         <input 
-                          type="number" step="0.01" min="0" required
+                          type="number" step="1" min="0" required
                           value={item.width}
                           onChange={(e) => updateItem(item.id, 'width', e.target.value)}
                           className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
-                          placeholder="Ex: 5.0"
+                          placeholder="Ex: 5000"
                         />
                         {parseFloat(item.width) > 0 && (
                           <div className="text-xs text-emerald-600 font-medium mt-1">
-                            Cobrado: {getBillableMeasure(parseFloat(item.width)).toFixed(2)}m
+                            Conversão: {(parseFloat(item.width) / 1000).toFixed(3)}m | Cobrado: {getBillableMeasure(parseFloat(item.width) / 1000).toFixed(2)}m
                           </div>
                         )}
                       </div>
                     )}
 
-                    {selectedService?.unit === 'un' && (
-                      <div className="lg:col-span-1">
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">Quantidade *</label>
+                    <div className="lg:col-span-1">
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Quantidade de Peças *</label>
+                      <div className="flex items-center">
+                        <button 
+                          type="button"
+                          onClick={() => {
+                            const currentQty = parseInt(item.quantity) || 1;
+                            if (currentQty > 1) updateItem(item.id, 'quantity', (currentQty - 1).toString());
+                          }}
+                          className="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-l-md bg-gray-50 hover:bg-gray-100 transition-colors"
+                        >
+                          -
+                        </button>
                         <input 
                           type="number" min="1" required
                           value={item.quantity}
                           onChange={(e) => updateItem(item.id, 'quantity', e.target.value)}
-                          className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
+                          className="w-full h-12 text-center border-t border-b border-gray-300 focus:outline-none focus:ring-0 transition-all bg-white"
                         />
+                        <button 
+                          type="button"
+                          onClick={() => {
+                            const currentQty = parseInt(item.quantity) || 1;
+                            updateItem(item.id, 'quantity', (currentQty + 1).toString());
+                          }}
+                          className="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100 transition-colors"
+                        >
+                          +
+                        </button>
                       </div>
-                    )}
+                    </div>
 
                   <div className="lg:col-span-1">
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Prazo Desejado</label>

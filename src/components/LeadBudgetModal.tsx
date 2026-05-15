@@ -185,7 +185,7 @@ export function LeadBudgetModal({ isOpen, onClose, lead, budget, onSuccess }: Le
                   {svc.width !== undefined && (
                     <div className="flex flex-col gap-1 flex-1 min-w-[80px]">
                       <div className="flex items-center bg-white border rounded overflow-hidden">
-                        <span className="bg-slate-100 text-slate-500 text-xs px-2 py-1 border-r font-medium whitespace-nowrap">Larg Real (m)</span>
+                        <span className="bg-slate-100 text-slate-500 text-xs px-2 py-1 border-r font-medium whitespace-nowrap">Larg Real (mm)</span>
                         <input 
                           type="text" 
                           value={svc.width || ''} 
@@ -195,12 +195,12 @@ export function LeadBudgetModal({ isOpen, onClose, lead, budget, onSuccess }: Le
                             setEditServices(newSvcs);
                           }}
                           className="w-full px-2 py-1 text-xs outline-none"
-                          placeholder="Ex: 2.5"
+                          placeholder="Ex: 1800"
                         />
                       </div>
                       {parseFloat(svc.width) > 0 && (
                         <div className="text-[10px] text-emerald-600 font-medium px-1">
-                          Cobrança: {getBillableMeasure(parseFloat(svc.width)).toFixed(2)}m
+                          Cobrança: {getBillableMeasure(parseFloat(svc.width) > 20 ? parseFloat(svc.width) / 1000 : parseFloat(svc.width)).toFixed(2)}m
                         </div>
                       )}
                     </div>
@@ -208,7 +208,7 @@ export function LeadBudgetModal({ isOpen, onClose, lead, budget, onSuccess }: Le
                   {svc.height !== undefined && (
                     <div className="flex flex-col gap-1 flex-1 min-w-[80px]">
                       <div className="flex items-center bg-white border rounded overflow-hidden">
-                        <span className="bg-slate-100 text-slate-500 text-xs px-2 py-1 border-r font-medium whitespace-nowrap">Alt Real (m)</span>
+                        <span className="bg-slate-100 text-slate-500 text-xs px-2 py-1 border-r font-medium whitespace-nowrap">Alt Real (mm)</span>
                         <input 
                           type="text" 
                           value={svc.height || ''} 
@@ -218,12 +218,12 @@ export function LeadBudgetModal({ isOpen, onClose, lead, budget, onSuccess }: Le
                             setEditServices(newSvcs);
                           }}
                           className="w-full px-2 py-1 text-xs outline-none"
-                          placeholder="Ex: 1.2"
+                          placeholder="Ex: 2100"
                         />
                       </div>
                       {parseFloat(svc.height) > 0 && (
                         <div className="text-[10px] text-emerald-600 font-medium px-1">
-                          Cobrança: {getBillableMeasure(parseFloat(svc.height)).toFixed(2)}m
+                          Cobrança: {getBillableMeasure(parseFloat(svc.height) > 20 ? parseFloat(svc.height) / 1000 : parseFloat(svc.height)).toFixed(2)}m
                         </div>
                       )}
                     </div>
