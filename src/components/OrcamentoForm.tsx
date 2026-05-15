@@ -5,7 +5,7 @@ import { Send, CheckCircle2, Plus, Trash2, Calculator, ArrowRight, Image as Imag
 import { submitOrcamento } from '@/actions/orcamento';
 import { Modal } from '@/components/Modal';
 import { ReferenceGalleryModal } from '@/components/ReferenceGalleryModal';
-import { PRICING_TABLE, getCategories, calculateServicePrice, getBillableMeasure } from '@/config/pricing';
+import { PRICING_TABLE, getCategories, calculateServicePrice } from '@/config/pricing';
 
 type BudgetItem = {
   id: string;
@@ -323,13 +323,6 @@ export default function OrcamentoForm() {
                             onChange={(e) => updateItem(item.id, 'width', e.target.value)}
                             className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
                           />
-                          {parseFloat(item.width.replace(',', '.')) > 0 && parseFloat(item.height.replace(',', '.')) > 0 && (
-                            <div className="text-xs text-emerald-600 font-medium mt-1 p-2 bg-emerald-50 rounded-md border border-emerald-100">
-                              <p>Medida: {(parseFloat(item.width.replace(',', '.')) / 1000).toFixed(2)} x {(parseFloat(item.height.replace(',', '.')) / 1000).toFixed(2)} m</p>
-                              <p>m² por peça: {((parseFloat(item.width.replace(',', '.')) * parseFloat(item.height.replace(',', '.'))) / 1000000).toFixed(2).replace('.', ',')} m²</p>
-                              <p className="font-bold">Total: {((parseFloat(item.width.replace(',', '.')) * parseFloat(item.height.replace(',', '.')) * (parseInt(item.quantity) || 1)) / 1000000).toFixed(2).replace('.', ',')} m²</p>
-                         </div>
-                          )}
                         </div>
                         <div className="lg:col-span-1">
                           <label className="block text-sm font-semibold text-gray-700 mb-2">Altura Real (mm) *</label>
@@ -354,11 +347,6 @@ export default function OrcamentoForm() {
                           className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
                           placeholder="Ex: 3000"
                         />
-                        {parseFloat(item.width.replace(',', '.')) > 0 && (
-                          <div className="text-xs text-emerald-600 font-medium mt-1">
-                            Conversão: {(parseFloat(item.width.replace(',', '.')) / 1000).toFixed(3)}m | Cobrado: {getBillableMeasure(parseFloat(item.width.replace(',', '.')) / 1000).toFixed(2)}m
-                          </div>
-                        )}
                       </div>
                     )}
 
@@ -425,21 +413,84 @@ export default function OrcamentoForm() {
         </div>
         </div>
 
-        <div className="mb-10 bg-blue-50 border border-blue-100 rounded-xl p-6 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
-              <Calculator size={24} />
+        <div className="mb-10 bg-blue-50 border border-blue-100 rounded-xl p-6">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center shrink-0">
+              <Calculator size={20} />
             </div>
             <div>
               <h4 className="text-lg font-bold text-gray-900">Resumo da Estimativa</h4>
-              <p className="text-sm text-gray-600">Baseado no volume e tipo de serviço selecionados.</p>
+              <p className="text-xs text-gray-500">Baseado no volume e tipo de serviço selecionados.</p>
             </div>
           </div>
-          <div className="text-right">
-            <p className="text-sm font-medium text-gray-500 mb-1">Valor Estimado (Aproximado)</p>
+
+          {/* Detalhamento por item */}
+          {items.some(i => i.serviceId && (i.width || i.height || i.quantity)) && (
+            <div className="space-y-3 mb-4">
+              {items.map((item, index) => {
+                const svc = PRICING_TABLE.find(p => p.id === item.serviceId);
+                if (!svc) return null;
+                const wRaw = parseFloat(item.width.replace(',', '.')) || 0;
+                const hRaw = parseFloat(item.height.replace(',', '.')) || 0;
+                const qty = parseInt(item.quantity) || 1;
+                const hasM2 = svc.unit === 'm2' && wRaw > 0 && hRaw > 0;
+                const hasMl = svc.unit === 'ml' && wRaw > 0;
+                if (!hasM2 && !hasMl && svc.unit !== 'un') return null;
+                const m2Peca = hasM2 ? (wRaw * hRaw) / 1000000 : null;
+                const totalM2 = m2Peca !== null ? m2Peca * qty : null;
+                const mlPeca = hasMl ? wRaw / 1000 : null;
+                const totalMl = mlPeca !== null ? mlPeca * qty : null;
+                return (
+                  <div key={item.id} className="bg-white rounded-lg border border-blue-100 p-3 text-xs">
+                    <p className="font-bold text-gray-800 mb-2 text-sm">
+                      Item {index + 1}: {svc.name}
+                      {item.reference && <span className="ml-2 font-normal text-blue-600">({item.reference})</span>}
+                    </p>
+                    <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-gray-600">
+                      {hasM2 && (
+                        <>
+                          <span>Medida Real:</span>
+                          <span className="font-medium text-gray-800">{wRaw} × {hRaw} mm</span>
+                          <span>Conversão:</span>
+                          <span className="font-medium text-gray-800">{(wRaw/1000).toFixed(2).replace('.',',')} × {(hRaw/1000).toFixed(2).replace('.',',')} m</span>
+                          <span>Quantidade:</span>
+                          <span className="font-medium text-gray-800">{qty} peça{qty > 1 ? 's' : ''}</span>
+                          <span>m² por peça:</span>
+                          <span className="font-medium text-gray-800">{m2Peca!.toFixed(4).replace('.',',')} m²</span>
+                          <span className="font-bold text-gray-700">Área Total:</span>
+                          <span className="font-bold text-blue-700">{totalM2!.toFixed(4).replace('.',',')} m²</span>
+                        </>
+                      )}
+                      {hasMl && (
+                        <>
+                          <span>Comprimento Real:</span>
+                          <span className="font-medium text-gray-800">{wRaw} mm</span>
+                          <span>Conversão:</span>
+                          <span className="font-medium text-gray-800">{(wRaw/1000).toFixed(3).replace('.',',')} m</span>
+                          <span>Quantidade:</span>
+                          <span className="font-medium text-gray-800">{qty} peça{qty > 1 ? 's' : ''}</span>
+                          <span className="font-bold text-gray-700">Total Linear:</span>
+                          <span className="font-bold text-blue-700">{totalMl!.toFixed(3).replace('.',',')} m</span>
+                        </>
+                      )}
+                      {svc.unit === 'un' && (
+                        <>
+                          <span>Quantidade:</span>
+                          <span className="font-medium text-gray-800">{qty} unidade{qty > 1 ? 's' : ''}</span>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          <div className="flex items-center justify-between pt-3 border-t border-blue-200">
+            <p className="text-sm font-medium text-gray-500">Valor Estimado (Aproximado)</p>
             <p className="text-3xl font-bold text-primary">
-              {totalEstimate > 0 
-                ? `R$ ${totalEstimate.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` 
+              {totalEstimate > 0
+                ? `R$ ${totalEstimate.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
                 : 'Sob Consulta'}
             </p>
           </div>
