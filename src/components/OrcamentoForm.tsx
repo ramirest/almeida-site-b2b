@@ -102,15 +102,20 @@ export default function OrcamentoForm() {
       items: items.map(i => {
         const service = PRICING_TABLE.find(p => p.id === i.serviceId);
         let volumeStr = '';
+        const wRaw = parseFloat(i.width.replace(',', '.')) || 0;
+        const hRaw = parseFloat(i.height.replace(',', '.')) || 0;
+        const qty = parseInt(i.quantity) || 1;
         
-        if (service?.unit === 'm2' && i.width && i.height) {
-          const area = (parseFloat(i.width) * parseFloat(i.height)) / 1000000;
-          volumeStr = `${area.toFixed(2).replace('.', ',')} m² (${i.width}x${i.height}mm)`;
-        } else if (service?.unit === 'ml' && i.width) {
-          const linear = parseFloat(i.width) / 1000;
-          volumeStr = `${linear.toFixed(2).replace('.', ',')} m (${i.width}mm)`;
+        if (service?.unit === 'm2' && wRaw > 0 && hRaw > 0) {
+          const m2PerPiece = (wRaw * hRaw) / 1000000;
+          const totalM2 = m2PerPiece * qty;
+          volumeStr = `${m2PerPiece.toFixed(2).replace('.', ',')} m²/pc | Total: ${totalM2.toFixed(2).replace('.', ',')} m² (${wRaw}x${hRaw}mm, Qtd: ${qty})`;
+        } else if (service?.unit === 'ml' && wRaw > 0) {
+          const mlPerPiece = wRaw / 1000;
+          const totalMl = mlPerPiece * qty;
+          volumeStr = `${mlPerPiece.toFixed(2).replace('.', ',')} m/pc | Total: ${totalMl.toFixed(2).replace('.', ',')} m (${wRaw}mm, Qtd: ${qty})`;
         } else {
-          volumeStr = `${i.quantity} un`;
+          volumeStr = `${qty} un`;
         }
 
         return {
@@ -338,9 +343,12 @@ export default function OrcamentoForm() {
                             onChange={(e) => updateItem(item.id, 'width', e.target.value)}
                             className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
                           />
-                          {parseFloat(item.width.replace(',', '.')) > 0 && (
-                            <div className="text-xs text-emerald-600 font-medium mt-1">
-                              Conversão: {(parseFloat(item.width.replace(',', '.')) / 1000).toFixed(3)}m | Cobrado: {getBillableMeasure(parseFloat(item.width.replace(',', '.')) / 1000).toFixed(2)}m
+                          {parseFloat(item.width.replace(',', '.')) > 0 && parseFloat(item.height.replace(',', '.')) > 0 && (
+                            <div className="text-xs text-emerald-600 font-medium mt-1 p-2 bg-emerald-50 rounded-md border border-emerald-100">
+                              <p>Medida: {(parseFloat(item.width.replace(',', '.')) / 1000).toFixed(2)} x {(parseFloat(item.height.replace(',', '.')) / 1000).toFixed(2)} m</p>
+                              <p>m² por peça: {((parseFloat(item.width.replace(',', '.')) * parseFloat(item.height.replace(',', '.'))) / 1000000).toFixed(2).replace('.', ',')} m²</p>
+                              <p className="font-bold">Total: {((parseFloat(item.width.replace(',', '.')) * parseFloat(item.height.replace(',', '.')) * (parseInt(item.quantity) || 1)) / 1000000).toFixed(2).replace('.', ',')} m²</p>
+                              <p className="text-[10px] text-slate-500 mt-1 italic">Cobrança baseada no múltiplo de 5: {getBillableMeasure(parseFloat(item.width.replace(',', '.')) / 1000).toFixed(2)}x{getBillableMeasure(parseFloat(item.height.replace(',', '.')) / 1000).toFixed(2)}m</p>
                             </div>
                           )}
                         </div>
@@ -353,11 +361,6 @@ export default function OrcamentoForm() {
                             className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white"
                             placeholder="Ex: 2100"
                           />
-                          {parseFloat(item.height.replace(',', '.')) > 0 && (
-                            <div className="text-xs text-emerald-600 font-medium mt-1">
-                              Conversão: {(parseFloat(item.height.replace(',', '.')) / 1000).toFixed(3)}m | Cobrado: {getBillableMeasure(parseFloat(item.height.replace(',', '.')) / 1000).toFixed(2)}m
-                            </div>
-                          )}
                         </div>
                       </>
                     )}

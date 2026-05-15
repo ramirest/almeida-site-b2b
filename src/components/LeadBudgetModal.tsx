@@ -220,11 +220,6 @@ export function LeadBudgetModal({ isOpen, onClose, lead, budget, onSuccess }: Le
                           placeholder="Ex: 1800"
                         />
                       </div>
-                      {parseFloat(svc.width) > 0 && (
-                        <div className="text-[10px] text-emerald-600 font-medium px-1">
-                          Cobrança: {getBillableMeasure(parseFloat(svc.width) > 20 ? parseFloat(svc.width) / 1000 : parseFloat(svc.width)).toFixed(2)}m
-                        </div>
-                      )}
                     </div>
                   )}
                   {svc.height !== undefined && (
@@ -243,11 +238,6 @@ export function LeadBudgetModal({ isOpen, onClose, lead, budget, onSuccess }: Le
                           placeholder="Ex: 2100"
                         />
                       </div>
-                      {parseFloat(svc.height) > 0 && (
-                        <div className="text-[10px] text-emerald-600 font-medium px-1">
-                          Cobrança: {getBillableMeasure(parseFloat(svc.height) > 20 ? parseFloat(svc.height) / 1000 : parseFloat(svc.height)).toFixed(2)}m
-                        </div>
-                      )}
                     </div>
                   )}
                   {svc.quantity !== undefined && (
@@ -280,6 +270,26 @@ export function LeadBudgetModal({ isOpen, onClose, lead, budget, onSuccess }: Le
                     />
                   </div>
                 </div>
+
+                {(parseFloat(svc.width) > 0 || parseFloat(svc.height) > 0) && (
+                  <div className="mt-2 p-2 bg-emerald-50 rounded border border-emerald-100 flex justify-between items-center text-[10px] text-emerald-700">
+                    <div className="flex gap-4">
+                      {parseFloat(svc.width) > 0 && parseFloat(svc.height) > 0 ? (
+                        <>
+                          <div><span className="font-bold">pc:</span> {((parseFloat(svc.width) > 20 ? parseFloat(svc.width) / 1000 : parseFloat(svc.width)) * (parseFloat(svc.height) > 20 ? parseFloat(svc.height) / 1000 : parseFloat(svc.height))).toFixed(2).replace('.', ',')} m²</div>
+                          <div><span className="font-bold">tot:</span> {(((parseFloat(svc.width) > 20 ? parseFloat(svc.width) / 1000 : parseFloat(svc.width)) * (parseFloat(svc.height) > 20 ? parseFloat(svc.height) / 1000 : parseFloat(svc.height))) * (parseInt(svc.quantity) || 1)).toFixed(2).replace('.', ',')} m²</div>
+                          <div className="text-slate-500 italic">cob: {getBillableMeasure(parseFloat(svc.width) > 20 ? parseFloat(svc.width) / 1000 : parseFloat(svc.width)).toFixed(2)}x{getBillableMeasure(parseFloat(svc.height) > 20 ? parseFloat(svc.height) / 1000 : parseFloat(svc.height)).toFixed(2)}m</div>
+                        </>
+                      ) : (
+                        <>
+                          <div><span className="font-bold">pc:</span> {(parseFloat(svc.width) > 20 ? parseFloat(svc.width) / 1000 : parseFloat(svc.width)).toFixed(2).replace('.', ',')} m</div>
+                          <div><span className="font-bold">tot:</span> {((parseFloat(svc.width) > 20 ? parseFloat(svc.width) / 1000 : parseFloat(svc.width)) * (parseInt(svc.quantity) || 1)).toFixed(2).replace('.', ',')} m</div>
+                          <div className="text-slate-500 italic">cob: {getBillableMeasure(parseFloat(svc.width) > 20 ? parseFloat(svc.width) / 1000 : parseFloat(svc.width)).toFixed(2)}m</div>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                )}
                 <textarea 
                   value={svc.notes || ''} 
                   onChange={(e) => {
