@@ -328,8 +328,7 @@ export default function OrcamentoForm() {
                               <p>Medida: {(parseFloat(item.width.replace(',', '.')) / 1000).toFixed(2)} x {(parseFloat(item.height.replace(',', '.')) / 1000).toFixed(2)} m</p>
                               <p>m² por peça: {((parseFloat(item.width.replace(',', '.')) * parseFloat(item.height.replace(',', '.'))) / 1000000).toFixed(2).replace('.', ',')} m²</p>
                               <p className="font-bold">Total: {((parseFloat(item.width.replace(',', '.')) * parseFloat(item.height.replace(',', '.')) * (parseInt(item.quantity) || 1)) / 1000000).toFixed(2).replace('.', ',')} m²</p>
-                              <p className="text-[10px] text-slate-500 mt-1 italic">Cobrança baseada no múltiplo de 5: {getBillableMeasure(parseFloat(item.width.replace(',', '.')) / 1000).toFixed(2)}x{getBillableMeasure(parseFloat(item.height.replace(',', '.')) / 1000).toFixed(2)}m</p>
-                            </div>
+                           </div>
                           )}
                         </div>
                         <div className="lg:col-span-1">
