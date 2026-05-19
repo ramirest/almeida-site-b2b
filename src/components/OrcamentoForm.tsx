@@ -6,6 +6,7 @@ import { submitOrcamento } from '@/actions/orcamento';
 import { Modal } from '@/components/Modal';
 import { ReferenceGalleryModal } from '@/components/ReferenceGalleryModal';
 import { PRICING_TABLE, calculateServicePrice } from '@/config/pricing';
+import { ColorPicker } from '@/components/color-picker/ColorPicker';
 
 type BudgetItem = {
   id: string;
@@ -15,6 +16,8 @@ type BudgetItem = {
   height: string;
   quantity: string;
   reference: string;
+  colorCode?: string;
+  colorName?: string;
   prazo: string;
   notes: string;
 };
@@ -55,12 +58,16 @@ export default function OrcamentoForm() {
         if (field === 'mainCategory') {
           updated.serviceId = '';
           updated.reference = '';
+          updated.colorCode = '';
+          updated.colorName = '';
           updated.width = '';
           updated.height = '';
           updated.quantity = '1';
         }
         if (field === 'serviceId') {
           updated.reference = '';
+          updated.colorCode = '';
+          updated.colorName = '';
           updated.width = '';
           updated.height = '';
           updated.quantity = '1';
@@ -460,6 +467,20 @@ export default function OrcamentoForm() {
                         placeholder="Espessura do vidro, acabamentos, recortes..."
                       ></textarea>
                     </div>
+
+                    {/* Seletor de Cores - Apenas para Pinturas */}
+                    {(item.mainCategory === 'pinturas' && item.serviceId) && (
+                      <div className="lg:col-span-3">
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">Seleção de Cor SayerSystem *</label>
+                        <ColorPicker 
+                          value={item.colorCode || ''} 
+                          onChange={(color) => {
+                            updateItem(item.id, 'colorCode', color.codigo);
+                            updateItem(item.id, 'colorName', color.categoria);
+                          }} 
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
               );
@@ -500,6 +521,13 @@ export default function OrcamentoForm() {
                       Item {index + 1}: {svc.name}
                       {item.reference && <span className="ml-2 font-normal text-blue-600">({item.reference})</span>}
                     </p>
+                    {item.colorCode && (
+                      <div className="mb-2 text-xs border-l-2 border-primary pl-2 py-0.5 bg-primary/5">
+                        <span className="font-semibold text-gray-700">Cor: </span>
+                        <span className="text-gray-900">{item.colorCode}</span>
+                        <span className="text-gray-500 ml-1">({item.colorName?.toLowerCase()})</span>
+                      </div>
+                    )}
                     <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-gray-600">
                       {hasM2 && (
                         <>

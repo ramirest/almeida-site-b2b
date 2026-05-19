@@ -1,0 +1,4010 @@
+[
+  {
+    "codigo": "F167",
+    "rgb": "229,228,227",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E5E4E3"
+  },
+  {
+    "codigo": "F155",
+    "rgb": "226,222,218",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E2DEDA"
+  },
+  {
+    "codigo": "F162",
+    "rgb": "227,227,223",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E3E3DF"
+  },
+  {
+    "codigo": "G155",
+    "rgb": "221,217,211",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#DDD9D3"
+  },
+  {
+    "codigo": "F157",
+    "rgb": "233,232,227",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E9E8E3"
+  },
+  {
+    "codigo": "X077",
+    "rgb": "219,216,209",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#DBD8D1"
+  },
+  {
+    "codigo": "F168",
+    "rgb": "233,232,226",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E9E8E2"
+  },
+  {
+    "codigo": "X137",
+    "rgb": "220,217,206",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#DCD9CE"
+  },
+  {
+    "codigo": "F200",
+    "rgb": "237,236,230",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#EDECE6"
+  },
+  {
+    "codigo": "F100",
+    "rgb": "235,230,219",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#EBE6DB"
+  },
+  {
+    "codigo": "G200",
+    "rgb": "237,234,227",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#EDEAE3"
+  },
+  {
+    "codigo": "X168",
+    "rgb": "234,231,222",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#EAE7DE"
+  },
+  {
+    "codigo": "H200",
+    "rgb": "238,235,228",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#EEEBE4"
+  },
+  {
+    "codigo": "X060",
+    "rgb": "234,230,218",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#EAE6DA"
+  },
+  {
+    "codigo": "J200",
+    "rgb": "240,235,226",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F0EBE2"
+  },
+  {
+    "codigo": "X135",
+    "rgb": "229,223,209",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E5DFD1"
+  },
+  {
+    "codigo": "F098",
+    "rgb": "241,236,220",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F1ECDC"
+  },
+  {
+    "codigo": "F097",
+    "rgb": "242,234,217",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F2EAD9"
+  },
+  {
+    "codigo": "K200",
+    "rgb": "241,237,226",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F1EDE2"
+  },
+  {
+    "codigo": "F087",
+    "rgb": "243,236,221",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F3ECDD"
+  },
+  {
+    "codigo": "L200",
+    "rgb": "241,238,227",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F1EEE3"
+  },
+  {
+    "codigo": "X113",
+    "rgb": "242,233,216",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F2E9D8"
+  },
+  {
+    "codigo": "F099",
+    "rgb": "241,238,226",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F1EEE2"
+  },
+  {
+    "codigo": "X115",
+    "rgb": "235,227,209",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#EBE3D1"
+  },
+  {
+    "codigo": "F021",
+    "rgb": "216,226,233",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#D8E2E9"
+  },
+  {
+    "codigo": "G027",
+    "rgb": "210,217,218",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#D2D9DA"
+  },
+  {
+    "codigo": "X101",
+    "rgb": "215,223,224",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#D7DFE0"
+  },
+  {
+    "codigo": "S029",
+    "rgb": "201,212,218",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#C9D4DA"
+  },
+  {
+    "codigo": "V033",
+    "rgb": "223,228,224",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#DFE4E0"
+  },
+  {
+    "codigo": "V029",
+    "rgb": "213,219,223",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#D5DBDF"
+  },
+  {
+    "codigo": "F027",
+    "rgb": "221,225,223",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#DDE1DF"
+  },
+  {
+    "codigo": "V018",
+    "rgb": "210,221,224",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#D2DDE0"
+  },
+  {
+    "codigo": "G021",
+    "rgb": "199,215,229",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#C7D7E5"
+  },
+  {
+    "codigo": "H029",
+    "rgb": "202,223,230",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#CADFE6"
+  },
+  {
+    "codigo": "V017",
+    "rgb": "181,197,211",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#B5C5D3"
+  },
+  {
+    "codigo": "G030",
+    "rgb": "194,220,230",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#C2DCE6"
+  },
+  {
+    "codigo": "S018",
+    "rgb": "188,205,214",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#BCCDD6"
+  },
+  {
+    "codigo": "V016",
+    "rgb": "197,219,229",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#C5DBE5"
+  },
+  {
+    "codigo": "G018",
+    "rgb": "199,216,224",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#C7D8E0"
+  },
+  {
+    "codigo": "G017",
+    "rgb": "195,219,230",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#C3DBE6"
+  },
+  {
+    "codigo": "F016",
+    "rgb": "208,228,234",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#D0E4EA"
+  },
+  {
+    "codigo": "V031",
+    "rgb": "208,219,217",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#D0DBD9"
+  },
+  {
+    "codigo": "F018",
+    "rgb": "208,226,233",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#D0E2E9"
+  },
+  {
+    "codigo": "V037",
+    "rgb": "214,225,225",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#D6E1E1"
+  },
+  {
+    "codigo": "S032",
+    "rgb": "201,213,214",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#C9D5D6"
+  },
+  {
+    "codigo": "V032",
+    "rgb": "217,230,229",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#D9E6E5"
+  },
+  {
+    "codigo": "V030",
+    "rgb": "202,215,218",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#CAD7DA"
+  },
+  {
+    "codigo": "G029",
+    "rgb": "215,229,230",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#D7E5E6"
+  },
+  {
+    "codigo": "F017",
+    "rgb": "222,230,230",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#DEE6E6"
+  },
+  {
+    "codigo": "V048",
+    "rgb": "218,228,222",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#DAE4DE"
+  },
+  {
+    "codigo": "F030",
+    "rgb": "218,230,230",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#DAE6E6"
+  },
+  {
+    "codigo": "G032",
+    "rgb": "220,231,225",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#DCE7E1"
+  },
+  {
+    "codigo": "F029",
+    "rgb": "221,233,230",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#DDE9E6"
+  },
+  {
+    "codigo": "H032",
+    "rgb": "208,225,221",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#D0E1DD"
+  },
+  {
+    "codigo": "F033",
+    "rgb": "221,230,225",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#DDE6E1"
+  },
+  {
+    "codigo": "G033",
+    "rgb": "212,229,227",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#D4E5E3"
+  },
+  {
+    "codigo": "F031",
+    "rgb": "209,231,235",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#D1E7EB"
+  },
+  {
+    "codigo": "J032",
+    "rgb": "189,217,215",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#BDD9D7"
+  },
+  {
+    "codigo": "G031",
+    "rgb": "189,216,217",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#BDD8D9"
+  },
+  {
+    "codigo": "H033",
+    "rgb": "199,225,221",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#C7E1DD"
+  },
+  {
+    "codigo": "G044",
+    "rgb": "203,217,206",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#CBD9CE"
+  },
+  {
+    "codigo": "F052",
+    "rgb": "223,237,218",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#DFEDDA"
+  },
+  {
+    "codigo": "V043",
+    "rgb": "209,226,214",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#D1E2D6"
+  },
+  {
+    "codigo": "H048",
+    "rgb": "203,219,211",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#CBDBD3"
+  },
+  {
+    "codigo": "S037",
+    "rgb": "193,219,212",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#C1DBD4"
+  },
+  {
+    "codigo": "G043",
+    "rgb": "215,236,221",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#D7ECDD"
+  },
+  {
+    "codigo": "G037",
+    "rgb": "201,226,217",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#C9E2D9"
+  },
+  {
+    "codigo": "G039",
+    "rgb": "208,236,221",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#D0ECDD"
+  },
+  {
+    "codigo": "S039",
+    "rgb": "204,227,217",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#CCE3D9"
+  },
+  {
+    "codigo": "G052",
+    "rgb": "209,236,201",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#D1ECC9"
+  },
+  {
+    "codigo": "F038",
+    "rgb": "214,237,229",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#D6EDE5"
+  },
+  {
+    "codigo": "H052",
+    "rgb": "192,231,179",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#C0E7B3"
+  },
+  {
+    "codigo": "F050",
+    "rgb": "222,227,217",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#DEE3D9"
+  },
+  {
+    "codigo": "F037",
+    "rgb": "223,232,226",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#DFE8E2"
+  },
+  {
+    "codigo": "F048",
+    "rgb": "229,235,225",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E5EBE1"
+  },
+  {
+    "codigo": "F039",
+    "rgb": "228,236,229",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E4ECE5"
+  },
+  {
+    "codigo": "G048",
+    "rgb": "220,233,226",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#DCE9E2"
+  },
+  {
+    "codigo": "F043",
+    "rgb": "229,239,227",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E5EFE3"
+  },
+  {
+    "codigo": "V039",
+    "rgb": "220,230,222",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#DCE6DE"
+  },
+  {
+    "codigo": "F044",
+    "rgb": "229,239,230",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E5EFE6"
+  },
+  {
+    "codigo": "G099",
+    "rgb": "241,238,213",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F1EED5"
+  },
+  {
+    "codigo": "G060",
+    "rgb": "232,232,211",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E8E8D3"
+  },
+  {
+    "codigo": "F058",
+    "rgb": "232,235,210",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E8EBD2"
+  },
+  {
+    "codigo": "V060",
+    "rgb": "222,223,209",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#DEDFD1"
+  },
+  {
+    "codigo": "S050",
+    "rgb": "185,192,174",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#B9C0AE"
+  },
+  {
+    "codigo": "V050",
+    "rgb": "200,209,192",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#C8D1C0"
+  },
+  {
+    "codigo": "V052",
+    "rgb": "209,219,203",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#D1DBCB"
+  },
+  {
+    "codigo": "G050",
+    "rgb": "208,219,195",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#D0DBC3"
+  },
+  {
+    "codigo": "F060",
+    "rgb": "237,236,222",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#EDECDE"
+  },
+  {
+    "codigo": "M200",
+    "rgb": "238,238,228",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#EEEEE4"
+  },
+  {
+    "codigo": "N200",
+    "rgb": "235,237,228",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#EBEDE4"
+  },
+  {
+    "codigo": "F032",
+    "rgb": "228,231,224",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E4E7E0"
+  },
+  {
+    "codigo": "F071",
+    "rgb": "241,238,198",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F1EEC6"
+  },
+  {
+    "codigo": "F077",
+    "rgb": "242,234,209",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F2EAD1"
+  },
+  {
+    "codigo": "G077",
+    "rgb": "242,235,200",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F2EBC8"
+  },
+  {
+    "codigo": "G098",
+    "rgb": "242,233,205",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F2E9CD"
+  },
+  {
+    "codigo": "F072",
+    "rgb": "241,238,210",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F1EED2"
+  },
+  {
+    "codigo": "F079",
+    "rgb": "242,232,207",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F2E8CF"
+  },
+  {
+    "codigo": "F081",
+    "rgb": "242,235,208",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F2EBD0"
+  },
+  {
+    "codigo": "G097",
+    "rgb": "242,229,202",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F2E5CA"
+  },
+  {
+    "codigo": "G087",
+    "rgb": "242,228,202",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F2E4CA"
+  },
+  {
+    "codigo": "V097",
+    "rgb": "237,225,201",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#EDE1C9"
+  },
+  {
+    "codigo": "S097",
+    "rgb": "231,214,183",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E7D6B7"
+  },
+  {
+    "codigo": "X052",
+    "rgb": "231,213,179",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E7D5B3"
+  },
+  {
+    "codigo": "X033",
+    "rgb": "233,212,180",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E9D4B4"
+  },
+  {
+    "codigo": "H097",
+    "rgb": "236,216,174",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#ECD8AE"
+  },
+  {
+    "codigo": "V087",
+    "rgb": "239,220,192",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#EFDCC0"
+  },
+  {
+    "codigo": "H087",
+    "rgb": "242,217,182",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F2D9B6"
+  },
+  {
+    "codigo": "X129",
+    "rgb": "237,214,184",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#EDD6B8"
+  },
+  {
+    "codigo": "X136",
+    "rgb": "236,215,186",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#ECD7BA"
+  },
+  {
+    "codigo": "X043",
+    "rgb": "236,211,175",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#ECD3AF"
+  },
+  {
+    "codigo": "S087",
+    "rgb": "236,206,164",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#ECCEA4"
+  },
+  {
+    "codigo": "F089",
+    "rgb": "242,229,217",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F2E5D9"
+  },
+  {
+    "codigo": "F090",
+    "rgb": "239,227,213",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#EFE3D5"
+  },
+  {
+    "codigo": "F113",
+    "rgb": "238,228,215",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#EEE4D7"
+  },
+  {
+    "codigo": "F101",
+    "rgb": "228,219,208",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E4DBD0"
+  },
+  {
+    "codigo": "G101",
+    "rgb": "227,215,197",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E3D7C5"
+  },
+  {
+    "codigo": "F095",
+    "rgb": "242,232,218",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F2E8DA"
+  },
+  {
+    "codigo": "F120",
+    "rgb": "238,230,222",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#EEE6DE"
+  },
+  {
+    "codigo": "F109",
+    "rgb": "229,222,217",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E5DED9"
+  },
+  {
+    "codigo": "S089",
+    "rgb": "243,215,190",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F3D7BE"
+  },
+  {
+    "codigo": "V096",
+    "rgb": "236,221,210",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#ECDDD2"
+  },
+  {
+    "codigo": "F096",
+    "rgb": "242,228,216",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F2E4D8"
+  },
+  {
+    "codigo": "F115",
+    "rgb": "237,224,211",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#EDE0D3"
+  },
+  {
+    "codigo": "F134",
+    "rgb": "241,226,221",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F1E2DD"
+  },
+  {
+    "codigo": "F122",
+    "rgb": "241,227,219",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F1E3DB"
+  },
+  {
+    "codigo": "G120",
+    "rgb": "232,218,211",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E8DAD3"
+  },
+  {
+    "codigo": "V130",
+    "rgb": "237,222,216",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#EDDED8"
+  },
+  {
+    "codigo": "F138",
+    "rgb": "240,224,217",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F0E0D9"
+  },
+  {
+    "codigo": "G129",
+    "rgb": "242,219,208",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F2DBD0"
+  },
+  {
+    "codigo": "F137",
+    "rgb": "243,221,210",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F3DDD2"
+  },
+  {
+    "codigo": "F129",
+    "rgb": "244,224,215",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F4E0D7"
+  },
+  {
+    "codigo": "F136",
+    "rgb": "242,224,219",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F2E0DB"
+  },
+  {
+    "codigo": "V137",
+    "rgb": "235,217,212",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#EBD9D4"
+  },
+  {
+    "codigo": "F135",
+    "rgb": "244,222,216",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F4DED8"
+  },
+  {
+    "codigo": "F139",
+    "rgb": "239,219,214",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#EFDBD6"
+  },
+  {
+    "codigo": "V129",
+    "rgb": "242,220,212",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F2DCD4"
+  },
+  {
+    "codigo": "F130",
+    "rgb": "243,227,221",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F3E3DD"
+  },
+  {
+    "codigo": "V138",
+    "rgb": "229,211,209",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E5D3D1"
+  },
+  {
+    "codigo": "F140",
+    "rgb": "243,228,227",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#F3E4E3"
+  },
+  {
+    "codigo": "V141",
+    "rgb": "229,208,218",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E5D0DA"
+  },
+  {
+    "codigo": "V145",
+    "rgb": "227,208,218",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E3D0DA"
+  },
+  {
+    "codigo": "V143",
+    "rgb": "230,215,221",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E6D7DD"
+  },
+  {
+    "codigo": "G143",
+    "rgb": "227,215,222",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E3D7DE"
+  },
+  {
+    "codigo": "F143",
+    "rgb": "232,223,227",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E8DFE3"
+  },
+  {
+    "codigo": "V148",
+    "rgb": "216,212,226",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#D8D4E2"
+  },
+  {
+    "codigo": "F145",
+    "rgb": "233,220,224",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E9DCE0"
+  },
+  {
+    "codigo": "G149",
+    "rgb": "219,216,227",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#DBD8E3"
+  },
+  {
+    "codigo": "F141",
+    "rgb": "237,218,220",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#EDDADC"
+  },
+  {
+    "codigo": "V149",
+    "rgb": "215,212,221",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#D7D4DD"
+  },
+  {
+    "codigo": "V139",
+    "rgb": "233,208,204",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E9D0CC"
+  },
+  {
+    "codigo": "H149",
+    "rgb": "199,192,201",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#C7C0C9"
+  },
+  {
+    "codigo": "F151",
+    "rgb": "236,229,229",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#ECE5E5"
+  },
+  {
+    "codigo": "G151",
+    "rgb": "226,218,220",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E2DADC"
+  },
+  {
+    "codigo": "F148",
+    "rgb": "229,224,231",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#E5E0E7"
+  },
+  {
+    "codigo": "F149",
+    "rgb": "223,221,227",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#DFDDE3"
+  },
+  {
+    "codigo": "H021",
+    "rgb": "181,202,228",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#B5CAE4"
+  },
+  {
+    "codigo": "K017",
+    "rgb": "119,161,199",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#77A1C7"
+  },
+  {
+    "codigo": "J021",
+    "rgb": "165,191,226",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#A5BFE2"
+  },
+  {
+    "codigo": "N021",
+    "rgb": "84,112,150",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#547096"
+  },
+  {
+    "codigo": "V021",
+    "rgb": "147,177,207",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#93B1CF"
+  },
+  {
+    "codigo": "Y168",
+    "rgb": "69,91,122",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#455B7A"
+  },
+  {
+    "codigo": "S021",
+    "rgb": "123,156,194",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#7B9CC2"
+  },
+  {
+    "codigo": "M017",
+    "rgb": "55,75,102",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#374B66"
+  },
+  {
+    "codigo": "H016",
+    "rgb": "153,202,231",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#99CAE7"
+  },
+  {
+    "codigo": "K018",
+    "rgb": "128,163,188",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#80A3BC"
+  },
+  {
+    "codigo": "X079",
+    "rgb": "153,198,228",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#99C6E4"
+  },
+  {
+    "codigo": "L018",
+    "rgb": "110,149,178",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#6E95B2"
+  },
+  {
+    "codigo": "S016",
+    "rgb": "153,195,222",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#99C3DE"
+  },
+  {
+    "codigo": "N017",
+    "rgb": "90,124,156",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#5A7C9C"
+  },
+  {
+    "codigo": "J017",
+    "rgb": "166,198,223",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#A6C6DF"
+  },
+  {
+    "codigo": "M018",
+    "rgb": "76,109,137",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#4C6D89"
+  },
+  {
+    "codigo": "H030",
+    "rgb": "169,217,233",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#A9D9E9"
+  },
+  {
+    "codigo": "V038",
+    "rgb": "188,219,210",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#BCDBD2"
+  },
+  {
+    "codigo": "N029",
+    "rgb": "132,155,167",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#849BA7"
+  },
+  {
+    "codigo": "J037",
+    "rgb": "162,205,200",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#A2CDC8"
+  },
+  {
+    "codigo": "J030",
+    "rgb": "159,203,220",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#9FCBDC"
+  },
+  {
+    "codigo": "H037",
+    "rgb": "183,217,210",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#B7D9D2"
+  },
+  {
+    "codigo": "S030",
+    "rgb": "158,187,201",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#9EBBC9"
+  },
+  {
+    "codigo": "N037",
+    "rgb": "163,200,194",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#A3C8C2"
+  },
+  {
+    "codigo": "K029",
+    "rgb": "131,175,193",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#83AFC1"
+  },
+  {
+    "codigo": "J033",
+    "rgb": "178,215,209",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#B2D7D1"
+  },
+  {
+    "codigo": "J029",
+    "rgb": "176,204,214",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#B0CCD6"
+  },
+  {
+    "codigo": "H031",
+    "rgb": "162,198,201",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#A2C6C9"
+  },
+  {
+    "codigo": "N030",
+    "rgb": "113,147,163",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#7193A3"
+  },
+  {
+    "codigo": "N039",
+    "rgb": "180,218,203",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#B4DACB"
+  },
+  {
+    "codigo": "G016",
+    "rgb": "191,219,230",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#BFDBE6"
+  },
+  {
+    "codigo": "K032",
+    "rgb": "148,190,189",
+    "categoria": "PALE / LIGHT COLOURS",
+    "hex": "#94BEBD"
+  },
+  {
+    "codigo": "H043",
+    "rgb": "182,228,200",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B6E4C8"
+  },
+  {
+    "codigo": "H038",
+    "rgb": "176,228,212",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B0E4D4"
+  },
+  {
+    "codigo": "H039",
+    "rgb": "193,233,213",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C1E9D5"
+  },
+  {
+    "codigo": "J039",
+    "rgb": "163,225,199",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#A3E1C7"
+  },
+  {
+    "codigo": "G038",
+    "rgb": "193,232,218",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C1E8DA"
+  },
+  {
+    "codigo": "J043",
+    "rgb": "141,210,173",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#8DD2AD"
+  },
+  {
+    "codigo": "X167",
+    "rgb": "185,226,210",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B9E2D2"
+  },
+  {
+    "codigo": "S038",
+    "rgb": "123,203,182",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#7BCBB6"
+  },
+  {
+    "codigo": "J048",
+    "rgb": "178,201,192",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B2C9C0"
+  },
+  {
+    "codigo": "V044",
+    "rgb": "184,208,200",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B8D0C8"
+  },
+  {
+    "codigo": "S043",
+    "rgb": "180,196,184",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B4C4B8"
+  },
+  {
+    "codigo": "Y120",
+    "rgb": "174,198,194",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#AEC6C2"
+  },
+  {
+    "codigo": "S048",
+    "rgb": "185,202,193",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B9CAC1"
+  },
+  {
+    "codigo": "S033",
+    "rgb": "190,212,208",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#BED4D0"
+  },
+  {
+    "codigo": "H044",
+    "rgb": "183,209,195",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B7D1C3"
+  },
+  {
+    "codigo": "S031",
+    "rgb": "184,202,203",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B8CACB"
+  },
+  {
+    "codigo": "K037",
+    "rgb": "147,193,181",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#93C1B5"
+  },
+  {
+    "codigo": "N033",
+    "rgb": "114,161,157",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#72A19D"
+  },
+  {
+    "codigo": "Y167",
+    "rgb": "68,114,108",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#44726C"
+  },
+  {
+    "codigo": "K044",
+    "rgb": "123,165,146",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#7BA592"
+  },
+  {
+    "codigo": "K033",
+    "rgb": "127,189,183",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#7FBDB7"
+  },
+  {
+    "codigo": "N032",
+    "rgb": "123,154,148",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#7B9A94"
+  },
+  {
+    "codigo": "M038",
+    "rgb": "0,141,128",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#008D80"
+  },
+  {
+    "codigo": "M044",
+    "rgb": "91,119,109",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#5B776D"
+  },
+  {
+    "codigo": "L033",
+    "rgb": "91,156,150",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#5B9C96"
+  },
+  {
+    "codigo": "N044",
+    "rgb": "128,162,151",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#80A297"
+  },
+  {
+    "codigo": "M033",
+    "rgb": "49,108,106",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#316C6A"
+  },
+  {
+    "codigo": "Y149",
+    "rgb": "62,78,67",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#3E4E43"
+  },
+  {
+    "codigo": "L032",
+    "rgb": "92,140,138",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#5C8C8A"
+  },
+  {
+    "codigo": "L044",
+    "rgb": "98,139,120",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#628B78"
+  },
+  {
+    "codigo": "M032",
+    "rgb": "50,92,81",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#325C51"
+  },
+  {
+    "codigo": "M043",
+    "rgb": "42,117,87",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#2A7557"
+  },
+  {
+    "codigo": "N031",
+    "rgb": "147,177,178",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#93B1B2"
+  },
+  {
+    "codigo": "X149",
+    "rgb": "127,147,138",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#7F938A"
+  },
+  {
+    "codigo": "K048",
+    "rgb": "150,180,167",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#96B4A7"
+  },
+  {
+    "codigo": "L048",
+    "rgb": "103,128,117",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#678075"
+  },
+  {
+    "codigo": "S044",
+    "rgb": "152,183,175",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#98B7AF"
+  },
+  {
+    "codigo": "Y151",
+    "rgb": "82,88,80",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#525850"
+  },
+  {
+    "codigo": "N048",
+    "rgb": "129,151,142",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#81978E"
+  },
+  {
+    "codigo": "M048",
+    "rgb": "74,94,86",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#4A5E56"
+  },
+  {
+    "codigo": "H050",
+    "rgb": "189,205,172",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#BDCDAC"
+  },
+  {
+    "codigo": "J044",
+    "rgb": "148,183,162",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#94B7A2"
+  },
+  {
+    "codigo": "S052",
+    "rgb": "171,196,166",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#ABC4A6"
+  },
+  {
+    "codigo": "N043",
+    "rgb": "139,169,153",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#8BA999"
+  },
+  {
+    "codigo": "X109",
+    "rgb": "148,185,142",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#94B98E"
+  },
+  {
+    "codigo": "Y122",
+    "rgb": "112,161,149",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#70A195"
+  },
+  {
+    "codigo": "N052",
+    "rgb": "127,164,125",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#7FA47D"
+  },
+  {
+    "codigo": "L037",
+    "rgb": "115,173,160",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#73ADA0"
+  },
+  {
+    "codigo": "N050",
+    "rgb": "155,165,137",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#9BA589"
+  },
+  {
+    "codigo": "J050",
+    "rgb": "175,189,157",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#AFBD9D"
+  },
+  {
+    "codigo": "Y145",
+    "rgb": "129,124,98",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#817C62"
+  },
+  {
+    "codigo": "M058",
+    "rgb": "150,163,92",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#96A35C"
+  },
+  {
+    "codigo": "X148",
+    "rgb": "163,165,141",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#A3A58D"
+  },
+  {
+    "codigo": "K050",
+    "rgb": "151,164,126",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#97A47E"
+  },
+  {
+    "codigo": "Y096",
+    "rgb": "121,120,102",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#797866"
+  },
+  {
+    "codigo": "Y081",
+    "rgb": "122,122,59",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#7A7A3B"
+  },
+  {
+    "codigo": "Y087",
+    "rgb": "143,146,124",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#8F927C"
+  },
+  {
+    "codigo": "X139",
+    "rgb": "139,154,120",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#8B9A78"
+  },
+  {
+    "codigo": "M071",
+    "rgb": "164,156,105",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#A49C69"
+  },
+  {
+    "codigo": "Y141",
+    "rgb": "101,102,77",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#65664D"
+  },
+  {
+    "codigo": "X151",
+    "rgb": "141,143,123",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#8D8F7B"
+  },
+  {
+    "codigo": "N058",
+    "rgb": "179,184,126",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B3B87E"
+  },
+  {
+    "codigo": "Y148",
+    "rgb": "107,120,106",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#6B786A"
+  },
+  {
+    "codigo": "J072",
+    "rgb": "247,226,121",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F7E279"
+  },
+  {
+    "codigo": "L060",
+    "rgb": "148,146,70",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#949246"
+  },
+  {
+    "codigo": "J071",
+    "rgb": "222,207,122",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#DECF7A"
+  },
+  {
+    "codigo": "M060",
+    "rgb": "113,111,53",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#716F35"
+  },
+  {
+    "codigo": "J060",
+    "rgb": "204,205,140",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#CCCD8C"
+  },
+  {
+    "codigo": "L099",
+    "rgb": "149,129,72",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#958148"
+  },
+  {
+    "codigo": "K060",
+    "rgb": "184,180,98",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B8B462"
+  },
+  {
+    "codigo": "M099",
+    "rgb": "126,108,56",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#7E6C38"
+  },
+  {
+    "codigo": "H060",
+    "rgb": "226,224,184",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E2E0B8"
+  },
+  {
+    "codigo": "H058",
+    "rgb": "219,229,177",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#DBE5B1"
+  },
+  {
+    "codigo": "V058",
+    "rgb": "224,229,190",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E0E5BE"
+  },
+  {
+    "codigo": "K058",
+    "rgb": "191,197,125",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#BFC57D"
+  },
+  {
+    "codigo": "J058",
+    "rgb": "210,223,157",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D2DF9D"
+  },
+  {
+    "codigo": "S058",
+    "rgb": "211,215,174",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D3D7AE"
+  },
+  {
+    "codigo": "L058",
+    "rgb": "172,177,96",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#ACB160"
+  },
+  {
+    "codigo": "G058",
+    "rgb": "227,234,190",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E3EABE"
+  },
+  {
+    "codigo": "V072",
+    "rgb": "232,222,164",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E8DEA4"
+  },
+  {
+    "codigo": "H072",
+    "rgb": "246,230,144",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F6E690"
+  },
+  {
+    "codigo": "K071",
+    "rgb": "212,194,93",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D4C25D"
+  },
+  {
+    "codigo": "S077",
+    "rgb": "241,213,124",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F1D57C"
+  },
+  {
+    "codigo": "G071",
+    "rgb": "237,229,157",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#EDE59D"
+  },
+  {
+    "codigo": "G072",
+    "rgb": "244,233,181",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F4E9B5"
+  },
+  {
+    "codigo": "N072",
+    "rgb": "212,193,88",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D4C158"
+  },
+  {
+    "codigo": "J077",
+    "rgb": "246,214,125",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F6D67D"
+  },
+  {
+    "codigo": "H071",
+    "rgb": "229,222,141",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E5DE8D"
+  },
+  {
+    "codigo": "H077",
+    "rgb": "247,227,158",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F7E39E"
+  },
+  {
+    "codigo": "L071",
+    "rgb": "196,179,80",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C4B350"
+  },
+  {
+    "codigo": "M072",
+    "rgb": "207,183,56",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#CFB738"
+  },
+  {
+    "codigo": "N077",
+    "rgb": "229,191,79",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E5BF4F"
+  },
+  {
+    "codigo": "S072",
+    "rgb": "225,212,131",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E1D483"
+  },
+  {
+    "codigo": "V077",
+    "rgb": "243,223,158",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F3DF9E"
+  },
+  {
+    "codigo": "M077",
+    "rgb": "213,176,47",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D5B02F"
+  },
+  {
+    "codigo": "V099",
+    "rgb": "222,212,187",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#DED4BB"
+  },
+  {
+    "codigo": "S071",
+    "rgb": "204,193,147",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#CCC193"
+  },
+  {
+    "codigo": "S098",
+    "rgb": "217,206,181",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D9CEB5"
+  },
+  {
+    "codigo": "N071",
+    "rgb": "185,176,132",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B9B084"
+  },
+  {
+    "codigo": "H099",
+    "rgb": "216,208,179",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D8D0B3"
+  },
+  {
+    "codigo": "N060",
+    "rgb": "173,172,131",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#ADAC83"
+  },
+  {
+    "codigo": "V071",
+    "rgb": "224,215,181",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E0D7B5"
+  },
+  {
+    "codigo": "S060",
+    "rgb": "192,192,164",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C0C0A4"
+  },
+  {
+    "codigo": "G100",
+    "rgb": "231,216,187",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E7D8BB"
+  },
+  {
+    "codigo": "X099",
+    "rgb": "222,199,146",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#DEC792"
+  },
+  {
+    "codigo": "G079",
+    "rgb": "246,230,190",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F6E6BE"
+  },
+  {
+    "codigo": "J099",
+    "rgb": "202,185,139",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#CAB98B"
+  },
+  {
+    "codigo": "X044",
+    "rgb": "225,199,145",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E1C791"
+  },
+  {
+    "codigo": "H098",
+    "rgb": "232,213,172",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E8D5AC"
+  },
+  {
+    "codigo": "N099",
+    "rgb": "178,160,117",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B2A075"
+  },
+  {
+    "codigo": "J098",
+    "rgb": "222,200,160",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#DEC8A0"
+  },
+  {
+    "codigo": "J100",
+    "rgb": "187,164,122",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#BBA47A"
+  },
+  {
+    "codigo": "Y134",
+    "rgb": "167,142,115",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#A78E73"
+  },
+  {
+    "codigo": "K099",
+    "rgb": "179,155,98",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B39B62"
+  },
+  {
+    "codigo": "N100",
+    "rgb": "161,141,110",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#A18D6E"
+  },
+  {
+    "codigo": "K098",
+    "rgb": "192,160,106",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C0A06A"
+  },
+  {
+    "codigo": "Y039",
+    "rgb": "164,141,117",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#A48D75"
+  },
+  {
+    "codigo": "L098",
+    "rgb": "157,130,82",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#9D8252"
+  },
+  {
+    "codigo": "K100",
+    "rgb": "140,120,93",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#8C785D"
+  },
+  {
+    "codigo": "N098",
+    "rgb": "193,168,117",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C1A875"
+  },
+  {
+    "codigo": "N101",
+    "rgb": "131,101,63",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#83653F"
+  },
+  {
+    "codigo": "M097",
+    "rgb": "120,95,62",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#785F3E"
+  },
+  {
+    "codigo": "M098",
+    "rgb": "123,102,79",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#7B664F"
+  },
+  {
+    "codigo": "L100",
+    "rgb": "195,168,113",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C3A871"
+  },
+  {
+    "codigo": "N097",
+    "rgb": "142,117,92",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#8E755C"
+  },
+  {
+    "codigo": "Y098",
+    "rgb": "97,80,64",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#615040"
+  },
+  {
+    "codigo": "Y044",
+    "rgb": "183,137,59",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B7893B"
+  },
+  {
+    "codigo": "Y135",
+    "rgb": "155,106,67",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#9B6A43"
+  },
+  {
+    "codigo": "L097",
+    "rgb": "185,138,65",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B98A41"
+  },
+  {
+    "codigo": "K101",
+    "rgb": "143,114,86",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#8F7256"
+  },
+  {
+    "codigo": "Y030",
+    "rgb": "187,139,79",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#BB8B4F"
+  },
+  {
+    "codigo": "L101",
+    "rgb": "125,97,75",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#7D614B"
+  },
+  {
+    "codigo": "Y033",
+    "rgb": "173,119,58",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#AD773A"
+  },
+  {
+    "codigo": "M101",
+    "rgb": "107,89,72",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#6B5948"
+  },
+  {
+    "codigo": "X095",
+    "rgb": "187,159,130",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#BB9F82"
+  },
+  {
+    "codigo": "S101",
+    "rgb": "184,161,131",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B8A183"
+  },
+  {
+    "codigo": "J101",
+    "rgb": "179,153,123",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B3997B"
+  },
+  {
+    "codigo": "Y071",
+    "rgb": "168,142,117",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#A88E75"
+  },
+  {
+    "codigo": "K113",
+    "rgb": "166,120,96",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#A67860"
+  },
+  {
+    "codigo": "M113",
+    "rgb": "108,75,64",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#6C4B40"
+  },
+  {
+    "codigo": "H115",
+    "rgb": "175,141,120",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#AF8D78"
+  },
+  {
+    "codigo": "L120",
+    "rgb": "154,102,89",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#9A6659"
+  },
+  {
+    "codigo": "J113",
+    "rgb": "181,138,112",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B58A70"
+  },
+  {
+    "codigo": "L115",
+    "rgb": "124,93,78",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#7C5D4E"
+  },
+  {
+    "codigo": "J115",
+    "rgb": "154,118,99",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#9A7663"
+  },
+  {
+    "codigo": "M120",
+    "rgb": "108,75,66",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#6C4B42"
+  },
+  {
+    "codigo": "N113",
+    "rgb": "190,152,130",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#BE9882"
+  },
+  {
+    "codigo": "K115",
+    "rgb": "130,103,88",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#826758"
+  },
+  {
+    "codigo": "N115",
+    "rgb": "140,104,84",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#8C6854"
+  },
+  {
+    "codigo": "Y038",
+    "rgb": "97,72,65",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#614841"
+  },
+  {
+    "codigo": "Y130",
+    "rgb": "188,145,121",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#BC9179"
+  },
+  {
+    "codigo": "X048",
+    "rgb": "136,103,92",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#88675C"
+  },
+  {
+    "codigo": "N120",
+    "rgb": "93,72,65",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#5D4841"
+  },
+  {
+    "codigo": "Y037",
+    "rgb": "101,87,81",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#655751"
+  },
+  {
+    "codigo": "M109",
+    "rgb": "89,76,69",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#594C45"
+  },
+  {
+    "codigo": "L109",
+    "rgb": "91,75,67",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#5B4B43"
+  },
+  {
+    "codigo": "M115",
+    "rgb": "96,76,69",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#604C45"
+  },
+  {
+    "codigo": "X031",
+    "rgb": "242,219,187",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F2DBBB"
+  },
+  {
+    "codigo": "Y060",
+    "rgb": "246,218,176",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F6DAB0"
+  },
+  {
+    "codigo": "V079",
+    "rgb": "242,212,156",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F2D49C"
+  },
+  {
+    "codigo": "V081",
+    "rgb": "237,209,158",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#EDD19E"
+  },
+  {
+    "codigo": "X030",
+    "rgb": "235,197,137",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#EBC589"
+  },
+  {
+    "codigo": "S081",
+    "rgb": "225,190,125",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E1BE7D"
+  },
+  {
+    "codigo": "N081",
+    "rgb": "220,176,106",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#DCB06A"
+  },
+  {
+    "codigo": "K097",
+    "rgb": "211,167,94",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D3A75E"
+  },
+  {
+    "codigo": "J097",
+    "rgb": "220,187,136",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#DCBB88"
+  },
+  {
+    "codigo": "S100",
+    "rgb": "186,168,137",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#BAA889"
+  },
+  {
+    "codigo": "Y136",
+    "rgb": "215,178,133",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D7B285"
+  },
+  {
+    "codigo": "V101",
+    "rgb": "206,190,168",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#CEBEA8"
+  },
+  {
+    "codigo": "N087",
+    "rgb": "228,192,144",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E4C090"
+  },
+  {
+    "codigo": "S099",
+    "rgb": "199,188,156",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C7BC9C"
+  },
+  {
+    "codigo": "Y029",
+    "rgb": "217,170,116",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D9AA74"
+  },
+  {
+    "codigo": "H101",
+    "rgb": "211,196,174",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D3C4AE"
+  },
+  {
+    "codigo": "X029",
+    "rgb": "230,190,141",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E6BE8D"
+  },
+  {
+    "codigo": "H100",
+    "rgb": "219,164,107",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#DBA46B"
+  },
+  {
+    "codigo": "Y031",
+    "rgb": "228,184,124",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E4B87C"
+  },
+  {
+    "codigo": "Y043",
+    "rgb": "214,193,166",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D6C1A6"
+  },
+  {
+    "codigo": "X098",
+    "rgb": "239,204,165",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#EFCCA5"
+  },
+  {
+    "codigo": "J087",
+    "rgb": "208,186,155",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D0BA9B"
+  },
+  {
+    "codigo": "X050",
+    "rgb": "199,158,120",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C79E78"
+  },
+  {
+    "codigo": "X087",
+    "rgb": "187,178,159",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#BBB29F"
+  },
+  {
+    "codigo": "K155",
+    "rgb": "133,127,116",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#857F74"
+  },
+  {
+    "codigo": "X145",
+    "rgb": "191,183,160",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#BFB7A0"
+  },
+  {
+    "codigo": "N155",
+    "rgb": "139,134,125",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#8B867D"
+  },
+  {
+    "codigo": "X096",
+    "rgb": "146,143,131",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#928F83"
+  },
+  {
+    "codigo": "L155",
+    "rgb": "105,97,88",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#696158"
+  },
+  {
+    "codigo": "J155",
+    "rgb": "167,161,150",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#A7A196"
+  },
+  {
+    "codigo": "M155",
+    "rgb": "85,78,73",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#554E49"
+  },
+  {
+    "codigo": "V120",
+    "rgb": "213,192,184",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D5C0B8"
+  },
+  {
+    "codigo": "X089",
+    "rgb": "186,165,157",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#BAA59D"
+  },
+  {
+    "codigo": "X037",
+    "rgb": "191,176,163",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#BFB0A3"
+  },
+  {
+    "codigo": "S109",
+    "rgb": "186,167,152",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#BAA798"
+  },
+  {
+    "codigo": "S115",
+    "rgb": "175,148,131",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#AF9483"
+  },
+  {
+    "codigo": "J109",
+    "rgb": "160,140,124",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#A08C7C"
+  },
+  {
+    "codigo": "N109",
+    "rgb": "154,139,124",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#9A8B7C"
+  },
+  {
+    "codigo": "K109",
+    "rgb": "132,109,95",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#846D5F"
+  },
+  {
+    "codigo": "V113",
+    "rgb": "225,206,194",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E1CEC2"
+  },
+  {
+    "codigo": "G090",
+    "rgb": "245,222,202",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F5DECA"
+  },
+  {
+    "codigo": "G109",
+    "rgb": "221,208,200",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#DDD0C8"
+  },
+  {
+    "codigo": "X162",
+    "rgb": "242,224,210",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F2E0D2"
+  },
+  {
+    "codigo": "X021",
+    "rgb": "231,208,189",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E7D0BD"
+  },
+  {
+    "codigo": "S089",
+    "rgb": "243,215,190",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F3D7BE"
+  },
+  {
+    "codigo": "V109",
+    "rgb": "214,203,194",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D6CBC2"
+  },
+  {
+    "codigo": "G096",
+    "rgb": "246,216,196",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F6D8C4"
+  },
+  {
+    "codigo": "G113",
+    "rgb": "232,213,192",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E8D5C0"
+  },
+  {
+    "codigo": "H090",
+    "rgb": "204,192,182",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#CCC0B6"
+  },
+  {
+    "codigo": "H109",
+    "rgb": "210,197,181",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D2C5B5"
+  },
+  {
+    "codigo": "X038",
+    "rgb": "242,217,199",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F2D9C7"
+  },
+  {
+    "codigo": "X039",
+    "rgb": "222,205,187",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#DECDBB"
+  },
+  {
+    "codigo": "X071",
+    "rgb": "246,218,195",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F6DAC3"
+  },
+  {
+    "codigo": "G089",
+    "rgb": "242,213,194",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F2D5C2"
+  },
+  {
+    "codigo": "G095",
+    "rgb": "248,188,152",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F8BC98"
+  },
+  {
+    "codigo": "J090",
+    "rgb": "248,207,179",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F8CFB3"
+  },
+  {
+    "codigo": "H089",
+    "rgb": "240,201,181",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F0C9B5"
+  },
+  {
+    "codigo": "S090",
+    "rgb": "241,203,178",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F1CBB2"
+  },
+  {
+    "codigo": "H096",
+    "rgb": "242,209,193",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F2D1C1"
+  },
+  {
+    "codigo": "V090",
+    "rgb": "248,202,171",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F8CAAB"
+  },
+  {
+    "codigo": "H095",
+    "rgb": "245,214,200",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F5D6C8"
+  },
+  {
+    "codigo": "G130",
+    "rgb": "245,175,119",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F5AF77"
+  },
+  {
+    "codigo": "K087",
+    "rgb": "238,169,122",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#EEA97A"
+  },
+  {
+    "codigo": "N089",
+    "rgb": "249,177,131",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F9B183"
+  },
+  {
+    "codigo": "J089",
+    "rgb": "249,167,114",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F9A772"
+  },
+  {
+    "codigo": "K089",
+    "rgb": "248,178,137",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F8B289"
+  },
+  {
+    "codigo": "J095",
+    "rgb": "247,167,126",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F7A77E"
+  },
+  {
+    "codigo": "K095",
+    "rgb": "246,168,130",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F6A882"
+  },
+  {
+    "codigo": "J096",
+    "rgb": "234,172,142",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#EAAC8E"
+  },
+  {
+    "codigo": "N096",
+    "rgb": "239,192,170",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#EFC0AA"
+  },
+  {
+    "codigo": "N090",
+    "rgb": "241,166,165",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F1A6A5"
+  },
+  {
+    "codigo": "J136",
+    "rgb": "243,200,184",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F3C8B8"
+  },
+  {
+    "codigo": "H130",
+    "rgb": "234,125,126",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#EA7D7E"
+  },
+  {
+    "codigo": "K136",
+    "rgb": "240,197,178",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F0C5B2"
+  },
+  {
+    "codigo": "S095",
+    "rgb": "236,154,136",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#EC9A88"
+  },
+  {
+    "codigo": "J130",
+    "rgb": "231,166,146",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E7A692"
+  },
+  {
+    "codigo": "N095",
+    "rgb": "220,122,123",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#DC7A7B"
+  },
+  {
+    "codigo": "J137",
+    "rgb": "239,198,180",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#EFC6B4"
+  },
+  {
+    "codigo": "S096",
+    "rgb": "244,166,143",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F4A68F"
+  },
+  {
+    "codigo": "J134",
+    "rgb": "243,155,125",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F39B7D"
+  },
+  {
+    "codigo": "J129",
+    "rgb": "214,129,128",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D68180"
+  },
+  {
+    "codigo": "L095",
+    "rgb": "244,202,185",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F4CAB9"
+  },
+  {
+    "codigo": "N136",
+    "rgb": "226,125,120",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E27D78"
+  },
+  {
+    "codigo": "H129",
+    "rgb": "202,128,123",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#CA807B"
+  },
+  {
+    "codigo": "N122",
+    "rgb": "195,147,130",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C39382"
+  },
+  {
+    "codigo": "N129",
+    "rgb": "207,147,130",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#CF9382"
+  },
+  {
+    "codigo": "N130",
+    "rgb": "210,163,147",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D2A393"
+  },
+  {
+    "codigo": "N134",
+    "rgb": "216,147,140",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D8938C"
+  },
+  {
+    "codigo": "N137",
+    "rgb": "195,153,144",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C39990"
+  },
+  {
+    "codigo": "J139",
+    "rgb": "215,151,150",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D79796"
+  },
+  {
+    "codigo": "H122",
+    "rgb": "214,166,142",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D6A68E"
+  },
+  {
+    "codigo": "N139",
+    "rgb": "192,136,131",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C08883"
+  },
+  {
+    "codigo": "H113",
+    "rgb": "214,180,155",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D6B49B"
+  },
+  {
+    "codigo": "G115",
+    "rgb": "212,186,166",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D4BAA6"
+  },
+  {
+    "codigo": "S113",
+    "rgb": "210,186,171",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D2BAAB"
+  },
+  {
+    "codigo": "V115",
+    "rgb": "207,183,166",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#CFB7A6"
+  },
+  {
+    "codigo": "X032",
+    "rgb": "201,174,157",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C9AE9D"
+  },
+  {
+    "codigo": "S122",
+    "rgb": "214,180,168",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D6B4A8"
+  },
+  {
+    "codigo": "K120",
+    "rgb": "193,160,153",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C1A099"
+  },
+  {
+    "codigo": "S120",
+    "rgb": "191,165,156",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#BFA59C"
+  },
+  {
+    "codigo": "G122",
+    "rgb": "229,198,179",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E5C6B3"
+  },
+  {
+    "codigo": "V135",
+    "rgb": "232,196,191",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E8C4BF"
+  },
+  {
+    "codigo": "H120",
+    "rgb": "226,205,198",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E2CDC6"
+  },
+  {
+    "codigo": "V140",
+    "rgb": "221,194,195",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#DDC2C3"
+  },
+  {
+    "codigo": "V122",
+    "rgb": "225,197,187",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E1C5BB"
+  },
+  {
+    "codigo": "S134",
+    "rgb": "228,186,175",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E4BAAF"
+  },
+  {
+    "codigo": "J120",
+    "rgb": "214,190,184",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D6BEB8"
+  },
+  {
+    "codigo": "S139",
+    "rgb": "218,177,175",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#DAB1AF"
+  },
+  {
+    "codigo": "S130",
+    "rgb": "228,200,190",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E4C8BE"
+  },
+  {
+    "codigo": "S129",
+    "rgb": "215,195,194",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D7C3C2"
+  },
+  {
+    "codigo": "S138",
+    "rgb": "220,194,188",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#DCC2BC"
+  },
+  {
+    "codigo": "S137",
+    "rgb": "200,154,152",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C89A98"
+  },
+  {
+    "codigo": "S140",
+    "rgb": "236,207,194",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#ECCFC2"
+  },
+  {
+    "codigo": "V134",
+    "rgb": "222,174,165",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#DEAEA5"
+  },
+  {
+    "codigo": "S135",
+    "rgb": "183,143,141",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B78F8D"
+  },
+  {
+    "codigo": "H134",
+    "rgb": "241,193,183",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F1C1B7"
+  },
+  {
+    "codigo": "S136",
+    "rgb": "233,181,183",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E9B5B7"
+  },
+  {
+    "codigo": "H137",
+    "rgb": "237,180,173",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#EDB4AD"
+  },
+  {
+    "codigo": "H140",
+    "rgb": "241,184,188",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F1B8BC"
+  },
+  {
+    "codigo": "H135",
+    "rgb": "240,187,182",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F0BBB6"
+  },
+  {
+    "codigo": "H138",
+    "rgb": "228,173,173",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E4ADAD"
+  },
+  {
+    "codigo": "H136",
+    "rgb": "243,185,184",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F3B9B8"
+  },
+  {
+    "codigo": "H139",
+    "rgb": "225,171,169",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E1ABA9"
+  },
+  {
+    "codigo": "G134",
+    "rgb": "242,214,204",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F2D6CC"
+  },
+  {
+    "codigo": "G135",
+    "rgb": "242,211,203",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F2D3CB"
+  },
+  {
+    "codigo": "G137",
+    "rgb": "242,205,200",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F2CDC8"
+  },
+  {
+    "codigo": "G138",
+    "rgb": "237,204,200",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#EDCCC8"
+  },
+  {
+    "codigo": "V136",
+    "rgb": "240,206,204",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F0CECC"
+  },
+  {
+    "codigo": "G136",
+    "rgb": "243,206,204",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F3CECC"
+  },
+  {
+    "codigo": "G140",
+    "rgb": "242,208,208",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F2D0D0"
+  },
+  {
+    "codigo": "G139",
+    "rgb": "237,201,200",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#EDC9C8"
+  },
+  {
+    "codigo": "G141",
+    "rgb": "236,197,205",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#ECC5CD"
+  },
+  {
+    "codigo": "S143",
+    "rgb": "214,197,210",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D6C5D2"
+  },
+  {
+    "codigo": "H143",
+    "rgb": "210,171,193",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D2ABC1"
+  },
+  {
+    "codigo": "J145",
+    "rgb": "202,173,198",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#CAADC6"
+  },
+  {
+    "codigo": "S141",
+    "rgb": "224,188,201",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E0BCC9"
+  },
+  {
+    "codigo": "S145",
+    "rgb": "200,174,189",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C8AEBD"
+  },
+  {
+    "codigo": "N141",
+    "rgb": "187,138,160",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#BB8AA0"
+  },
+  {
+    "codigo": "K145",
+    "rgb": "169,134,178",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#A986B2"
+  },
+  {
+    "codigo": "G145",
+    "rgb": "224,203,215",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E0CBD7"
+  },
+  {
+    "codigo": "N143",
+    "rgb": "184,132,163",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B884A3"
+  },
+  {
+    "codigo": "J143",
+    "rgb": "156,83,122",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#9C537A"
+  },
+  {
+    "codigo": "K143",
+    "rgb": "147,110,146",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#936E92"
+  },
+  {
+    "codigo": "L145",
+    "rgb": "212,189,209",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D4BDD1"
+  },
+  {
+    "codigo": "H145",
+    "rgb": "181,148,163",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B594A3"
+  },
+  {
+    "codigo": "N145",
+    "rgb": "115,73,98",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#734962"
+  },
+  {
+    "codigo": "G148",
+    "rgb": "217,211,229",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D9D3E5"
+  },
+  {
+    "codigo": "N148",
+    "rgb": "168,161,198",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#A8A1C6"
+  },
+  {
+    "codigo": "S148",
+    "rgb": "199,193,222",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C7C1DE"
+  },
+  {
+    "codigo": "K148",
+    "rgb": "134,124,187",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#867CBB"
+  },
+  {
+    "codigo": "H148",
+    "rgb": "199,192,226",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C7C0E2"
+  },
+  {
+    "codigo": "L148",
+    "rgb": "82,79,119",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#524F77"
+  },
+  {
+    "codigo": "J148",
+    "rgb": "184,176,222",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B8B0DE"
+  },
+  {
+    "codigo": "M148",
+    "rgb": "72,68,96",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#484460"
+  },
+  {
+    "codigo": "S149",
+    "rgb": "193,190,201",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C1BEC9"
+  },
+  {
+    "codigo": "S151",
+    "rgb": "190,182,190",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#BEB6BE"
+  },
+  {
+    "codigo": "J149",
+    "rgb": "183,176,187",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B7B0BB"
+  },
+  {
+    "codigo": "N149",
+    "rgb": "167,160,173",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#A7A0AD"
+  },
+  {
+    "codigo": "K149",
+    "rgb": "160,149,168",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#A095A8"
+  },
+  {
+    "codigo": "L149",
+    "rgb": "122,107,135",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#7A6B87"
+  },
+  {
+    "codigo": "M149",
+    "rgb": "76,64,86",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#4C4056"
+  },
+  {
+    "codigo": "M021",
+    "rgb": "62,64,85",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#3E4055"
+  },
+  {
+    "codigo": "H151",
+    "rgb": "205,197,205",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#CDC5CD"
+  },
+  {
+    "codigo": "L151",
+    "rgb": "118,109,119",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#766D77"
+  },
+  {
+    "codigo": "J151",
+    "rgb": "188,178,189",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#BCB2BD"
+  },
+  {
+    "codigo": "M151",
+    "rgb": "69,62,66",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#453E42"
+  },
+  {
+    "codigo": "K151",
+    "rgb": "163,148,158",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#A3949E"
+  },
+  {
+    "codigo": "N151",
+    "rgb": "146,135,142",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#92878E"
+  },
+  {
+    "codigo": "K021",
+    "rgb": "124,157,207",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#7C9DCF"
+  },
+  {
+    "codigo": "Y157",
+    "rgb": "44,86,128",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#2C5680"
+  },
+  {
+    "codigo": "Y143",
+    "rgb": "106,132,178",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#6A84B2"
+  },
+  {
+    "codigo": "M016",
+    "rgb": "39,91,139",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#275B8B"
+  },
+  {
+    "codigo": "L021",
+    "rgb": "89,129,180",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#5981B4"
+  },
+  {
+    "codigo": "L017",
+    "rgb": "27,106,160",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#1B6AA0"
+  },
+  {
+    "codigo": "Y077",
+    "rgb": "61,99,165",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#3D63A5"
+  },
+  {
+    "codigo": "L016",
+    "rgb": "30,126,189",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#1E7EBD"
+  },
+  {
+    "codigo": "J016",
+    "rgb": "126,186,222",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#7EBADE"
+  },
+  {
+    "codigo": "X157",
+    "rgb": "57,151,195",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#3997C3"
+  },
+  {
+    "codigo": "N016",
+    "rgb": "101,166,204",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#65A6CC"
+  },
+  {
+    "codigo": "K030",
+    "rgb": "35,153,179",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#2399B3"
+  },
+  {
+    "codigo": "K016",
+    "rgb": "62,147,202",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#3E93CA"
+  },
+  {
+    "codigo": "L030",
+    "rgb": "0,128,150",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#008096"
+  },
+  {
+    "codigo": "Y079",
+    "rgb": "36,116,161",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#2474A1"
+  },
+  {
+    "codigo": "L029",
+    "rgb": "54,134,154",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#36869A"
+  },
+  {
+    "codigo": "L043",
+    "rgb": "36,147,117",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#249375"
+  },
+  {
+    "codigo": "J052",
+    "rgb": "23,107,108",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#176B6C"
+  },
+  {
+    "codigo": "M052",
+    "rgb": "65,132,117",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#418475"
+  },
+  {
+    "codigo": "K052",
+    "rgb": "44,89,81",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#2C5951"
+  },
+  {
+    "codigo": "Y139",
+    "rgb": "69,133,139",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#45858B"
+  },
+  {
+    "codigo": "L052",
+    "rgb": "89,173,132",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#59AD84"
+  },
+  {
+    "codigo": "L050",
+    "rgb": "67,150,112",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#439670"
+  },
+  {
+    "codigo": "Y109",
+    "rgb": "113,166,171",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#71A6AB"
+  },
+  {
+    "codigo": "M050",
+    "rgb": "155,211,149",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#9BD395"
+  },
+  {
+    "codigo": "G081",
+    "rgb": "59,110,66",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#3B6E42"
+  },
+  {
+    "codigo": "X058",
+    "rgb": "117,186,110",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#75BA6E"
+  },
+  {
+    "codigo": "H081",
+    "rgb": "84,103,74",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#54674A"
+  },
+  {
+    "codigo": "Y113",
+    "rgb": "66,148,72",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#429448"
+  },
+  {
+    "codigo": "H079",
+    "rgb": "101,118,84",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#657654"
+  },
+  {
+    "codigo": "J081",
+    "rgb": "75,116,73",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#4B7449"
+  },
+  {
+    "codigo": "J079",
+    "rgb": "74,84,63",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#4A543F"
+  },
+  {
+    "codigo": "Y052",
+    "rgb": "248,225,170",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F8E1AA"
+  },
+  {
+    "codigo": "M079",
+    "rgb": "248,210,121",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F8D279"
+  },
+  {
+    "codigo": "M081",
+    "rgb": "246,219,155",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F6DB9B"
+  },
+  {
+    "codigo": "L079",
+    "rgb": "244,202,125",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F4CA7D"
+  },
+  {
+    "codigo": "K079",
+    "rgb": "249,222,156",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F9DE9C"
+  },
+  {
+    "codigo": "Y050",
+    "rgb": "245,200,110",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F5C86E"
+  },
+  {
+    "codigo": "M090",
+    "rgb": "253,211,116",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#FDD374"
+  },
+  {
+    "codigo": "L087",
+    "rgb": "241,200,118",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F1C876"
+  },
+  {
+    "codigo": "L090",
+    "rgb": "242,203,119",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F2CB77"
+  },
+  {
+    "codigo": "Y021",
+    "rgb": "234,181,58",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#EAB53A"
+  },
+  {
+    "codigo": "K096",
+    "rgb": "252,209,96",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#FCD160"
+  },
+  {
+    "codigo": "L089",
+    "rgb": "229,173,50",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E5AD32"
+  },
+  {
+    "codigo": "K090",
+    "rgb": "239,189,86",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#EFBD56"
+  },
+  {
+    "codigo": "J122",
+    "rgb": "221,166,57",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#DDA639"
+  },
+  {
+    "codigo": "Y162",
+    "rgb": "203,154,56",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#CB9A38"
+  },
+  {
+    "codigo": "M087",
+    "rgb": "253,182,36",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#FDB624"
+  },
+  {
+    "codigo": "M089",
+    "rgb": "251,197,76",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#FBC54C"
+  },
+  {
+    "codigo": "K134",
+    "rgb": "230,180,74",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E6B44A"
+  },
+  {
+    "codigo": "X018",
+    "rgb": "245,156,39",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F59C27"
+  },
+  {
+    "codigo": "Y129",
+    "rgb": "225,127,85",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E17F55"
+  },
+  {
+    "codigo": "L113",
+    "rgb": "232,136,46",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E8882E"
+  },
+  {
+    "codigo": "L139",
+    "rgb": "232,136,87",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E88857"
+  },
+  {
+    "codigo": "L135",
+    "rgb": "240,137,47",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#F0892F"
+  },
+  {
+    "codigo": "X017",
+    "rgb": "237,140,95",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#ED8C5F"
+  },
+  {
+    "codigo": "Y018",
+    "rgb": "239,136,58",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#EF883A"
+  },
+  {
+    "codigo": "N135",
+    "rgb": "233,147,100",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E99364"
+  },
+  {
+    "codigo": "Y017",
+    "rgb": "197,131,105",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C58369"
+  },
+  {
+    "codigo": "M136",
+    "rgb": "220,150,113",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#DC9671"
+  },
+  {
+    "codigo": "M122",
+    "rgb": "205,123,58",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#CD7B3A"
+  },
+  {
+    "codigo": "Y032",
+    "rgb": "212,131,60",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D4833C"
+  },
+  {
+    "codigo": "Y089",
+    "rgb": "238,128,97",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#EE8061"
+  },
+  {
+    "codigo": "K135",
+    "rgb": "216,96,77",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D8604D"
+  },
+  {
+    "codigo": "L130",
+    "rgb": "231,125,97",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E77D61"
+  },
+  {
+    "codigo": "L134",
+    "rgb": "203,90,76",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#CB5A4C"
+  },
+  {
+    "codigo": "L136",
+    "rgb": "220,113,59",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#DC713B"
+  },
+  {
+    "codigo": "M135",
+    "rgb": "212,94,88",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D45E58"
+  },
+  {
+    "codigo": "M139",
+    "rgb": "206,74,62",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#CE4A3E"
+  },
+  {
+    "codigo": "N140",
+    "rgb": "136,82,68",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#885244"
+  },
+  {
+    "codigo": "K138",
+    "rgb": "119,80,64",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#775040"
+  },
+  {
+    "codigo": "M140",
+    "rgb": "225,111,69",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E16F45"
+  },
+  {
+    "codigo": "M141",
+    "rgb": "183,102,96",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B76660"
+  },
+  {
+    "codigo": "Y016",
+    "rgb": "149,68,63",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#95443F"
+  },
+  {
+    "codigo": "M145",
+    "rgb": "173,67,66",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#AD4342"
+  },
+  {
+    "codigo": "L138",
+    "rgb": "172,61,62",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#AC3D3E"
+  },
+  {
+    "codigo": "M143",
+    "rgb": "171,60,63",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#AB3C3F"
+  },
+  {
+    "codigo": "M138",
+    "rgb": "174,97,93",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#AE615D"
+  },
+  {
+    "codigo": "G168",
+    "rgb": "130,69,64",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#824540"
+  },
+  {
+    "codigo": "S167",
+    "rgb": "174,86,84",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#AE5654"
+  },
+  {
+    "codigo": "G167",
+    "rgb": "130,78,67",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#824E43"
+  },
+  {
+    "codigo": "H167",
+    "rgb": "156,77,71",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#9C4D47"
+  },
+  {
+    "codigo": "V167",
+    "rgb": "133,87,74",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#85574A"
+  },
+  {
+    "codigo": "V168",
+    "rgb": "202,80,72",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#CA5048"
+  },
+  {
+    "codigo": "V151",
+    "rgb": "199,67,64",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C74340"
+  },
+  {
+    "codigo": "J168",
+    "rgb": "193,63,61",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C13F3D"
+  },
+  {
+    "codigo": "X081",
+    "rgb": "207,78,85",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#CF4E55"
+  },
+  {
+    "codigo": "G162",
+    "rgb": "193,78,96",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C14E60"
+  },
+  {
+    "codigo": "X120",
+    "rgb": "167,61,67",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#A73D43"
+  },
+  {
+    "codigo": "H157",
+    "rgb": "175,69,81",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#AF4551"
+  },
+  {
+    "codigo": "H155",
+    "rgb": "130,64,63",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#82403F"
+  },
+  {
+    "codigo": "X072",
+    "rgb": "165,59,63",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#A53B3F"
+  },
+  {
+    "codigo": "V155",
+    "rgb": "131,69,63",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#83453F"
+  },
+  {
+    "codigo": "S155",
+    "rgb": "206,74,62",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#CE4A3E"
+  },
+  {
+    "codigo": "G157",
+    "rgb": "164,103,107",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#A4676B"
+  },
+  {
+    "codigo": "X140",
+    "rgb": "160,90,99",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#A05A63"
+  },
+  {
+    "codigo": "X134",
+    "rgb": "157,64,69",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#9D4045"
+  },
+  {
+    "codigo": "V100",
+    "rgb": "135,63,72",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#873F48"
+  },
+  {
+    "codigo": "X130",
+    "rgb": "104,70,76",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#68464C"
+  },
+  {
+    "codigo": "X122",
+    "rgb": "98,64,65",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#624041"
+  },
+  {
+    "codigo": "Y099",
+    "rgb": "116,74,88",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#744A58"
+  },
+  {
+    "codigo": "V098",
+    "rgb": "108,61,67",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#6C3D43"
+  },
+  {
+    "codigo": "H168",
+    "rgb": "88,66,83",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#584253"
+  },
+  {
+    "codigo": "X090",
+    "rgb": "93,60,66",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#5D3C42"
+  },
+  {
+    "codigo": "H162",
+    "rgb": "224,222,220",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E0DEDC"
+  },
+  {
+    "codigo": "V162",
+    "rgb": "168,162,162",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#A8A2A2"
+  },
+  {
+    "codigo": "V157",
+    "rgb": "219,213,211",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#DBD5D3"
+  },
+  {
+    "codigo": "J162",
+    "rgb": "184,181,182",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B8B5B6"
+  },
+  {
+    "codigo": "V027",
+    "rgb": "210,204,202",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D2CCCA"
+  },
+  {
+    "codigo": "S157",
+    "rgb": "188,186,187",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#BCBABB"
+  },
+  {
+    "codigo": "X141",
+    "rgb": "209,202,204",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D1CACC"
+  },
+  {
+    "codigo": "J167",
+    "rgb": "184,185,186",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B8B9BA"
+  },
+  {
+    "codigo": "S168",
+    "rgb": "210,208,193",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D2D0C1"
+  },
+  {
+    "codigo": "K167",
+    "rgb": "209,210,210",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D1D2D2"
+  },
+  {
+    "codigo": "K168",
+    "rgb": "210,206,196",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D2CEC4"
+  },
+  {
+    "codigo": "L167",
+    "rgb": "201,199,194",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C9C7C2"
+  },
+  {
+    "codigo": "N168",
+    "rgb": "203,198,190",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#CBC6BE"
+  },
+  {
+    "codigo": "Y090",
+    "rgb": "191,190,186",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#BFBEBA"
+  },
+  {
+    "codigo": "L157",
+    "rgb": "201,196,189",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C9C4BD"
+  },
+  {
+    "codigo": "J157",
+    "rgb": "186,182,171",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#BAB6AB"
+  },
+  {
+    "codigo": "M157",
+    "rgb": "214,213,207",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D6D5CF"
+  },
+  {
+    "codigo": "K157",
+    "rgb": "222,210,190",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#DED2BE"
+  },
+  {
+    "codigo": "N167",
+    "rgb": "214,209,200",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D6D1C8"
+  },
+  {
+    "codigo": "N157",
+    "rgb": "214,203,181",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D6CBB5"
+  },
+  {
+    "codigo": "M167",
+    "rgb": "224,221,209",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E0DDD1"
+  },
+  {
+    "codigo": "H027",
+    "rgb": "209,199,180",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#D1C7B4"
+  },
+  {
+    "codigo": "S162",
+    "rgb": "201,192,176",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C9C0B0"
+  },
+  {
+    "codigo": "X100",
+    "rgb": "229,222,205",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#E5DECD"
+  },
+  {
+    "codigo": "K162",
+    "rgb": "171,170,166",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#ABAAA6"
+  },
+  {
+    "codigo": "Y097",
+    "rgb": "196,199,200",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#C4C7C8"
+  },
+  {
+    "codigo": "X097",
+    "rgb": "206,206,206",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#CECECE"
+  },
+  {
+    "codigo": "S027",
+    "rgb": "185,190,194",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B9BEC2"
+  },
+  {
+    "codigo": "H018",
+    "rgb": "202,203,200",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#CACBC8"
+  },
+  {
+    "codigo": "Y137",
+    "rgb": "178,182,185",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B2B6B9"
+  },
+  {
+    "codigo": "H017",
+    "rgb": "180,187,194",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B4BBC2"
+  },
+  {
+    "codigo": "X138",
+    "rgb": "188,187,184",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#BCBBB8"
+  },
+  {
+    "codigo": "J018",
+    "rgb": "165,163,162",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#A5A3A2"
+  },
+  {
+    "codigo": "M029",
+    "rgb": "148,144,144",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#949090"
+  },
+  {
+    "codigo": "Y138",
+    "rgb": "144,143,144",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#908F90"
+  },
+  {
+    "codigo": "Y072",
+    "rgb": "127,123,124",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#7F7B7C"
+  },
+  {
+    "codigo": "J027",
+    "rgb": "138,137,138",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#8A898A"
+  },
+  {
+    "codigo": "L027",
+    "rgb": "111,107,109",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#6F6B6D"
+  },
+  {
+    "codigo": "X143",
+    "rgb": "119,118,120",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#777678"
+  },
+  {
+    "codigo": "M027",
+    "rgb": "130,125,119",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#827D77"
+  },
+  {
+    "codigo": "K027",
+    "rgb": "109,108,104",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#6D6C68"
+  },
+  {
+    "codigo": "N027",
+    "rgb": "170,169,165",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#AAA9A5"
+  },
+  {
+    "codigo": "S017",
+    "rgb": "87,85,83",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#575553"
+  },
+  {
+    "codigo": "N018",
+    "rgb": "150,149,144",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#969590"
+  },
+  {
+    "codigo": "Y101",
+    "rgb": "90,86,87",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#5A5657"
+  },
+  {
+    "codigo": "L168",
+    "rgb": "133,134,131",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#858683"
+  },
+  {
+    "codigo": "N162",
+    "rgb": "70,69,69",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#464545"
+  },
+  {
+    "codigo": "M162",
+    "rgb": "186,197,205",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#BAC5CD"
+  },
+  {
+    "codigo": "Y100",
+    "rgb": "151,157,161",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#979DA1"
+  },
+  {
+    "codigo": "M168",
+    "rgb": "184,195,202",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#B8C3CA"
+  },
+  {
+    "codigo": "L162",
+    "rgb": "147,153,156",
+    "categoria": "BRIGHT COLOURS",
+    "hex": "#93999C"
+  }
+]
