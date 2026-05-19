@@ -26,7 +26,7 @@ export default function OrcamentoForm() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [items, setItems] = useState<BudgetItem[]>([
-    { id: '1', mainCategory: '', serviceId: '', width: '', height: '', quantity: '1', reference: '', prazo: '', notes: '' }
+    { id: '1', mainCategory: '', serviceId: '', width: '', height: '', quantity: '1', reference: '', colorCode: '', colorName: '', prazo: '', notes: '' }
   ]);
   const [activeGalleryItem, setActiveGalleryItem] = useState<string | null>(null);
   const [formData, setFormData] = useState({
@@ -38,9 +38,9 @@ export default function OrcamentoForm() {
   });
 
   const handleAddItem = () => {
-    setItems([
-      ...items,
-      { id: Math.random().toString(36).substr(2, 9), mainCategory: '', serviceId: '', width: '', height: '', quantity: '1', reference: '', prazo: '', notes: '' }
+    setItems(prev => [
+      ...prev,
+      { id: Math.random().toString(36).substr(2, 9), mainCategory: '', serviceId: '', width: '', height: '', quantity: '1', reference: '', colorCode: '', colorName: '', prazo: '', notes: '' }
     ]);
   };
 
@@ -51,7 +51,7 @@ export default function OrcamentoForm() {
   };
 
   const updateItem = (id: string, field: keyof BudgetItem, value: string) => {
-    setItems(items.map(item => {
+    setItems(prev => prev.map(item => {
       if (item.id === id) {
         const updated = { ...item, [field]: value };
         // Resetar campos dependentes
