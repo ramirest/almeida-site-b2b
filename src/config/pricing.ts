@@ -67,6 +67,7 @@ export interface CalculationParams {
   height?: number; // Altura em metros (m)
   quantity?: number; // Quantidade (padrão 1)
   includeAdditionalCosts?: boolean; // Se deve somar a arte final, etc (padrão true)
+  colorPrice?: number; // Preço da cor que sobrescreve o preço do serviço em pinturas
 }
 
 // Função para arredondar sempre para o próximo múltiplo de 5 cm (0.05m)
@@ -85,6 +86,9 @@ export const calculateServicePrice = (params: CalculationParams): number => {
 
   const qty = params.quantity || 1;
   let baseCalc = 0;
+  
+  // Se for pintura e houver um preço de cor definido, o preço da cor substitui o preço base do serviço.
+  const effectivePrice = (service.mainCategory === 'pinturas' && params.colorPrice !== undefined) ? params.colorPrice : service.price;
 
   if (service.unit === 'm2') {
     // m²: usa a medida arredondada para cobrança (múltiplo de 5)
@@ -93,14 +97,15 @@ export const calculateServicePrice = (params: CalculationParams): number => {
     const billableW = getBillableMeasure(w);
     const billableH = getBillableMeasure(h);
     const area = billableW * billableH;
-    baseCalc = area * service.price * qty;
+    baseCalc = area * effectivePrice * qty;
   } else if (service.unit === 'ml') {
     // ml: usa a largura arredondada para cobrança (múltiplo de 5)
     const w = params.width || 0;
     const billableW = getBillableMeasure(w);
-    baseCalc = billableW * service.price * qty;
-  } else if (service.unit === 'un') {
-    baseCalc = service.price * qty; 
+    baseCalc = billableW * effectivePrice * qty;
+  } else {
+    // un: unidade simples
+    baseCalc = effectivePrice * qty;
   }
 
   // Adicionar custos extras (ex: Arte final R$ 60 na Foto Jateada)

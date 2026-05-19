@@ -5,6 +5,7 @@ import { CheckCircle, AlertCircle, RefreshCw } from 'lucide-react';
 import { Modal } from '@/components/Modal';
 import { approveBudgetAndPromoteToPartner, updateBudget } from '@/actions/crm';
 import { calculateServicePrice, getBillableMeasure, getPriceById } from '@/config/pricing';
+import { getColorPricing } from '@/utils/colorPricing';
 
 interface LeadBudgetModalProps {
   isOpen: boolean;
@@ -41,18 +42,25 @@ export function LeadBudgetModal({ isOpen, onClose, lead, budget, onSuccess }: Le
         const w = isMm ? wRaw / 1000 : wRaw;
         const h = isMm ? hRaw / 1000 : hRaw;
         
+        const service = getPriceById(svc.serviceId);
+        const isPintura = service?.mainCategory === 'pinturas';
+        let colorPrice: number | undefined = undefined;
+        if (isPintura && svc.colorCode) {
+          colorPrice = getColorPricing(svc.colorCode, svc.colorName || '').price;
+        }
+
         const price = calculateServicePrice({
           serviceId: svc.serviceId,
           width: w,
           height: h,
           quantity: parseInt(svc.quantity) || 1,
-          includeAdditionalCosts: true
+          includeAdditionalCosts: true,
+          colorPrice
         });
         
         newTotal += price;
 
         // Atualizar volume string
-        const service = getPriceById(svc.serviceId);
         let volumeStr = svc.volume || '';
         if (service?.unit === 'm2' && w > 0 && h > 0) {
           volumeStr = `${(w * h).toFixed(2).replace('.', ',')} m² (${wRaw}x${hRaw}mm)`;
@@ -183,6 +191,11 @@ export function LeadBudgetModal({ isOpen, onClose, lead, budget, onSuccess }: Le
                   {svc.reference && (
                     <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded font-bold whitespace-nowrap flex items-center">
                       Ref: {svc.reference}
+                    </span>
+                  )}
+                  {svc.colorCode && (
+                    <span className="bg-primary/10 text-primary text-xs px-2 py-1 rounded font-bold whitespace-nowrap flex items-center">
+                      Cor: {svc.colorCode} {svc.colorName && `(${svc.colorName})`}
                     </span>
                   )}
                 </div>

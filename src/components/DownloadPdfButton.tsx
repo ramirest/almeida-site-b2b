@@ -3,7 +3,8 @@
 import React, { useState, useRef } from 'react';
 import { Download, Loader2 } from 'lucide-react';
 import { Modal } from '@/components/Modal';
-import { getBillableMeasure } from '@/config/pricing';
+import { getBillableMeasure, calculateServicePrice } from '@/config/pricing';
+import { getColorPricing } from '@/utils/colorPricing';
 
 interface DownloadPdfButtonProps {
   budget: any;
@@ -164,6 +165,32 @@ export function DownloadPdfButton({ budget, className }: DownloadPdfButtonProps)
                   let details = [];
                   if (item.reference) details.push(`Ref: ${item.reference}`);
                   
+                  let itemTotalStr = '';
+                  if (item.serviceId) {
+                    let colorPrice: number | undefined = undefined;
+                    if (item.colorCode) {
+                      const pricing = getColorPricing(item.colorCode, item.colorName || '');
+                      colorPrice = pricing.price;
+                      details.push(`Cor: ${item.colorCode} (${pricing.category} - R$ ${pricing.price.toFixed(2).replace('.', ',')}/m²)`);
+                    }
+                    
+                    const wRaw = parseFloat(item.width) || 0;
+                    const hRaw = parseFloat(item.height) || 0;
+                    const isMm = wRaw > 20 || hRaw > 20;
+                    const w = isMm ? wRaw / 1000 : wRaw;
+                    const h = isMm ? hRaw / 1000 : hRaw;
+                    
+                    const itemPrice = calculateServicePrice({
+                      serviceId: item.serviceId,
+                      width: w,
+                      height: h,
+                      quantity: parseInt(item.quantity) || 1,
+                      includeAdditionalCosts: true,
+                      colorPrice
+                    });
+                    itemTotalStr = `Valor: R$ ${itemPrice.toFixed(2).replace('.', ',')}`;
+                  }
+                  
                   let volumeInfo = '';
                   let unitInfo = 'm²'; // default sugerido pelo usuário
                   let qtyInfo = item.quantity || '1'; // default para formulários antigos
@@ -211,7 +238,14 @@ export function DownloadPdfButton({ budget, className }: DownloadPdfButtonProps)
                     <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
                       <td className="p-3 font-medium">{index + 1}</td>
                       <td className="p-3 font-bold text-slate-800">{item.serviceName || item.serviceId || 'Serviço'}</td>
-                      <td className="p-3 text-slate-600">{details.join(' | ') || '-'}</td>
+                      <td className="p-3 text-slate-600">
+                        {details.join(' | ') || '-'}
+                        {itemTotalStr && (
+                          <div className="text-[11px] text-blue-900 font-bold mt-1">
+                            {itemTotalStr}
+                          </div>
+                        )}
+                      </td>
                       <td className="p-3 text-slate-600">
                         <div className="font-medium text-right">{volumeInfo}</div>
                         {billableInfo && <div className="text-[10px] text-blue-600 mt-1 whitespace-nowrap text-right">{billableInfo}</div>}

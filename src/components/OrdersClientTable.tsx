@@ -1,8 +1,10 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { ShoppingCart, Calendar, Search } from 'lucide-react';
+import { ShoppingCart, Calendar, Search, ChevronDown, ChevronUp } from 'lucide-react';
 import { OrderStatusSelect } from '@/components/AdminActionButtons';
+import { calculateServicePrice, getBillableMeasure } from '@/config/pricing';
+import { getColorPricing } from '@/utils/colorPricing';
 
 type OrderWithRelations = any; // Simplificado para o exemplo, idealmente importe o tipo correto do Prisma
 
@@ -10,6 +12,7 @@ export function OrdersClientTable({ initialOrders }: { initialOrders: OrderWithR
   const [searchTerm, setSearchTerm] = useState('');
   const [activeTab, setActiveTab] = useState<'ativos' | 'arquivados'>('ativos');
   const [currentPage, setCurrentPage] = useState(1);
+  const [expandedOrderId, setExpandedOrderId] = useState<string | null>(null);
   const ITEMS_PER_PAGE = 10;
 
   const filteredOrders = useMemo(() => {
@@ -108,46 +111,168 @@ export function OrdersClientTable({ initialOrders }: { initialOrders: OrderWithR
                     Nenhum pedido encontrado.
                   </td>
                 </tr>
-              ) : currentOrders.map((order) => (
-                <tr key={order.id} className={`hover:bg-slate-50/50 transition-colors ${activeTab === 'arquivados' ? 'opacity-80' : ''}`}>
-                  <td className="px-6 py-4">
-                    <div className="font-bold text-slate-900 flex items-center gap-2">
-                      <ShoppingCart size={14} className="text-slate-400" />
-                      #{order.id.slice(-6).toUpperCase()}
-                    </div>
-                    <div className="text-xs text-slate-500 mt-1 flex items-center gap-1">
-                      <Calendar size={12} />
-                      {new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeZone: 'America/Sao_Paulo' }).format(new Date(order.createdAt))}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="font-medium text-slate-800">
-                      {order.partner ? order.partner.corporateName : 'Venda Direta (Avulso)'}
-                    </div>
-                    {order.partner && (
-                      <div className="text-xs text-slate-500 mt-1">CNPJ: {order.partner.cnpj}</div>
+              ) : currentOrders.map((order) => {
+                const isExpanded = expandedOrderId === order.id;
+                return (
+                  <React.Fragment key={order.id}>
+                    <tr 
+                      className={`hover:bg-slate-50/50 transition-colors cursor-pointer ${activeTab === 'arquivados' ? 'opacity-80' : ''} ${isExpanded ? 'bg-blue-50/20' : ''}`}
+                      onClick={() => setExpandedOrderId(isExpanded ? null : order.id)}
+                    >
+                      <td className="px-6 py-4">
+                        <div className="font-bold text-slate-900 flex items-center gap-2">
+                          <span className="text-slate-400 hover:text-slate-600">
+                            {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                          </span>
+                          <ShoppingCart size={14} className="text-slate-400" />
+                          #{order.id.slice(-6).toUpperCase()}
+                        </div>
+                        <div className="text-xs text-slate-500 mt-1 flex items-center gap-1">
+                          <Calendar size={12} />
+                          {new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeZone: 'America/Sao_Paulo' }).format(new Date(order.createdAt))}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="font-medium text-slate-800">
+                          {order.partner ? order.partner.corporateName : 'Venda Direta (Avulso)'}
+                        </div>
+                        {order.partner && (
+                          <div className="text-xs text-slate-500 mt-1">CNPJ: {order.partner.cnpj}</div>
+                        )}
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="text-slate-600">
+                          {order.items.length > 0 ? (
+                            <>
+                              <span className="font-medium">{order.items[0].serviceType}</span>
+                              {order.items.length > 1 && <span className="text-xs ml-1 text-slate-400">(+{order.items.length - 1})</span>}
+                            </>
+                          ) : (
+                            <span className="text-slate-400 italic">Sem itens</span>
+                          )}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 font-bold text-slate-900">
+                        {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(order.totalValue)}
+                      </td>
+                      <td className="px-6 py-4" onClick={(e) => e.stopPropagation()}>
+                        <OrderStatusSelect orderId={order.id} currentStatus={order.status} />
+                      </td>
+                    </tr>
+                    
+                    {isExpanded && (
+                      <tr className="bg-slate-50/50">
+                        <td colSpan={5} className="px-8 py-6 border-b border-slate-200">
+                          <div className="space-y-4">
+                            <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Itens Detalhados do Pedido</h4>
+                            <div className="space-y-3">
+                              {order.items.map((item: any, idx: number) => {
+                                const wRaw = parseFloat(item.width) || 0;
+                                const hRaw = parseFloat(item.height) || 0;
+                                const isMm = wRaw > 20 || hRaw > 20;
+                                const w = isMm ? wRaw / 1000 : wRaw;
+                                const h = isMm ? hRaw / 1000 : hRaw;
+                                const qty = parseInt(item.quantity) || 1;
+                                
+                                let colorPrice: number | undefined = undefined;
+                                let colorCategory = '';
+                                if (item.colorCode) {
+                                  const cp = getColorPricing(item.colorCode, item.colorName || '');
+                                  colorPrice = cp.price;
+                                  colorCategory = cp.category;
+                                }
+
+                                const itemPrice = item.serviceId ? calculateServicePrice({
+                                  serviceId: item.serviceId,
+                                  width: w,
+                                  height: h,
+                                  quantity: qty,
+                                  includeAdditionalCosts: true,
+                                  colorPrice
+                                }) : 0;
+
+                                return (
+                                  <div key={idx} className="bg-white rounded-lg border border-slate-200 p-4 shadow-sm text-sm space-y-3">
+                                    <div className="flex justify-between items-start">
+                                      <div>
+                                        <span className="font-bold text-slate-800">{item.serviceType || item.serviceName || 'Serviço'}</span>
+                                        {item.reference && (
+                                          <span className="ml-2 bg-blue-50 text-blue-700 text-xs px-2 py-0.5 rounded font-semibold">
+                                            Ref: {item.reference}
+                                          </span>
+                                        )}
+                                      </div>
+                                      <div className="text-right font-bold text-blue-900">
+                                        {itemPrice > 0 ? (
+                                          new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(itemPrice)
+                                        ) : (
+                                          'Sob Consulta'
+                                        )}
+                                      </div>
+                                    </div>
+
+                                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs text-slate-600">
+                                      {wRaw > 0 && (
+                                        <div>
+                                          <span className="font-semibold block text-slate-400">MEDIDA REAL</span>
+                                          <span>{wRaw} x {hRaw} mm</span>
+                                        </div>
+                                      )}
+                                      {wRaw > 0 && (
+                                        <div>
+                                          <span className="font-semibold block text-slate-400">CONVERSÃO / COBRANÇA</span>
+                                          <span className="italic">
+                                            {getBillableMeasure(w).toFixed(2)}x{getBillableMeasure(h).toFixed(2)}m
+                                          </span>
+                                        </div>
+                                      )}
+                                      <div>
+                                        <span className="font-semibold block text-slate-400">QUANTIDADE</span>
+                                        <span>{qty} peça{qty > 1 ? 's' : ''}</span>
+                                      </div>
+                                      {item.deadline && (
+                                        <div>
+                                          <span className="font-semibold block text-slate-400">PRAZO DESEJADO</span>
+                                          <span>{item.deadline}</span>
+                                        </div>
+                                      )}
+                                    </div>
+
+                                    {item.colorCode && (
+                                      <div className="text-xs bg-primary/5 border-l-2 border-primary p-2 rounded-r-md">
+                                        <div className="flex gap-4">
+                                          <div>
+                                            <span className="font-semibold text-slate-500">Cor:</span> {item.colorCode} {item.colorName && `(${item.colorName})`}
+                                          </div>
+                                          <div>
+                                            <span className="font-semibold text-slate-500">Categoria:</span> {colorCategory}
+                                          </div>
+                                          <div>
+                                            <span className="font-semibold text-slate-500">Preço da cor:</span> R$ {colorPrice?.toFixed(2).replace('.', ',')}/m²
+                                          </div>
+                                        </div>
+                                      </div>
+                                    )}
+
+                                    {item.notes && (
+                                      <div className="bg-amber-50/50 border border-amber-100 p-2 rounded text-xs text-amber-800">
+                                        <span className="font-bold">Observações:</span> {item.notes}
+                                      </div>
+                                    )}
+                                  </div>
+                                );
+                              })}
+                              {order.items.length === 0 && (
+                                <p className="text-xs text-slate-400 italic">Sem itens detalhados.</p>
+                              )}
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
                     )}
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="text-slate-600">
-                      {order.items.length > 0 ? (
-                        <>
-                          <span className="font-medium">{order.items[0].serviceType}</span>
-                          {order.items.length > 1 && <span className="text-xs ml-1 text-slate-400">(+{order.items.length - 1})</span>}
-                        </>
-                      ) : (
-                        <span className="text-slate-400 italic">Sem itens</span>
-                      )}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 font-bold text-slate-900">
-                    {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(order.totalValue)}
-                  </td>
-                  <td className="px-6 py-4">
-                    <OrderStatusSelect orderId={order.id} currentStatus={order.status} />
-                  </td>
-                </tr>
-              ))}
+                  </React.Fragment>
+                );
+              })}
             </tbody>
           </table>
         </div>

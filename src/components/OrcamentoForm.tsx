@@ -7,6 +7,7 @@ import { Modal } from '@/components/Modal';
 import { ReferenceGalleryModal } from '@/components/ReferenceGalleryModal';
 import { PRICING_TABLE, calculateServicePrice } from '@/config/pricing';
 import { ColorPicker } from '@/components/color-picker/ColorPicker';
+import { getColorPricing } from '@/utils/colorPricing';
 
 type BudgetItem = {
   id: string;
@@ -82,12 +83,18 @@ export default function OrcamentoForm() {
     let total = 0;
     items.forEach(item => {
       if (item.serviceId) {
+        let colorPrice: number | undefined = undefined;
+        if (item.mainCategory === 'pinturas' && item.colorCode) {
+          colorPrice = getColorPricing(item.colorCode, item.colorName || '').price;
+        }
+
         total += calculateServicePrice({
           serviceId: item.serviceId,
           width: (parseFloat(item.width.replace(',', '.')) || 0) / 1000,
           height: (parseFloat(item.height.replace(',', '.')) || 0) / 1000,
           quantity: parseInt(item.quantity) || 1,
-          includeAdditionalCosts: true
+          includeAdditionalCosts: true,
+          colorPrice
         });
       }
     });
@@ -522,10 +529,27 @@ export default function OrcamentoForm() {
                       {item.reference && <span className="ml-2 font-normal text-blue-600">({item.reference})</span>}
                     </p>
                     {item.colorCode && (
-                      <div className="mb-2 text-xs border-l-2 border-primary pl-2 py-0.5 bg-primary/5">
-                        <span className="font-semibold text-gray-700">Cor: </span>
-                        <span className="text-gray-900">{item.colorCode}</span>
-                        <span className="text-gray-500 ml-1">({item.colorName?.toLowerCase()})</span>
+                      <div className="mb-2 text-[11px] border-l-2 border-primary pl-2 py-1 bg-primary/5">
+                        {(() => {
+                          const cp = getColorPricing(item.colorCode, item.colorName || '');
+                          return (
+                            <>
+                              <div className="flex gap-1.5 items-center">
+                                <span className="font-semibold text-gray-700">Cor Selecionada: </span>
+                                <span className="text-gray-900">{item.colorCode}</span>
+                                <span className="text-gray-500">({item.colorName?.toLowerCase()})</span>
+                              </div>
+                              <div className="flex gap-1.5 items-center mt-0.5">
+                                <span className="font-semibold text-gray-700">Categoria: </span>
+                                <span className="text-gray-900">{cp.category}</span>
+                              </div>
+                              <div className="flex gap-1.5 items-center mt-0.5">
+                                <span className="font-semibold text-gray-700">Valor da cor: </span>
+                                <span className="text-primary font-bold">R$ {cp.price.toFixed(2).replace('.', ',')}/m²</span>
+                              </div>
+                            </>
+                          );
+                        })()}
                       </div>
                     )}
                     <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-gray-600">
