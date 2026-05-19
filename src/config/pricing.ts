@@ -47,9 +47,9 @@ export const PRICING_TABLE: ServicePrice[] = [
 
   // --- Pinturas ---
   { id: 'pintura-logo-textos', name: 'Logotipos ou textos', category: 'Pinturas', price: 175, unit: 'm2', mainCategory: 'pinturas', description: 'Pintura de logomarca ou tipografia.' },
-  { id: 'pintura-artistico-normal', name: 'Artístico normal', category: 'Pinturas', price: 170, unit: 'm2', mainCategory: 'pinturas', galleryFolder: 'pinturas-artisticos', description: 'Pintura de desenhos artísticos livres.' },
-  { id: 'pintura-artistico-floral', name: 'Artístico floral', category: 'Pinturas', price: 198, unit: 'm2', mainCategory: 'pinturas', galleryFolder: 'pinturas-floral', description: 'Pintura de elementos naturais e flores.' },
-  { id: 'pintura-artistico-paisagem', name: 'Artístico paisagem/animal', category: 'Pinturas', price: 250, unit: 'm2', mainCategory: 'pinturas', galleryFolder: 'pinturas-paisagem', description: 'Pintura de ilustrações de cenários e animais.' },
+  { id: 'pintura-artistico-normal', name: 'Artístico normal', category: 'Pinturas', price: 170, unit: 'm2', mainCategory: 'pinturas', galleryFolder: 'artisticos', description: 'Pintura de desenhos artísticos livres.' },
+  { id: 'pintura-artistico-floral', name: 'Artístico floral', category: 'Pinturas', price: 198, unit: 'm2', mainCategory: 'pinturas', galleryFolder: 'floral', description: 'Pintura de elementos naturais e flores.' },
+  { id: 'pintura-artistico-paisagem', name: 'Artístico paisagem/animal', category: 'Pinturas', price: 250, unit: 'm2', mainCategory: 'pinturas', galleryFolder: 'artisticos', description: 'Pintura de ilustrações de cenários e animais.' },
 ];
 
 export const getPriceById = (id: string): ServicePrice | undefined => PRICING_TABLE.find(p => p.id === id);
