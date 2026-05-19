@@ -44,6 +44,12 @@ export const PRICING_TABLE: ServicePrice[] = [
   { id: 'tacas-copos', name: 'Taças / copos / garrafas', category: 'Itens Unitários', price: 21, unit: 'un', mainCategory: 'jateamento', isStartingPrice: true, description: 'Personalização de peças cilíndricas ou curvas.' },
   { id: 'tabuas', name: 'Tábuas personalizadas', category: 'Itens Unitários', price: 75, unit: 'un', mainCategory: 'jateamento', isStartingPrice: true, galleryFolder: 'tabuas', description: 'Tábua de corte ou serviço decorada.' },
   { id: 'gravacao-tabua', name: 'Gravação em tábua do cliente', category: 'Itens Unitários', price: 50, unit: 'un', mainCategory: 'jateamento', galleryFolder: 'tabuas', description: 'Forneça a tábua e nós aplicamos a arte.' },
+
+  // --- Pinturas ---
+  { id: 'pintura-logo-textos', name: 'Logotipos ou textos', category: 'Pinturas', price: 175, unit: 'm2', mainCategory: 'pinturas', description: 'Pintura de logomarca ou tipografia.' },
+  { id: 'pintura-artistico-normal', name: 'Artístico normal', category: 'Pinturas', price: 170, unit: 'm2', mainCategory: 'pinturas', galleryFolder: 'pinturas-artisticos', description: 'Pintura de desenhos artísticos livres.' },
+  { id: 'pintura-artistico-floral', name: 'Artístico floral', category: 'Pinturas', price: 198, unit: 'm2', mainCategory: 'pinturas', galleryFolder: 'pinturas-floral', description: 'Pintura de elementos naturais e flores.' },
+  { id: 'pintura-artistico-paisagem', name: 'Artístico paisagem/animal', category: 'Pinturas', price: 250, unit: 'm2', mainCategory: 'pinturas', galleryFolder: 'pinturas-paisagem', description: 'Pintura de ilustrações de cenários e animais.' },
 ];
 
 export const getPriceById = (id: string): ServicePrice | undefined => PRICING_TABLE.find(p => p.id === id);
