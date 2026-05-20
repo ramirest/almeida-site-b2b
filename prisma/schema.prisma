@@ -62,6 +62,12 @@ model OrderItem {
   quantity    Int      @default(1)
   deadline    String
   notes       String?
+  serviceId   String?
+  width       String?
+  height      String?
+  colorCode   String?
+  colorName   String?
+  reference   String?
 }
 
 model DashboardConfig {

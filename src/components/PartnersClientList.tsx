@@ -5,6 +5,7 @@ import { Building2, Phone, Mail, Settings2, FileText, LayoutList, CheckCircle2, 
 import { PartnerStatusSelect } from '@/components/AdminActionButtons';
 import { Modal } from '@/components/Modal';
 import { updatePartner } from '@/actions/partners';
+import { DownloadOrderPdfButton } from '@/components/DownloadOrderPdfButton';
 
 type PartnerWithRelations = any;
 
@@ -237,14 +238,24 @@ export function PartnersClientList({ initialPartners }: { initialPartners: Partn
           ) : (
             <div className="space-y-3">
               {selectedPartner?.orders?.map((order: any) => (
-                <div key={order.id} className="p-3 border border-slate-100 rounded-lg bg-slate-50 flex justify-between items-center">
+                <div 
+                  key={order.id} 
+                  onClick={(e) => {
+                    const btn = e.currentTarget.querySelector('button');
+                    if (btn) btn.click();
+                  }}
+                  className="p-3 border border-slate-100 rounded-lg bg-slate-50 flex justify-between items-center group hover:bg-white hover:border-blue-200 hover:shadow-sm transition-all cursor-pointer relative pr-12"
+                >
                   <div>
-                    <p className="text-sm font-bold text-slate-900">Pedido #{order.id.slice(-6).toUpperCase()}</p>
+                    <p className="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors">Pedido #{order.id.slice(-6).toUpperCase()}</p>
                     <p className="text-xs text-slate-500">{new Date(order.createdAt).toLocaleDateString('pt-BR')}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-bold text-blue-600">{formatCurrency(order.totalValue)}</p>
+                    <p className="text-sm font-bold text-slate-700">{formatCurrency(order.totalValue)}</p>
                     <span className="text-[10px] font-bold uppercase text-slate-400">{order.status}</span>
+                  </div>
+                  <div className="absolute right-2 top-1/2 -translate-y-1/2">
+                    <DownloadOrderPdfButton order={{...order, partner: selectedPartner}} iconOnly />
                   </div>
                 </div>
               ))}

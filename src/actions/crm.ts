@@ -144,10 +144,17 @@ export async function approveBudgetAndPromoteToPartner(budgetId: string, partner
       status: 'PENDING',
       items: {
         create: servicesArray.map((item: any) => ({
-          serviceType: String(item.serviceType || item.type || 'Serviço Geral'),
+          serviceType: String(item.serviceType || item.serviceName || item.type || 'Serviço Geral'),
+          serviceId: item.serviceId ? String(item.serviceId) : null,
+          width: item.width ? String(item.width) : null,
+          height: item.height ? String(item.height) : null,
+          colorCode: item.colorCode ? String(item.colorCode) : null,
+          colorName: item.colorName ? String(item.colorName) : null,
+          reference: item.reference ? String(item.reference) : null,
           volume: String(item.volume || 'N/A'),
+          quantity: parseInt(item.quantity) || 1,
           deadline: String(item.prazo || item.deadline || 'A Combinar'),
-          notes: item.notes ? String(item.notes) : ''
+          notes: item.notes ? String(item.notes) : null
         }))
       }
     }

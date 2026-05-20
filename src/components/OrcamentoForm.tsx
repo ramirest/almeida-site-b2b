@@ -479,12 +479,12 @@ export default function OrcamentoForm() {
                     {(item.mainCategory === 'pinturas' && item.serviceId) && (
                       <div className="lg:col-span-3">
                         <label className="block text-sm font-semibold text-gray-700 mb-2">Seleção de Cor SayerSystem *</label>
-                        <ColorPicker 
-                          value={item.colorCode || ''} 
+                        <ColorPicker
+                          value={item.colorCode || ''}
                           onChange={(color) => {
                             updateItem(item.id, 'colorCode', color.codigo);
                             updateItem(item.id, 'colorName', color.categoria);
-                          }} 
+                          }}
                         />
                       </div>
                     )}
